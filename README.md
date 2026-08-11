@@ -1,36 +1,107 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ajitesh Channa Portfolio
 
-## Getting Started
+Premium, motion-forward personal portfolio built with Next.js App Router, TypeScript, and a data-driven content architecture.
 
-First, run the development server:
+## Overview
+
+This project is designed to present AI engineering, projects, experience, and research in a clean, high-contrast visual system with purposeful animation and strong mobile responsiveness.
+
+Current key traits:
+
+- App Router architecture with static generation where appropriate
+- Centralized content/data model under src/data
+- Shared animation variants and reduced-motion fallbacks
+- Reusable UI primitives and section-based composition
+- SEO baseline with metadata, sitemap, and robots routes
+
+## Tech Stack
+
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind CSS 4
+- Framer Motion
+- Zod
+- Lucide Icons
+
+## Project Structure
+
+Core paths:
+
+- src/app: routes, layout, metadata routes
+- src/components: reusable and feature components
+- src/data: centralized content objects and arrays
+- src/lib: shared utilities, animation config, site metadata
+- public: static assets served at root
+
+## Local Development
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Build for production:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Start production build locally:
 
-## Learn More
+```bash
+npm run start
+```
 
-To learn more about Next.js, take a look at the following resources:
+Open http://localhost:3000 in your browser.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Available Scripts
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- npm run dev: start local development server
+- npm run build: create production build
+- npm run start: run production server
+- npm run lint: run ESLint
 
-## Deploy on Vercel
+## Content Editing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Most content is data-driven and should be edited in src/data instead of component files.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Typical updates:
+
+- Navigation links: src/data/navigation.ts
+- About content: src/data/about.ts
+- Projects and case studies: src/data/projects.ts
+- Experience timeline: src/data/experience.ts
+- Research content: src/data/research.ts
+- Skills and services: src/data/skills.ts
+- Profile image source: src/data/profile.ts
+
+For a detailed editor-focused guide, see change.md.
+
+## Design and Motion Configuration
+
+- Global tokens (color, typography, spacing): src/app/globals.css
+- Motion variants and timing: src/lib/animations.ts
+- Site metadata defaults: src/lib/site.ts
+
+## Deployment
+
+Recommended target: Vercel.
+
+General flow:
+
+1. Push repository to GitHub
+2. Import project in Vercel
+3. Set environment variables (including NEXT_PUBLIC_SITE_URL)
+4. Deploy and verify routes, metadata, and performance
+
+## Notes
+
+- If lint appears to stall in your local environment, validate with build and type-check first, then troubleshoot ESLint process behavior separately.
