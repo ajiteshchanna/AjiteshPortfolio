@@ -19,6 +19,7 @@ export function Navbar() {
   const [isLogoHovered, setIsLogoHovered] = useState(false);
   const prefersReducedMotion      = useReducedMotion();
   const pathname                  = usePathname();
+  const isHome = pathname === "/";
 
   // Detect scroll position for background transition
   useEffect(() => {
@@ -48,7 +49,12 @@ export function Navbar() {
             onMouseLeave={() => setIsLogoHovered(false)}
             onFocus={() => setIsLogoHovered(true)}
             onBlur={() => setIsLogoHovered(false)}
-            className="font-mono text-sm font-semibold tracking-[0.2em] text-fg uppercase hover:text-accent transition-colors duration-200"
+            className={cn(
+              "relative inline-flex h-9 items-center rounded-lg px-3.5",
+              "bg-transparent font-mono text-sm font-semibold tracking-[0.2em] text-fg uppercase",
+              "transition-[color,background-color] duration-200 hover:text-accent",
+              "focus-visible:outline-none focus-visible:text-fg",
+            )}
             aria-label="Ajitesh Channa — home"
           >
             <motion.span
@@ -81,6 +87,18 @@ export function Navbar() {
             >
               AC
             </motion.span>
+
+            <SnakeBorderIndicator
+              mode="active"
+              visible={isHome}
+              reducedMotion={prefersReducedMotion}
+            />
+
+            <SnakeBorderIndicator
+              mode="hover"
+              visible={isLogoHovered && !isHome}
+              reducedMotion={prefersReducedMotion}
+            />
           </Link>
 
           {/* ── Desktop navigation ───────────────────────────── */}
