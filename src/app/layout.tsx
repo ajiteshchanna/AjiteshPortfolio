@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { BubbleCursor } from "@/components/layout/BubbleCursor";
 import { RouteTransition } from "@/components/layout/RouteTransition";
 import { SITE_METADATA, SITE_URL } from "@/lib/site";
 import "./globals.css";
@@ -87,7 +86,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           Skip to main content
         </a>
         <Navbar />
-        <BubbleCursor />
         {/* pt-[5.5rem] offsets fixed navbar + marquee stack */}
         <div className="flex flex-1 flex-col pt-[5.5rem]">
           <div id="content-start" tabIndex={-1} className="outline-none">

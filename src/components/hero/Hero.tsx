@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { SocialLinks } from "@/components/ui/SocialLinks";
 import { AnimatedText } from "@/components/ui/AnimatedText";
 import { HeroBadge } from "@/components/ui/HeroBadge";
+import { SystemDetailsPanel } from "@/components/hero/SystemDetailsPanel";
 import { PROFILE_IMAGE } from "@/data/profile";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import {
@@ -223,6 +224,8 @@ export function Hero() {
             <div className="absolute -bottom-2 -right-3 z-30 sm:-right-1 lg:-right-5">
               <HeroBadge />
             </div>
+
+            <SystemDetailsPanel className="z-40 mt-4 max-w-none sm:max-w-[22rem] lg:absolute lg:right-0 lg:top-4 lg:mt-0 lg:max-w-[18.5rem]" />
           </motion.div>
         </motion.div>
 

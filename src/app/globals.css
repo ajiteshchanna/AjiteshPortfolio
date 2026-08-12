@@ -279,17 +279,6 @@
   }
 }
 
-.cursor-bubble-active,
-.cursor-bubble-active body,
-.cursor-bubble-active a,
-.cursor-bubble-active button,
-.cursor-bubble-active input,
-.cursor-bubble-active textarea,
-.cursor-bubble-active select,
-.cursor-bubble-active [role="button"] {
-  cursor: none !important;
-}
-
 /* ============================================================
    BASE
    ============================================================ */

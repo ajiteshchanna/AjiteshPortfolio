@@ -23,11 +23,37 @@ What can be changed
   - `ExperiencePreview`
   - `ResearchPreview`
   - `WritingPreview`
+  - `SystemMonitor`
   - `ContactCTA`
 
 How to add/remove items
 - Add a new dynamic import and render it in the `<main>` flow.
 - Remove a section by removing its JSX component call from `HomePage()`.
+
+### 1.1 Home System Monitor (Compact Command-Center Panel)
+
+File location
+- `src/data/systemMonitor.ts`
+- Render integration: `src/app/page.tsx`
+- UI component: `src/components/sections/SystemMonitor.tsx`
+
+Data/object/array to edit
+- `SYSTEM_MONITOR` object in `src/data/systemMonitor.ts`
+
+What can be changed
+- Header line (`headerLine`)
+- Online label (`onlineLabel`)
+- Progress rows (`metrics` array: `label`, `value`)
+- Current process copy (`currentProcessLabel`, `currentProcess`)
+- Active modules (`activeModulesLabel`, `activeModules` array)
+- Location block (`locationLabel`, `location`)
+- Status block (`statusLabel`, `statusText`, `statusValue`)
+
+How to add/remove items
+- Add/remove progress items in `metrics`.
+- Add/remove module names in `activeModules`.
+- Update any text values directly in `SYSTEM_MONITOR`.
+- Keep `value` and `statusValue` within 0–100 for clean progress rendering.
 
 ---
 
@@ -83,6 +109,29 @@ What can be changed
 How to add/remove items
 - Add/remove objects in `HERO_STATS`.
 - The grid auto-adjusts across breakpoints.
+
+---
+
+## 4.1 System Details Panel (Hero)
+
+File location
+- `src/data/systemDetails.ts`
+- Render integration: `src/components/hero/Hero.tsx`
+- Panel component: `src/components/hero/SystemDetailsPanel.tsx`
+
+Data/object/array to edit
+- `SYSTEM_DETAILS` array in `src/data/systemDetails.ts`
+
+What can be changed
+- Each row label/value in the technical panel:
+  - `System Status`
+  - `Location`
+  - `Focus`
+  - `Available For`
+
+How to add/remove items
+- Edit the `SYSTEM_DETAILS` objects (`label`, `value`) for copy updates.
+- Keep the `key` values stable (`status`, `location`, `focus`, `availability`) so status-dot behavior remains attached to `status`.
 
 ---
 

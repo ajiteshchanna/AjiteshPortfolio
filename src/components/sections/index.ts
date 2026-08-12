@@ -4,4 +4,5 @@ export { AboutPreview } from "./AboutPreview";
 export { ExperiencePreview } from "./ExperiencePreview";
 export { ResearchPreview } from "./ResearchPreview";
 export { WritingPreview } from "./WritingPreview";
+export { SystemMonitor } from "./SystemMonitor";
 export { ContactCTA } from "./ContactCTA";

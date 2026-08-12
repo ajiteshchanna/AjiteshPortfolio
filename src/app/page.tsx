@@ -31,6 +31,10 @@ const WritingPreview = dynamic(
   () => import("@/components/sections/WritingPreview").then((module) => module.WritingPreview),
 );
 
+const SystemMonitor = dynamic(
+  () => import("@/components/sections/SystemMonitor").then((module) => module.SystemMonitor),
+);
+
 const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -94,6 +98,7 @@ export default function HomePage() {
       <ExperiencePreview />
       <ResearchPreview />
       <WritingPreview />
+      <SystemMonitor />
       <ContactCTA />
     </main>
   );
