@@ -47,17 +47,6 @@ export function SnakeBorderIndicator({
           </filter>
         </defs>
 
-        <rect
-          x="0.75"
-          y="0.75"
-          width="98.5"
-          height="34.5"
-          rx={cornerRadius}
-          fill="none"
-          stroke="rgba(63,63,70,0.9)"
-          strokeWidth="1"
-        />
-
         {visible && (
           <>
             <motion.rect

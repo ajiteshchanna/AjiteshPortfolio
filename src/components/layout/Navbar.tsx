@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { useScrollDirection } from "@/hooks/useScrollDirection";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { NAV_LINKS } from "@/data/navigation";
 import { MarqueeBar } from "@/components/layout/MarqueeBar";
@@ -18,7 +17,6 @@ export function Navbar() {
   const [menuOpen, setMenuOpen]   = useState(false);
   const [hoveredHref, setHoveredHref] = useState<string | null>(null);
   const [isLogoHovered, setIsLogoHovered] = useState(false);
-  const scrollDirection           = useScrollDirection();
   const prefersReducedMotion      = useReducedMotion();
   const pathname                  = usePathname();
 
@@ -30,14 +28,9 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Hide navbar on scroll-down once page has scrolled; reveal on scroll-up
-  const isHidden = scrollDirection === "down" && scrolled;
-
   return (
     <>
       <motion.header
-        animate={{ y: isHidden ? "-100%" : "0%" }}
-        transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
         className={cn(
           "fixed inset-x-0 top-0 z-50 h-[5.5rem]",
           "transition-[background-color,border-color,backdrop-filter] duration-300",
@@ -108,12 +101,10 @@ export function Navbar() {
                   onFocus={() => setHoveredHref(link.href)}
                   onBlur={() => setHoveredHref((prev) => (prev === link.href ? null : prev))}
                   className={cn(
-                    "relative inline-flex h-9 items-center rounded-lg border border-border/70 px-3.5",
-                    "bg-black/20 type-label transition-[color,border-color,background-color] duration-200",
+                    "relative inline-flex h-9 items-center rounded-lg px-3.5",
+                    "bg-transparent type-label transition-[color,background-color] duration-200",
                     "focus-visible:outline-none focus-visible:text-fg",
-                    isActive
-                      ? "text-fg border-accent/22 bg-black/35"
-                      : "text-fg-muted hover:text-fg hover:border-white/35",
+                    isActive ? "text-fg" : "text-fg-muted hover:text-fg",
                   )}
                   aria-current={isActive ? "page" : undefined}
                 >

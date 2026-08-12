@@ -167,8 +167,8 @@ export function MobileMenu({ id, isOpen, onClose, links }: MobileMenuProps) {
                       onClick={onClose}
                       className={
                         isActive
-                          ? "relative flex items-baseline rounded-xl border border-accent/24 bg-black/30 px-3 py-3 text-3xl font-bold tracking-tight text-fg transition-colors duration-200"
-                          : "relative flex items-baseline rounded-xl border border-border/70 bg-black/20 px-3 py-3 text-3xl font-bold tracking-tight text-fg-secondary hover:text-fg transition-colors duration-200"
+                          ? "relative flex items-baseline rounded-xl px-3 py-3 text-3xl font-bold tracking-tight text-fg transition-colors duration-200"
+                          : "relative flex items-baseline rounded-xl px-3 py-3 text-3xl font-bold tracking-tight text-fg-secondary hover:text-fg transition-colors duration-200"
                       }
                       aria-current={isActive ? "page" : undefined}
                     >
