@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import type { NavLink } from "@/data/navigation";
 import { SocialLinks } from "@/components/ui/SocialLinks";
+import { SnakeBorderIndicator } from "@/components/navigation/SnakeBorderIndicator";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { mobileDrawer, mobileMenuItem, mobileMenuItems } from "@/lib/animations";
 
@@ -164,28 +165,21 @@ export function MobileMenu({ id, isOpen, onClose, links }: MobileMenuProps) {
                     <Link
                       href={link.href}
                       onClick={onClose}
-                      className="group relative flex items-baseline gap-3 py-3 text-3xl font-bold tracking-tight text-fg-secondary hover:text-fg transition-colors duration-200"
+                      className={
+                        isActive
+                          ? "relative flex items-baseline rounded-xl border border-accent/24 bg-black/30 px-3 py-3 text-3xl font-bold tracking-tight text-fg transition-colors duration-200"
+                          : "relative flex items-baseline rounded-xl border border-border/70 bg-black/20 px-3 py-3 text-3xl font-bold tracking-tight text-fg-secondary hover:text-fg transition-colors duration-200"
+                      }
                       aria-current={isActive ? "page" : undefined}
                     >
-                      <span
-                        className={
-                          isActive
-                            ? "font-mono text-xs text-accent opacity-100 transition-opacity duration-200 translate-y-[-2px]"
-                            : "font-mono text-xs text-accent opacity-0 group-hover:opacity-100 transition-opacity duration-200 translate-y-[-2px]"
-                        }
-                        aria-hidden="true"
-                      >
-                        /
-                      </span>
                       {link.label}
 
-                      <span
-                        className={
-                          isActive
-                            ? "pointer-events-none absolute -bottom-0.5 left-[1.2rem] h-px w-12 rounded-full bg-accent"
-                            : "pointer-events-none absolute -bottom-0.5 left-[1.2rem] h-px w-0 rounded-full bg-accent transition-all duration-200 group-hover:w-12"
-                        }
-                        aria-hidden="true"
+                      <SnakeBorderIndicator
+                        mode="active"
+                        visible={isActive}
+                        reducedMotion={prefersReducedMotion}
+                        durationSeconds={4.8}
+                        cornerRadius={12}
                       />
                     </Link>
                   </motion.li>

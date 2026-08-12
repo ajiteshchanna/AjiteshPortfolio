@@ -6,9 +6,11 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useScrollDirection } from "@/hooks/useScrollDirection";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { NAV_LINKS } from "@/data/navigation";
 import { MarqueeBar } from "@/components/layout/MarqueeBar";
 import { MobileMenu } from "@/components/navigation/MobileMenu";
+import { SnakeBorderIndicator } from "@/components/navigation/SnakeBorderIndicator";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
@@ -16,6 +18,7 @@ export function Navbar() {
   const [menuOpen, setMenuOpen]   = useState(false);
   const [hoveredHref, setHoveredHref] = useState<string | null>(null);
   const scrollDirection           = useScrollDirection();
+  const prefersReducedMotion      = useReducedMotion();
   const pathname                  = usePathname();
 
   // Detect scroll position for background transition
@@ -71,60 +74,28 @@ export function Navbar() {
                   onFocus={() => setHoveredHref(link.href)}
                   onBlur={() => setHoveredHref((prev) => (prev === link.href ? null : prev))}
                   className={cn(
-                    "relative inline-flex h-9 items-center px-1.5 type-label transition-colors duration-200",
+                    "relative inline-flex h-9 items-center rounded-lg border border-border/70 px-3.5",
+                    "bg-black/20 type-label transition-[color,border-color,background-color] duration-200",
                     "focus-visible:outline-none focus-visible:text-fg",
                     isActive
-                      ? "text-fg"
-                      : "text-fg-muted hover:text-fg",
+                      ? "text-fg border-accent/22 bg-black/35"
+                      : "text-fg-muted hover:text-fg hover:border-white/35",
                   )}
                   aria-current={isActive ? "page" : undefined}
                 >
                   <span>{link.label}</span>
 
-                  <span
-                    className="pointer-events-none absolute left-1/2 top-full z-10 h-4 w-8 -translate-x-1/2"
-                    aria-hidden="true"
-                  >
-                    <span
-                      className={cn(
-                        "absolute left-1/2 top-[7px] h-px w-5 -translate-x-1/2 rounded-full transition-opacity duration-300",
-                        isActive ? "bg-accent opacity-100" : "opacity-0",
-                      )}
-                    />
+                  <SnakeBorderIndicator
+                    mode="active"
+                    visible={isActive}
+                    reducedMotion={prefersReducedMotion}
+                  />
 
-                    <span
-                      className={cn(
-                        "absolute left-1/2 top-[7px] h-px w-5 -translate-x-1/2 rounded-full transition-opacity duration-200",
-                        isHovered ? "bg-white/90 opacity-100" : "opacity-0",
-                      )}
-                    />
-
-                    <motion.span
-                      className={cn(
-                        "absolute left-1/2 top-0 h-4 w-7 -translate-x-1/2 rounded-full border border-accent/70",
-                        isActive ? "opacity-100" : "opacity-0",
-                      )}
-                      animate={isActive ? { rotate: 360 } : { rotate: 0 }}
-                      transition={
-                        isActive
-                          ? { duration: 8.5, ease: "linear", repeat: Infinity }
-                          : { duration: 0.2 }
-                      }
-                    />
-
-                    <motion.span
-                      className={cn(
-                        "absolute left-1/2 top-0 h-4 w-7 -translate-x-1/2 rounded-full border border-dashed border-white/80",
-                        isHovered ? "opacity-100" : "opacity-0",
-                      )}
-                      animate={isHovered ? { rotate: 360 } : { rotate: 0 }}
-                      transition={
-                        isHovered
-                          ? { duration: 6.2, ease: "linear", repeat: Infinity }
-                          : { duration: 0.24 }
-                      }
-                    />
-                  </span>
+                  <SnakeBorderIndicator
+                    mode="hover"
+                    visible={isHovered}
+                    reducedMotion={prefersReducedMotion}
+                  />
                 </Link>
               );
             })}
