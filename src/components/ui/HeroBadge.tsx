@@ -48,51 +48,48 @@ export function HeroBadge({ label = BADGE_TEXT, className }: HeroBadgeProps) {
         aria-hidden="true"
       />
 
-      {/* Outer concentric ring */}
       <motion.div
-        className="absolute inset-0 rounded-full border border-accent/20"
-        animate={prefersReducedMotion ? undefined : { rotate: -360 }}
+        className="absolute inset-0 origin-center"
+        animate={prefersReducedMotion ? undefined : { rotate: 360 }}
         transition={prefersReducedMotion ? undefined : { duration: 34, ease: "linear", repeat: Infinity }}
         aria-hidden="true"
-      />
-      {/* Inner ring */}
-      <motion.div
-        className="absolute inset-[12px] rounded-full border border-accent/15"
-        animate={prefersReducedMotion ? undefined : { scale: [1, 1.025, 1] }}
-        transition={prefersReducedMotion ? undefined : { duration: 5.4, ease: "easeInOut", repeat: Infinity }}
-        aria-hidden="true"
-      />
-
-      {/* Rotating SVG text ring */}
-      <motion.svg
-        viewBox="0 0 112 112"
-        className="absolute inset-0 w-full h-full"
-        aria-hidden="true"
-        animate={prefersReducedMotion ? undefined : { rotate: 360 }}
-        transition={
-          prefersReducedMotion
-            ? undefined
-            : { duration: 18, ease: "linear", repeat: Infinity }
-        }
       >
-        <defs>
-          <path
-            id={pathId}
-            d={`M ${cx},${cx} m -${r},0 a ${r},${r} 0 1,1 ${r * 2},0 a ${r},${r} 0 1,1 -${r * 2},0`}
-          />
-        </defs>
-        <text
-          fontSize="7.2"
-          letterSpacing="1.8"
-          fontWeight="500"
-          fill="rgba(245,158,11,0.72)"
-          fontFamily="var(--font-mono), monospace"
+        {/* Outer concentric ring */}
+        <div className="absolute inset-0 rounded-full border border-accent/20" aria-hidden="true" />
+
+        {/* Inner ring */}
+        <motion.div
+          className="absolute inset-[12px] rounded-full border border-accent/15"
+          animate={prefersReducedMotion ? undefined : { scale: [1, 1.025, 1] }}
+          transition={prefersReducedMotion ? undefined : { duration: 5.4, ease: "easeInOut", repeat: Infinity }}
+          aria-hidden="true"
+        />
+
+        {/* Rotating SVG text ring */}
+        <svg
+          viewBox="0 0 112 112"
+          className="absolute inset-0 h-full w-full"
+          aria-hidden="true"
         >
-          <textPath href={`#${pathId}`} startOffset="0%">
-            {repeatedLabel}
-          </textPath>
-        </text>
-      </motion.svg>
+          <defs>
+            <path
+              id={pathId}
+              d={`M ${cx},${cx} m -${r},0 a ${r},${r} 0 1,1 ${r * 2},0 a ${r},${r} 0 1,1 -${r * 2},0`}
+            />
+          </defs>
+          <text
+            fontSize="7.2"
+            letterSpacing="1.8"
+            fontWeight="500"
+            fill="rgba(245,158,11,0.72)"
+            fontFamily="var(--font-mono), monospace"
+          >
+            <textPath href={`#${pathId}`} startOffset="0%">
+              {repeatedLabel}
+            </textPath>
+          </text>
+        </svg>
+      </motion.div>
 
       {/* Center emblem — stable, non-rotating */}
       <motion.div
