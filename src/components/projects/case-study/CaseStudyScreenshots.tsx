@@ -12,7 +12,7 @@ export function CaseStudyScreenshots({ screenshots }: CaseStudyScreenshotsProps)
       <h2 className="type-h3 text-fg">Screenshots</h2>
       <div className="mt-5 grid gap-4 md:grid-cols-2">
         {screenshots.map((shot) => (
-          <figure key={shot.src} className="rounded-xl border border-border bg-background p-3">
+          <figure key={shot.src} data-cursor="media" className="rounded-xl border border-border bg-background p-3">
             <div className="aspect-[16/10] overflow-hidden rounded-lg border border-border-subtle bg-surface-high">
               <div className="relative h-full w-full">
                 <Image

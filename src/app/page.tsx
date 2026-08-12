@@ -27,6 +27,10 @@ const ContactCTA = dynamic(
   () => import("@/components/sections/ContactCTA").then((module) => module.ContactCTA),
 );
 
+const WritingPreview = dynamic(
+  () => import("@/components/sections/WritingPreview").then((module) => module.WritingPreview),
+);
+
 const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -89,6 +93,7 @@ export default function HomePage() {
       <AboutPreview />
       <ExperiencePreview />
       <ResearchPreview />
+      <WritingPreview />
       <ContactCTA />
     </main>
   );

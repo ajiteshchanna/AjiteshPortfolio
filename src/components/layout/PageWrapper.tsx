@@ -13,7 +13,7 @@ interface PageWrapperProps {
  */
 export function PageWrapper({ children, className }: PageWrapperProps) {
   return (
-    <div className={cn("flex-1 pt-16", className)}>
+    <div className={cn("flex-1 pt-[5.5rem]", className)}>
       {children}
     </div>
   );

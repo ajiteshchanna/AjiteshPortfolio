@@ -28,6 +28,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
       variants={prefersReducedMotion ? undefined : cardHover}
       initial={prefersReducedMotion ? undefined : "rest"}
       whileHover={prefersReducedMotion ? undefined : "hover"}
+      data-cursor="media"
       className="group glow-border rounded-2xl bg-surface p-6"
     >
       <div className="mb-4 flex items-start justify-between gap-4">

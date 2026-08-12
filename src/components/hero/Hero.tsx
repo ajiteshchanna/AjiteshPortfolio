@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { type MouseEvent as ReactMouseEvent, useEffect, useRef, useState } from "react";
+import { motion, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { SocialLinks } from "@/components/ui/SocialLinks";
@@ -41,12 +41,64 @@ const HERO_STATS = [
 export function Hero() {
   const prefersReducedMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
+  const portraitRef = useRef<HTMLDivElement>(null);
+  const [allowTilt, setAllowTilt] = useState(false);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
   });
-  const depthY = useTransform(scrollYProgress, [0, 1], [0, -18]);
+  const depthY = useTransform(scrollYProgress, [0, 1], [0, -14]);
   const glowScale = useTransform(scrollYProgress, [0, 1], [1, 1.06]);
+
+  const tiltX = useMotionValue(0);
+  const tiltY = useMotionValue(0);
+  const shiftX = useMotionValue(0);
+  const shiftY = useMotionValue(0);
+  const ringShiftX = useMotionValue(0);
+  const ringShiftY = useMotionValue(0);
+
+  const rotateX = useSpring(tiltX, { stiffness: 180, damping: 22, mass: 0.75 });
+  const rotateY = useSpring(tiltY, { stiffness: 180, damping: 22, mass: 0.75 });
+  const offsetX = useSpring(shiftX, { stiffness: 190, damping: 24, mass: 0.8 });
+  const offsetY = useSpring(shiftY, { stiffness: 190, damping: 24, mass: 0.8 });
+  const ringX = useSpring(ringShiftX, { stiffness: 140, damping: 26, mass: 0.85 });
+  const ringY = useSpring(ringShiftY, { stiffness: 140, damping: 26, mass: 0.85 });
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(pointer: fine)");
+    const update = () => setAllowTilt(mediaQuery.matches && !prefersReducedMotion);
+
+    update();
+    mediaQuery.addEventListener("change", update);
+    return () => mediaQuery.removeEventListener("change", update);
+  }, [prefersReducedMotion]);
+
+  const resetTilt = () => {
+    tiltX.set(0);
+    tiltY.set(0);
+    shiftX.set(0);
+    shiftY.set(0);
+    ringShiftX.set(0);
+    ringShiftY.set(0);
+  };
+
+  const handlePortraitMove = (event: ReactMouseEvent<HTMLDivElement>) => {
+    if (!allowTilt || !portraitRef.current) {
+      return;
+    }
+
+    const rect = portraitRef.current.getBoundingClientRect();
+    const ratioX = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+    const ratioY = ((event.clientY - rect.top) / rect.height) * 2 - 1;
+    const maxTilt = 4.6;
+
+    tiltY.set(ratioX * maxTilt);
+    tiltX.set(-ratioY * (maxTilt * 0.82));
+    shiftX.set(ratioX * 7);
+    shiftY.set(ratioY * 5);
+    ringShiftX.set(ratioX * 11);
+    ringShiftY.set(ratioY * 8);
+  };
 
   const parentVariants = prefersReducedMotion ? undefined : heroEntrance;
   const childVariants  = prefersReducedMotion ? reducedFadeInUp : heroChild;
@@ -107,60 +159,68 @@ export function Hero() {
             </motion.div>
           </div>
 
-          {/* Right — portrait with blur background */}
+          {/* Right — portrait cutout with subtle depth */}
           <motion.div
             variants={frameVariants}
             style={prefersReducedMotion ? undefined : { y: depthY }}
-            className="order-1 relative mx-auto flex w-full max-w-[280px] justify-center sm:max-w-[320px] lg:order-2 lg:max-w-[400px]"
+            className="order-1 relative mx-auto flex w-full max-w-[290px] justify-center sm:max-w-[350px] lg:order-2 lg:max-w-[440px]"
           >
-            {/* Ambient glow behind frame */}
-            <div
-              className="absolute -inset-6 rounded-[2.5rem] bg-accent/14 blur-3xl"
-              aria-hidden="true"
-            />
-
-            {/* Portrait frame with blurred background */}
             <motion.div
+              ref={portraitRef}
               variants={imageVariants}
-              className="relative w-full overflow-hidden rounded-3xl border border-accent/25 shadow-[0_28px_60px_-12px_rgba(0,0,0,0.75)]"
+              onMouseMove={handlePortraitMove}
+              onMouseLeave={resetTilt}
+              data-cursor="media"
+              style={
+                allowTilt
+                  ? {
+                      rotateX,
+                      rotateY,
+                      x: offsetX,
+                      y: offsetY,
+                      transformStyle: "preserve-3d",
+                    }
+                  : undefined
+              }
+              className="relative w-full [perspective:1100px]"
             >
-              {/* Blurred background layer — same image, heavy blur */}
-              <div className="absolute inset-0 scale-110" aria-hidden="true">
-                <Image
-                  src={PROFILE_IMAGE.src}
-                  alt=""
-                  fill
-                  priority
-                  sizes="420px"
-                  className="object-cover object-top blur-2xl brightness-50 saturate-50"
-                />
-              </div>
-
-              {/* Dark vignette over blurred bg */}
-              <div
-                className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/30 to-background/20"
+              <motion.div
+                style={allowTilt ? { x: ringX, y: ringY } : undefined}
+                className="pointer-events-none absolute left-1/2 top-[52%] z-0 h-[86%] w-[86%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-accent/22"
                 aria-hidden="true"
               />
 
-              {/* Sharp portrait */}
-              <Image
-                src={PROFILE_IMAGE.src}
-                alt={PROFILE_IMAGE.alt}
-                width={400}
-                height={520}
-                priority
-                sizes="(max-width: 640px) 80vw, (max-width: 1024px) 42vw, 420px"
-                className="relative z-10 w-full object-cover object-top drop-shadow-[0_8px_24px_rgba(0,0,0,0.6)]"
+              <motion.div
+                style={allowTilt ? { x: ringX, y: ringY } : undefined}
+                className="pointer-events-none absolute left-1/2 top-[52%] z-0 h-[94%] w-[94%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/12"
+                aria-hidden="true"
               />
 
-              {/* Bottom caption strip */}
-              <div className="absolute bottom-0 left-0 right-0 z-20 border-t border-accent/15 bg-background/60 px-4 py-3 backdrop-blur-md">
+              <div className="pointer-events-none absolute left-1/2 top-[52%] z-0 h-[72%] w-[72%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/14 blur-3xl" aria-hidden="true" />
+              <div className="pointer-events-none absolute left-1/2 top-[57%] z-0 h-[52%] w-[64%] -translate-x-1/2 -translate-y-1/2 rounded-[100%] bg-black/70 blur-2xl" aria-hidden="true" />
+
+              <div className="relative z-10 flex justify-center">
+                <Image
+                  src={PROFILE_IMAGE.src}
+                  alt={PROFILE_IMAGE.alt}
+                  width={440}
+                  height={620}
+                  priority
+                  sizes="(max-width: 640px) 82vw, (max-width: 1024px) 44vw, 440px"
+                  style={{ width: "100%", height: "auto" }}
+                  className="object-contain object-top drop-shadow-[0_26px_40px_rgba(0,0,0,0.72)]"
+                />
+              </div>
+
+              <div className="pointer-events-none absolute bottom-[20%] left-1/2 z-20 h-10 w-[72%] -translate-x-1/2 rounded-full border border-accent/26 bg-accent/8 blur-[1px]" aria-hidden="true" />
+
+              <div className="absolute bottom-2 left-1/2 z-20 -translate-x-1/2 rounded-full border border-accent/20 bg-background/65 px-4 py-2 backdrop-blur-sm">
                 <p className="type-label text-accent">Builder • Problem Solver • Storyteller</p>
               </div>
             </motion.div>
 
             {/* Badge — bottom-right corner */}
-            <div className="absolute -bottom-4 -right-4 z-20 sm:-right-2 lg:-right-6">
+            <div className="absolute -bottom-2 -right-3 z-30 sm:-right-1 lg:-right-5">
               <HeroBadge />
             </div>
           </motion.div>
@@ -171,7 +231,7 @@ export function Hero() {
           variants={childVariants}
           initial={prefersReducedMotion ? undefined : "hidden"}
           animate={prefersReducedMotion ? undefined : "visible"}
-          className="mt-10 grid gap-3 sm:grid-cols-3 lg:mt-12"
+          className="mt-8 grid gap-3 sm:grid-cols-3 lg:mt-10"
         >
           {HERO_STATS.map((stat) => (
             <div

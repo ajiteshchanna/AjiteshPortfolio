@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { BubbleCursor } from "@/components/layout/BubbleCursor";
 import { RouteTransition } from "@/components/layout/RouteTransition";
 import { SITE_METADATA, SITE_URL } from "@/lib/site";
 import "./globals.css";
@@ -78,6 +79,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="en"
+      data-scroll-behavior="smooth"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-background text-fg">
@@ -85,8 +87,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           Skip to main content
         </a>
         <Navbar />
-        {/* pt-16 offsets the fixed 64px navbar */}
-        <div className="flex flex-1 flex-col pt-16">
+        <BubbleCursor />
+        {/* pt-[5.5rem] offsets fixed navbar + marquee stack */}
+        <div className="flex flex-1 flex-col pt-[5.5rem]">
           <div id="content-start" tabIndex={-1} className="outline-none">
             <RouteTransition>{children}</RouteTransition>
           </div>

@@ -145,7 +145,7 @@
 
   /* Section vertical rhythm — tightened for content-rich pages */
   .section-gap {
-    padding-block: clamp(2.5rem, 5vw, 4.5rem);
+    padding-block: clamp(2.15rem, 4.2vw, 3.75rem);
   }
 
   /* ── Animated glow border ─────────────────────────────────────
@@ -155,6 +155,33 @@
   .glow-border {
     position: relative;
     border: 1px solid rgba(245, 158, 11, 0.25);
+    box-shadow: inset 0 0 0 1px rgba(245, 158, 11, 0.06);
+  }
+
+  .glow-border::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: conic-gradient(
+      from calc(var(--glow-angle, 0deg) + 120deg),
+      transparent 0deg,
+      transparent 62deg,
+      rgba(245, 158, 11, 0.26) 82deg,
+      rgba(251, 191, 36, 0.35) 92deg,
+      rgba(245, 158, 11, 0.22) 104deg,
+      transparent 128deg,
+      transparent 360deg
+    );
+    filter: blur(2px);
+    opacity: 0.65;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box,
+                  linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    animation: glow-trace 10.5s linear infinite;
   }
 
   .glow-border::after {
@@ -177,8 +204,47 @@
                   linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
-    animation: glow-trace 4s linear infinite;
+    animation: glow-trace 7.4s linear infinite;
     pointer-events: none;
+  }
+
+  .marquee-shell {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+    animation: marquee-scroll 23s linear infinite;
+  }
+
+  .marquee-line {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    white-space: nowrap;
+    padding-right: 1.25rem;
+  }
+
+  .marquee-star {
+    color: rgba(245, 158, 11, 0.9);
+  }
+
+  .marquee-shell:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee-scroll {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
   }
 
   @property --glow-angle {
@@ -197,12 +263,31 @@
       animation: none;
       background: none;
     }
+    .glow-border::before {
+      animation: none;
+      background: none;
+      opacity: 0;
+    }
     .glow-border {
       border-color: rgba(245, 158, 11, 0.35);
       box-shadow: 0 0 0 1px rgba(245, 158, 11, 0.08),
                   0 0 12px -4px rgba(245, 158, 11, 0.2);
     }
+    .marquee-track {
+      animation-duration: 70s;
+    }
   }
+}
+
+.cursor-bubble-active,
+.cursor-bubble-active body,
+.cursor-bubble-active a,
+.cursor-bubble-active button,
+.cursor-bubble-active input,
+.cursor-bubble-active textarea,
+.cursor-bubble-active select,
+.cursor-bubble-active [role="button"] {
+  cursor: none !important;
 }
 
 /* ============================================================

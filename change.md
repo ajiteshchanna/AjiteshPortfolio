@@ -1,534 +1,499 @@
-# Content Change Guide
+# Portfolio Content and Design Change Guide
 
-This file documents exactly how to update every part of the portfolio website.
-Everything is data-driven. You almost never need to touch a component file.
-
----
-
-## Table of Contents
-
-1. [Hero section](#1-hero-section)
-2. [Profile image](#2-profile-image)
-3. [Social links and resume](#3-social-links-and-resume)
-4. [Navigation](#4-navigation)
-5. [Home page stats strip](#5-home-page-stats-strip)
-6. [What I Do / Services accordion](#6-what-i-do--services-accordion)
-7. [About page](#7-about-page)
-8. [Projects](#8-projects)
-9. [Project case studies](#9-project-case-studies)
-10. [Experience](#10-experience)
-11. [Research page](#11-research-page)
-12. [Blog / Articles](#12-blog--articles)
-13. [Contact information](#13-contact-information)
-14. [Skills and technologies](#14-skills-and-technologies)
-15. [Images and assets](#15-images-and-assets)
-16. [Design configuration](#16-design-configuration)
-17. [Hero badge text](#17-hero-badge-text)
-18. [SEO and site metadata](#18-seo-and-site-metadata)
+This guide explains exactly where to edit content, structure, and visual behavior after the latest UI/UX update.
+The project is mostly data-driven: update data files first, then touch component files only when layout or behavior needs to change.
 
 ---
 
-## 1. Hero Section
+## 1. Home Page Structure
 
-**File:** `src/components/hero/Hero.tsx`
+File location
+- `src/app/page.tsx`
 
-| What to change | Where |
-|---|---|
-| Eyebrow line ("AI Engineer • Creative Technologist") | Line with `type-label mb-4 text-accent`, change the text inside `<motion.p>` |
-| Name / H1 | Change text inside `<motion.h1>` |
-| Supporting paragraph | Change the `text=` prop on `<AnimatedText>` |
-| CTA button labels and destinations | Change the `href` and children of the two `<Button>` elements |
-| Stats strip values | Edit the `HERO_STATS` array at the top of the same file |
+Data/object/array to edit
+- Route section composition inside `HomePage()`
 
-**Stats array (at the top of Hero.tsx):**
-```ts
-const HERO_STATS = [
-  { label: "Focus areas", value: "4",     detail: "AI systems, web products..." },
-  { label: "Featured projects", value: "3", detail: "..." },
-  { label: "Current mode", value: "BUILD", detail: "..." },
-];
-```
-Add, remove, or edit any of the three objects. The grid auto-adapts.
+What can be changed
+- Section order and which sections appear on home.
+- Current order:
+  - `Hero`
+  - `WhatIDoAccordion` (services)
+  - `FeaturedProjects`
+  - `AboutPreview`
+  - `ExperiencePreview`
+  - `ResearchPreview`
+  - `WritingPreview`
+  - `ContactCTA`
 
----
-
-## 2. Profile Image
-
-**Centralised path:** `src/data/profile.ts`
-
-```ts
-export const PROFILE_IMAGE = {
-  src: "/images/profile_img.jpg",   // ← change this path
-  alt: "Portrait of Ajitesh Channa", // ← change the alt text
-};
-```
-
-**Image file location:** `public/images/profile_img.jpg`
-
-Replace this file with any JPG/PNG/WebP image. Keep the same filename,
-or update `src` in `profile.ts` to match the new filename.
-
-The image is rendered as a transparent/cutout portrait using CSS blend modes —
-no rectangular card is visible. The blend works best with a subject photographed
-against a plain or dark background. Adjust `object-top` → `object-center` in
-`Hero.tsx` if your image needs a different focal point.
-
-**Responsive sizes are already set:**
-```
-(max-width: 640px) 80vw, (max-width: 1024px) 42vw, 420px
-```
-No changes needed unless you switch to a very different aspect ratio.
+How to add/remove items
+- Add a new dynamic import and render it in the `<main>` flow.
+- Remove a section by removing its JSX component call from `HomePage()`.
 
 ---
 
-## 3. Social Links and Resume
+## 2. Hero Heading and Description
 
-**File:** `src/components/ui/SocialLinks.tsx`
+File location
+- `src/components/hero/Hero.tsx`
 
-Edit the `SOCIAL_LINKS` array at the top of the file:
+Data/object/array to edit
+- Hero eyebrow text inside the first `<motion.p>`
+- Hero heading inside `<motion.h1>`
+- Hero description inside `<AnimatedText text="..." />`
 
-```ts
-const SOCIAL_LINKS: SocialLinkItem[] = [
-  { id: "github",   label: "GitHub",   href: "https://github.com/yourhandle", external: true },
-  { id: "linkedin", label: "LinkedIn", href: "https://linkedin.com/in/yourprofile", external: true },
-  { id: "email",    label: "Email",    href: "mailto:your@email.com" },
-  { id: "resume",   label: "Resume",   href: "/resume.pdf", download: true },
-];
-```
+What can be changed
+- Intro role line, name/title, and lead narrative copy.
 
-**Resume file:** Place your PDF at `public/resume.pdf`. The download link points here by default.
-
----
-
-## 4. Navigation
-
-**File:** `src/data/navigation.ts`
-
-```ts
-export const NAV_LINKS: NavLink[] = [
-  { label: "About",      href: "/about"      },
-  { label: "Projects",   href: "/projects"   },
-  { label: "Experience", href: "/experience" },
-  { label: "Research",   href: "/research"   },
-  { label: "Blog",       href: "/blog"       },
-  { label: "Contact",    href: "/contact"    },
-];
-```
-
-Add, remove, or reorder objects. Both the desktop navbar and mobile drawer read from this array automatically.
+How to add/remove items
+- Replace text directly in the JSX.
 
 ---
 
-## 5. Home Page Stats Strip
+## 3. Profile Image (Transparent Hero Portrait)
 
-**File:** `src/components/hero/Hero.tsx` → `HERO_STATS` array (see section 1 above).
+File location
+- `src/data/profile.ts`
+- Asset folder: `public/images/`
 
----
+Data/object/array to edit
+- `PROFILE_IMAGE.src`
+- `PROFILE_IMAGE.alt`
 
-## 6. What I Do / Services Accordion
+What can be changed
+- Profile image file path and accessible alt text.
+- Current source points to `"/images/profile_img.png"`.
 
-**File:** `src/data/skills.ts`
-
-```ts
-export const SKILL_CATEGORIES: SkillCategory[] = [
-  {
-    id: "ai-systems",
-    title: "AI Systems Design",
-    items: [
-      "LLM-powered assistants ...",
-      "RAG architecture ...",
-    ],
-  },
-  // add more categories as needed
-];
-```
-
-Each object = one accordion panel. Change `title` for the heading, edit `items` for the bullet list.
-Add a new object to add a new panel. The first panel is open by default.
+How to add/remove items
+- Add a new image file under `public/images/`.
+- Update `PROFILE_IMAGE.src` to the new asset path.
 
 ---
 
-## 7. About Page
+## 4. Hero Statistics
 
-### Hero intro (eyebrow, title, lead paragraph, summary)
-**File:** `src/data/about.ts` → `ABOUT_INTRO` object
+File location
+- `src/components/hero/Hero.tsx`
 
-```ts
-export const ABOUT_INTRO = {
-  eyebrow: "About",
-  title:   "Engineering Depth, Creative Intent",
-  lead:    "...",
-  summary: "...",
-};
-```
+Data/object/array to edit
+- `HERO_STATS` array (local constant at top of file)
 
-### Philosophy and motivation sections
-**File:** `src/data/about.ts` → `ABOUT_PERSPECTIVES` array
-Each item has `id`, `title`, and `body`.
+What can be changed
+- Stat `label`, `value`, and `detail` content.
 
-### Technical interests list
-**File:** `src/data/about.ts` → `ABOUT_TECHNICAL_INTERESTS` array (plain string array)
-
-### Education
-**File:** `src/data/about.ts` → `ABOUT_EDUCATION` array
-
-### Creative interests
-**File:** `src/data/about.ts` → `ABOUT_CREATIVE_INTERESTS` array (if present)
-
-### Timeline
-**File:** `src/data/about.ts` → array exported as `ABOUT_TIMELINE` (items have `period`, `title`, `description`)
-
-### Visual statement quote
-**File:** `src/components/about/AboutVisualStatement.tsx` — the two quoted lines are hardcoded there as they are a designed typographic piece; edit the JSX directly.
+How to add/remove items
+- Add/remove objects in `HERO_STATS`.
+- The grid auto-adjusts across breakpoints.
 
 ---
 
-## 8. Projects
+## 5. Social Links and Resume
 
-**File:** `src/data/projects.ts` → `PROJECTS` array
+File location
+- `src/components/ui/SocialLinks.tsx`
+- Resume asset: `public/resume.pdf`
 
-Each project object:
-```ts
-{
-  id: "unique-id",
-  slug: "url-slug",           // becomes /projects/url-slug
-  title: "Project Name",
-  description: "One-paragraph summary",
-  category: "AI/ML",          // must match one filter tab value
-  year: "2026",
-  status: "In Progress",      // "Completed" | "In Progress" | "Draft"
-  technologies: ["Python", "React"],
-  image: "/images/projects/filename.jpg",
-  github: "https://github.com/...",  // optional
-  demo:   "https://...",             // optional
-  featured: true,             // shows on home page (max 3 recommended)
-  caseStudy: { ... },         // see section 9
-}
-```
+Data/object/array to edit
+- `SOCIAL_LINKS` array
 
-**Available category values (must match filter tabs):**
-`"AI/ML"` | `"LLM/RAG"` | `"WEB APPS"` | `"AUTOMATION"` | `"DATA"` | `"CREATIVE TECH"`
+What can be changed
+- Link labels, destinations, external flags, and download behavior.
 
-**To add a project:** append a new object to `PROJECTS`.
-**To remove a project:** delete its object.
-**Featured projects shown on home page:** set `featured: true`; only the first 3 featured are shown.
-
-**Project images:** place at `public/images/projects/filename.jpg`
+How to add/remove items
+- Add/remove objects in `SOCIAL_LINKS`.
+- For resume, replace `public/resume.pdf` while keeping or updating the `href`.
 
 ---
 
-## 9. Project Case Studies
+## 6. Navbar Links and Active Orbit Indicator
 
-Case-study content lives inside each project's `caseStudy` field in `src/data/projects.ts`.
+File location
+- Links data: `src/data/navigation.ts`
+- Navbar behavior and active/hover orbit UI: `src/components/layout/Navbar.tsx`
 
-```ts
-caseStudy: {
-  overview:            "...",
-  problem:             "...",
-  whyItMatters:        "...",
-  role:                "...",
-  architecture:        "...",
-  stack:               "Python, FAISS, ...",
-  implementation:      "...",
-  engineeringDecisions: ["Decision 1", "Decision 2"],
-  challenges:          ["Challenge 1"],
-  solutions:           ["Solution 1"],
-  results:             "...",
-  evaluation:          "...",
-  lessonsLearned:      ["Lesson 1"],
-  futureImprovements:  ["Future 1"],
-  metrics: [
-    { label: "Metric name", value: "TODO", note: "Add when measured", isPlaceholder: true },
-  ],
-  diagram: {
-    title: "Architecture",
-    description: "Optional caption",
-    nodes: ["Step 1", "Step 2", "Step 3"],
-  },
-  screenshots: [
-    { src: "/images/projects/screenshot.png", alt: "...", caption: "..." },
-  ],
-}
-```
+Data/object/array to edit
+- `NAV_LINKS` array
+- Orbit underline/ring markup and motion timing in desktop nav map
 
-Set `isPlaceholder: true` on any metric not yet validated. These render differently to signal they are pending.
+What can be changed
+- Nav item labels and routes.
+- Active state (amber underline + rotating amber orbit).
+- Hover/focus state for inactive links (white underline + rotating dashed white orbit).
+
+How to add/remove items
+- Add/remove/reorder objects in `NAV_LINKS`.
+- Indicator behavior is applied automatically per nav item.
 
 ---
 
-## 10. Experience
+## 7. Marquee Text Below Navbar
 
-**File:** `src/data/experience.ts` → `EXPERIENCE` array
+File location
+- Content: `src/data/marquee.ts`
+- Marquee component: `src/components/layout/MarqueeBar.tsx`
+- Marquee animation speed/style: `src/app/globals.css` (`.marquee-track`, `@keyframes marquee-scroll`)
 
-Each item:
-```ts
-{
-  id: "unique-id",
-  organization: "Company Name",
-  role:         "Your Title",
-  duration:     "Jan 2025 – Jun 2025",
-  location:     "City, Country",
-  responsibilities: ["Responsibility 1", "Responsibility 2"],
-  technologies:    ["Python", "SQL"],
-  achievements:    ["Achievement 1"],
-  impact:          "One-sentence outcome summary",
-}
-```
+Data/object/array to edit
+- `MARQUEE_ITEMS` array
 
-Add, reorder, or remove items. The timeline renders in array order (top = first item).
+What can be changed
+- Phrase sequence shown in marquee.
+- Star symbol styling, typography, border, and motion speed.
+
+How to add/remove items
+- Add/remove strings in `MARQUEE_ITEMS`.
+- Separator `|` is generated from `MARQUEE_ITEMS.join(" | ")`.
 
 ---
 
-## 11. Research Page
+## 8. Services (What I Do)
 
-**File:** `src/data/research.ts`
+File location
+- Data: `src/data/skills.ts`
+- UI behavior: `src/components/sections/WhatIDoAccordion.tsx`
 
-| Export | What it controls |
-|---|---|
-| `RESEARCH_HERO` | Eyebrow, title, lead, and summary at the top of the page |
-| `RESEARCH_PIPELINE_STEPS` | Each step in the animated pipeline diagram |
-| `RESEARCH_OBJECTIVE` | Objective section title and body |
-| `RESEARCH_EXPERIMENTS` | Experiments section |
-| `RESEARCH_FAILURE_ANALYSIS` | Failure analysis section |
-| `RESEARCH_FUTURE_WORK` | Future work section |
-| `RESEARCH_METRICS` | Metric badges (use `isPlaceholder: true` for unvalidated values) |
+Data/object/array to edit
+- `SKILL_CATEGORIES` array
 
-**Pipeline preview on the home page** is a hardcoded string array in
-`src/components/sections/ResearchPreview.tsx` → `PIPELINE` — update it to match `RESEARCH_PIPELINE_STEPS`.
+What can be changed
+- Service category title and bullet items.
 
----
-
-## 12. Blog / Articles
-
-**File:** `src/data/articles.ts` → `ARTICLES` array
-
-Each article:
-```ts
-{
-  id:          "unique-id",
-  slug:        "url-slug",         // becomes /blog/url-slug
-  title:       "Article Title",
-  excerpt:     "Short summary",
-  category:    "AI",               // must match BLOG_FILTERS below
-  readingTime: "7 min",
-  date:        "2026-08-02",
-  coverImage:  "/images/articles/filename.jpg",
-}
-```
-
-**Filter tabs:** `BLOG_FILTERS` array in the same file. Add a new string to add a filter tab.
-
-**Article body content:** Open `src/app/blog/[slug]/page.tsx`. Currently uses a placeholder.
-To add real content per article, extend the route to look up the slug and render long-form markdown or MDX.
-
-**To add an article:** append a new object to `ARTICLES`. The route generates statically via `generateStaticParams`.
+How to add/remove items
+- Add/remove category objects in `SKILL_CATEGORIES`.
+- Add/remove bullet strings inside each category `items` array.
 
 ---
 
-## 13. Contact Information
+## 9. About Page
 
-### Page copy
-**File:** `src/app/contact/page.tsx` → `CONTACT_METHODS` array
+File location
+- `src/data/about.ts`
+- Visual statement text block: `src/components/about/AboutVisualStatement.tsx`
 
-```ts
-const CONTACT_METHODS = [
-  { id: "email",    title: "Email",           value: "your@email.com", href: "mailto:your@email.com", ... },
-  { id: "location", title: "Base",            value: "Your City",       ... },
-  { id: "response", title: "Response Window", value: "24-48 hours",     ... },
-];
-```
+Data/object/array to edit
+- `ABOUT_INTRO`
+- `ABOUT_PERSPECTIVES`
+- `ABOUT_TECHNICAL_INTERESTS`
+- `ABOUT_EDUCATION`
+- `ABOUT_CREATIVE_INTERESTS`
+- `ABOUT_CURRENT_FOCUS`
+- `ABOUT_TIMELINE`
 
-### Form backend
-The contact form (`src/components/contact/ContactForm.tsx`) currently validates on the frontend only.
-To wire a real backend, replace the `await new Promise(...)` mock in `handleSubmit` with a `fetch` call to your API endpoint.
+What can be changed
+- About heading, summaries, philosophy, interests, and timeline narrative.
 
----
-
-## 14. Skills and Technologies
-
-**File:** `src/data/skills.ts` → `SKILL_CATEGORIES` (see section 6 above)
-
-Technologies shown on project cards come from each project's `technologies` array in `src/data/projects.ts`.
-Experience page technologies come from each item's `technologies` array in `src/data/experience.ts`.
+How to add/remove items
+- Add/remove objects for list-based arrays.
+- Add/remove strings for simple text arrays.
+- Edit visual statement directly in `AboutVisualStatement.tsx` (it is intentionally handcrafted text).
 
 ---
 
-## 15. Images and Assets
+## 10. Projects and Project Cards
 
-| Asset | Location |
-|---|---|
-| Profile photo | `public/images/profile_img.jpg` |
-| Project images | `public/images/projects/` |
-| Article cover images | `public/images/articles/` |
-| Resume PDF | `public/resume.pdf` |
-| OG/social preview image | Auto-generated from `src/app/opengraph-image.tsx` |
-| Twitter card image | Auto-generated from `src/app/twitter-image.tsx` |
+File location
+- Data: `src/data/projects.ts`
+- Card UI: `src/components/projects/ProjectCard.tsx`
+- Archive grid: `src/components/projects/ProjectGrid.tsx`
 
-All `public/` assets are served at the root URL. A file at `public/images/foo.jpg` is accessible at `/images/foo.jpg`.
+Data/object/array to edit
+- `PROJECTS` array
 
----
+What can be changed
+- Project metadata (`title`, `description`, `status`, `category`, `year`, links, image, tech stack).
+- Featured selection via `featured: true`.
 
-## 16. Design Configuration
-
-### Colors
-**File:** `src/app/globals.css` → `@theme inline { ... }`
-
-| Token | Current value | Purpose |
-|---|---|---|
-| `--color-background` | `#0a0a0a` | Page background |
-| `--color-surface` | `#111111` | Card/panel background |
-| `--color-surface-raised` | `#161616` | Elevated surfaces |
-| `--color-surface-high` | `#1c1c1c` | Highest surface level |
-| `--color-accent` | `#f59e0b` | Amber — primary interactive/highlight color |
-| `--color-accent-hover` | `#fbbf24` | Accent on hover |
-| `--color-accent-press` | `#d97706` | Accent on press/active |
-| `--color-fg` | `#fafafa` | Primary text |
-| `--color-fg-secondary` | `#d4d4d8` | Secondary text |
-| `--color-fg-muted` | `#a1a1aa` | Muted text |
-| `--color-fg-subtle` | `#71717a` | Subtle/supporting text |
-| `--color-border` | `#27272a` | Default border |
-| `--color-border-subtle` | `#1f1f1f` | Subtle dividers |
-
-### Typography scale
-**File:** `src/app/globals.css` → `@layer utilities { ... }`
-
-Classes: `type-display`, `type-h1`, `type-h2`, `type-h3`, `type-body-lg`, `type-body`, `type-caption`, `type-label`, `type-code`.
-Adjust the `font-size: clamp(...)`, `line-height`, `letter-spacing` values per class.
-
-Font families are set via `next/font` in `src/app/layout.tsx`:
-```ts
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
-```
-To change fonts, replace `Geist` / `Geist_Mono` with any `next/font/google` font.
-
-### Spacing (section vertical rhythm)
-**File:** `src/app/globals.css` → `.section-gap`
-
-```css
-.section-gap {
-  padding-block: clamp(2.5rem, 5vw, 4.5rem);
-}
-```
-Increase the max value (4.5rem) to add more breathing room, decrease to compact further.
-
-Page container width and padding:
-```css
-.container-page {
-  max-width: 72rem;
-  padding-inline: clamp(1rem, 5vw, 4rem);
-}
-```
-
-### Animation settings
-**File:** `src/lib/animations.ts`
-
-| Export | Controls |
-|---|---|
-| `standardTransition` | Default duration/easing (currently 0.5s) |
-| `fastTransition` | Fast interactions (0.22s) |
-| `pageTransition` | Route-change fade (0.3s) |
-| `springTransition` | Spring physics for poppy elements |
-| `heroEntrance` | Stagger timing for hero child elements |
-| `heroChild` | Per-child reveal (0.65s, y: 28→0) |
-| `cardHover` | Project/article card hover lift |
-| `timelineNode` / `timelineCard` | Experience timeline scroll reveal |
-| `mobileDrawer` / `mobileMenuItems` / `mobileMenuItem` | Mobile nav drawer |
-| `reducedFadeInUp` / `reducedSectionReveal` | Motion-safe fallbacks |
-
-Increase `duration` for slower, more dramatic entries; decrease for snappier feel.
-Change `staggerChildren` in `heroEntrance` to adjust the gap between hero text lines appearing.
-
-### Glow border effect
-**File:** `src/app/globals.css` → `.glow-border` and `.glow-border::after`
-
-To adjust the effect:
-- **Glow intensity:** change `rgba(245, 158, 11, 0.65)` — increase the alpha (last value) for stronger glow.
-- **Highlight arc width:** change the degree span around `90deg` (currently 60deg to 120deg).
-- **Speed:** change `4s linear` in `animation: glow-trace` — slower = more subtle, faster = more energetic.
-- **Static border colour:** change `border-color` in the `rgba(245, 158, 11, 0.25)` rule.
-
-To apply the glow border to any new card or container:
-```tsx
-// Option 1 — className (simplest)
-<div className="glow-border rounded-2xl bg-surface p-6">...</div>
-
-// Option 2 — GlowBorder component
-import { GlowBorder } from "@/components/ui";
-<GlowBorder rounded="rounded-3xl" className="bg-surface p-6">...</GlowBorder>
-```
+How to add/remove items
+- Add/remove project objects in `PROJECTS`.
+- Keep `slug` unique for route generation.
 
 ---
 
-## 17. Hero Badge Text
+## 11. Individual Project Case Studies
 
-**File:** `src/components/ui/HeroBadge.tsx` → `BADGE_TEXT` constant
+File location
+- `src/data/projects.ts` (`caseStudy` object per project)
+- Rendered in route: `src/app/projects/[slug]/page.tsx`
 
-```ts
-const BADGE_TEXT = "BUILDING SOLUTIONS THAT MATTER • AI ENGINEER •";
-```
+Data/object/array to edit
+- `caseStudy` fields per project:
+  - overview/problem/whyItMatters
+  - role/architecture/stack/implementation
+  - engineeringDecisions/challenges/solutions
+  - results/evaluation
+  - metrics/diagram/screenshots
+  - lessonsLearned/futureImprovements
 
-Change this string to update the rotating circular text. Keep it short (under ~48 characters for good arc spacing). The `•` character acts as a visual separator.
+What can be changed
+- Full case study content and supporting visuals.
 
-To change the badge **size**, edit the `h-[112px] w-[112px] sm:h-[128px] sm:w-[128px]` Tailwind classes on the wrapper div.
-
-To change the **rotation speed**, edit `duration: 18` in the `motion.svg` animate prop (seconds per full rotation).
-
-To change the **center icon**, replace the `<svg>` inside the center emblem div.
+How to add/remove items
+- Add/remove list entries in arrays (`metrics`, `screenshots`, etc.).
+- Remove `caseStudy` from a project to hide deep case study sections for that project.
 
 ---
 
-## 18. SEO and Site Metadata
+## 12. Experience
 
-### Site URL and defaults
-**File:** `src/lib/site.ts`
+File location
+- `src/data/experience.ts`
 
-```ts
-const DEFAULT_SITE_URL = "https://ajiteshchanna.com"; // ← change to your domain
-export const SITE_METADATA = {
-  name:        "Ajitesh Channa Portfolio",
-  title:       "Ajitesh Channa - AI Engineer and Creative Technologist",
-  description: "Portfolio of Ajitesh Channa ...",
-  author:      "Ajitesh Channa",
-  ogImageAlt:  "Ajitesh Channa portfolio preview",
-};
-```
+Data/object/array to edit
+- `EXPERIENCE` array
 
-Set `NEXT_PUBLIC_SITE_URL` in your Vercel environment variables to override the domain in production.
+What can be changed
+- Company/organization, role, duration, location, responsibilities, technologies, achievements, impact.
 
-### Per-route metadata
-Each route exports its own `metadata` object. Find and edit the `export const metadata` block in:
-- `src/app/page.tsx` — Home
-- `src/app/about/page.tsx`
-- `src/app/projects/page.tsx`
-- `src/app/experience/page.tsx`
-- `src/app/research/page.tsx`
-- `src/app/blog/page.tsx`
+How to add/remove items
+- Add/remove objects in `EXPERIENCE`.
+- Ordering in array controls timeline order.
+
+---
+
+## 13. Research
+
+File location
+- `src/data/research.ts`
+- Home preview text tokens: `src/components/sections/ResearchPreview.tsx`
+
+Data/object/array to edit
+- `RESEARCH_HERO`
+- `RESEARCH_PIPELINE_STEPS`
+- `RESEARCH_OBJECTIVE`
+- `RESEARCH_EXPERIMENTS`
+- `RESEARCH_FAILURE_ANALYSIS`
+- `RESEARCH_FUTURE_WORK`
+- `RESEARCH_METRICS`
+
+What can be changed
+- Research heading and narrative.
+- Pipeline stages and metric placeholders/final values.
+
+How to add/remove items
+- Add/remove objects in arrays (`RESEARCH_PIPELINE_STEPS`, `RESEARCH_METRICS`).
+
+---
+
+## 14. Blog / Articles
+
+File location
+- `src/data/articles.ts`
+- Blog routes/pages: `src/app/blog/` (if present in project)
+
+Data/object/array to edit
+- `ARTICLES`
+- `BLOG_FILTERS`
+
+What can be changed
+- Article list metadata and category filters.
+
+How to add/remove items
+- Add/remove article objects in `ARTICLES`.
+- Add/remove category strings in `BLOG_FILTERS`.
+
+---
+
+## 15. Contact Information
+
+File location
 - `src/app/contact/page.tsx`
+- `src/components/contact/ContactForm.tsx`
 
-Dynamic page titles (project case studies, blog articles) are generated automatically from their data.
+Data/object/array to edit
+- `CONTACT_METHODS` array in `contact/page.tsx`
+- Form behavior in `ContactForm.tsx`
 
-### Sitemap
-**File:** `src/app/sitemap.ts` — auto-generates from `PROJECTS` and `ARTICLES` arrays. No manual editing needed unless you add a new static route.
+What can be changed
+- Email, location, response window, contact helper copy.
+- Form submission logic and validations.
+
+How to add/remove items
+- Add/remove contact method objects in `CONTACT_METHODS`.
+- Replace mock submit logic in `ContactForm.tsx` with real API integration.
 
 ---
 
-## Quick Reference: Data Files
+## 16. Skills
 
-| What | File |
-|---|---|
-| Hero name, eyebrow, stats | `src/components/hero/Hero.tsx` |
-| Profile image path | `src/data/profile.ts` |
-| Social links and resume | `src/components/ui/SocialLinks.tsx` |
-| Navigation links | `src/data/navigation.ts` |
-| Services / What I Do | `src/data/skills.ts` |
-| About page content | `src/data/about.ts` |
-| Projects list | `src/data/projects.ts` |
-| Experience list | `src/data/experience.ts` |
-| Research page content | `src/data/research.ts` |
-| Blog articles | `src/data/articles.ts` |
-| Contact methods | `src/app/contact/page.tsx` |
-| Site URL and SEO defaults | `src/lib/site.ts` |
-| Color and spacing tokens | `src/app/globals.css` |
-| Animation variants | `src/lib/animations.ts` |
-| Hero badge text | `src/components/ui/HeroBadge.tsx` |
-| Glow border component | `src/components/ui/GlowBorder.tsx` |
+File location
+- `src/data/skills.ts`
+- Also reflected in projects and experience data files
+
+Data/object/array to edit
+- `SKILL_CATEGORIES`
+- Project `technologies` arrays in `src/data/projects.ts`
+- Experience `technologies` arrays in `src/data/experience.ts`
+
+What can be changed
+- Services/skills narrative and technology tags.
+
+How to add/remove items
+- Add/remove categories, list items, and technology tags directly in arrays.
+
+---
+
+## 17. Images and Assets
+
+File location
+- Profile: `public/images/profile_img.png` (or `.jpg`)
+- Projects: `public/images/projects/`
+- Articles: `public/images/articles/`
+- Resume: `public/resume.pdf`
+- Metadata visuals: `src/app/opengraph-image.tsx`, `src/app/twitter-image.tsx`
+
+Data/object/array to edit
+- Asset paths in corresponding data files
+
+What can be changed
+- All image and file assets used by pages/cards/social previews.
+
+How to add/remove items
+- Add/remove files under `public/` and update path strings in data.
+
+---
+
+## 18. Colors, Typography, Spacing
+
+File location
+- `src/app/globals.css`
+
+Data/object/array to edit
+- `@theme inline` color + motion tokens
+- Typography utility classes (`.type-display`, `.type-h1`, etc.)
+- Layout utilities (`.container-page`, `.section-gap`)
+
+What can be changed
+- Full palette (black/amber identity), text scales, spacing rhythm.
+
+How to add/remove items
+- Adjust token values and utility class definitions directly in `globals.css`.
+
+---
+
+## 19. Animation Timing and Easing
+
+File location
+- Shared motion variants: `src/lib/animations.ts`
+- Global CSS animation timings: `src/app/globals.css`
+
+Data/object/array to edit
+- `standardTransition`, `fastTransition`, `springTransition`, and variants in `animations.ts`
+- CSS keyframes (`glow-trace`, `marquee-scroll`) and durations
+
+What can be changed
+- Transition durations, easing curves, and spring behavior.
+
+How to add/remove items
+- Edit transition objects or keyframe timings directly.
+
+---
+
+## 20. Navbar Orbit, Bubble Cursor, Profile Tilt, Border Glow, Hero Badge, Marquee Speed
+
+### Navbar orbit
+File location
+- `src/components/layout/Navbar.tsx`
+
+Data/object/array to edit
+- Desktop nav indicator spans and `motion.span` transitions in the nav map
+
+What can be changed
+- Orbit sizes, border styles, underline color/width, rotation durations (`8.5s`, `6.2s`).
+
+How to add/remove items
+- Adjust the indicator spans per nav item template once; all links inherit behavior.
+
+### Bubble cursor
+File location
+- `src/components/layout/BubbleCursor.tsx`
+- Cursor hide rules: `src/app/globals.css` (`.cursor-bubble-active ...`)
+
+Data/object/array to edit
+- Constants and scale logic (`POSITION_LERP`, `DEFAULT_SIZE`, hover/click scale factors)
+
+What can be changed
+- Cursor size, inertia amount, hover intensity, glow style, and target selectors.
+
+How to add/remove items
+- Update constants and selector logic in `resolveKind()`.
+
+### Profile tilt
+File location
+- `src/components/hero/Hero.tsx`
+
+Data/object/array to edit
+- Tilt values in `handlePortraitMove()` (`maxTilt`, shift multipliers)
+- Spring settings for `useSpring`
+
+What can be changed
+- Degree of tilt, depth offsets, return feel, and ring parallax responsiveness.
+
+How to add/remove items
+- Adjust numerical multipliers; keep values subtle (recommended max around 3-6 deg).
+
+### Border glow
+File location
+- `src/app/globals.css` (`.glow-border`, `.glow-border::before`, `.glow-border::after`)
+
+Data/object/array to edit
+- Gradient stop colors/opacity and animation durations
+
+What can be changed
+- Highlight strength, sweep speed, and static fallback in reduced motion.
+
+How to add/remove items
+- Apply/remove the `glow-border` class on major containers.
+
+### Circular Hero badge
+File location
+- `src/components/ui/HeroBadge.tsx`
+
+Data/object/array to edit
+- `BADGE_TEXT`
+- Ring and center motion durations
+
+What can be changed
+- Circular text content, center icon, pulse amount, and ring rotation speed.
+
+How to add/remove items
+- Replace `BADGE_TEXT` or center SVG icon paths.
+
+### Marquee speed
+File location
+- `src/app/globals.css`
+
+Data/object/array to edit
+- `.marquee-track { animation: marquee-scroll 23s linear infinite; }`
+- Reduced-motion override (`70s`)
+
+What can be changed
+- Scroll speed, hover pause behavior, and reduced-motion speed.
+
+How to add/remove items
+- Edit animation duration values.
+
+---
+
+## 21. Site Metadata and SEO
+
+File location
+- `src/lib/site.ts`
+- `src/app/layout.tsx` metadata object
+
+Data/object/array to edit
+- `SITE_METADATA`
+- `SITE_URL` or `NEXT_PUBLIC_SITE_URL`
+
+What can be changed
+- Site title, description, author metadata, social preview defaults.
+
+How to add/remove items
+- Update fields in `SITE_METADATA` and metadata blocks in `layout.tsx`.
+
+---
+
+## 22. Recommended Editing Workflow
+
+1. Update content in `src/data/*.ts` first.
+2. Run `npm run lint`.
+3. Run `npm run build`.
+4. Validate desktop + mobile behavior before publishing.

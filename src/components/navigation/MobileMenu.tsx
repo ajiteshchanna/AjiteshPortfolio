@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
@@ -21,6 +22,7 @@ export function MobileMenu({ id, isOpen, onClose, links }: MobileMenuProps) {
   const panelRef = useRef<HTMLDivElement>(null);
   const lastFocusedRef = useRef<HTMLElement | null>(null);
   const prefersReducedMotion = useReducedMotion();
+  const pathname = usePathname();
 
   // Escape key to close and trap focus inside the dialog
   useEffect(() => {
@@ -148,7 +150,10 @@ export function MobileMenu({ id, isOpen, onClose, links }: MobileMenuProps) {
                 className="space-y-1"
                 role="list"
               >
-                {links.map((link) => (
+                {links.map((link) => {
+                  const isActive = pathname === link.href;
+
+                  return (
                   <motion.li
                     key={link.href}
                     variants={prefersReducedMotion ? undefined : mobileMenuItem}
@@ -159,18 +164,33 @@ export function MobileMenu({ id, isOpen, onClose, links }: MobileMenuProps) {
                     <Link
                       href={link.href}
                       onClick={onClose}
-                      className="group flex items-baseline gap-3 py-3 text-3xl font-bold tracking-tight text-fg-secondary hover:text-fg transition-colors duration-200"
+                      className="group relative flex items-baseline gap-3 py-3 text-3xl font-bold tracking-tight text-fg-secondary hover:text-fg transition-colors duration-200"
+                      aria-current={isActive ? "page" : undefined}
                     >
                       <span
-                        className="font-mono text-xs text-accent opacity-0 group-hover:opacity-100 transition-opacity duration-200 translate-y-[-2px]"
+                        className={
+                          isActive
+                            ? "font-mono text-xs text-accent opacity-100 transition-opacity duration-200 translate-y-[-2px]"
+                            : "font-mono text-xs text-accent opacity-0 group-hover:opacity-100 transition-opacity duration-200 translate-y-[-2px]"
+                        }
                         aria-hidden="true"
                       >
                         /
                       </span>
                       {link.label}
+
+                      <span
+                        className={
+                          isActive
+                            ? "pointer-events-none absolute -bottom-0.5 left-[1.2rem] h-px w-12 rounded-full bg-accent"
+                            : "pointer-events-none absolute -bottom-0.5 left-[1.2rem] h-px w-0 rounded-full bg-accent transition-all duration-200 group-hover:w-12"
+                        }
+                        aria-hidden="true"
+                      />
                     </Link>
                   </motion.li>
-                ))}
+                  );
+                })}
               </motion.ul>
             </nav>
 

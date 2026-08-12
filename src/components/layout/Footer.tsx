@@ -7,7 +7,7 @@ export function Footer() {
 
   return (
     <footer className="mt-auto border-t border-border" aria-label="Site footer">
-      <div className="container-page py-12">
+      <div className="container-page py-10">
 
         {/* Top row */}
         <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
@@ -48,7 +48,7 @@ export function Footer() {
         </div>
 
         {/* Divider + copyright row */}
-        <div className="mt-10 border-t border-border pt-6 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-8 border-t border-border pt-5 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-[11px] text-fg-subtle">
             &copy; {year} Ajitesh Channa. All rights reserved.
           </p>

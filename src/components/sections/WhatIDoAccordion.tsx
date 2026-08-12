@@ -28,7 +28,7 @@ export function WhatIDoAccordion() {
               const panelId = `${category.id}-panel`;
 
               return (
-                <div key={category.id} className="rounded-2xl border border-border bg-surface">
+                <div key={category.id} className="glow-border rounded-2xl bg-surface">
                   <h3>
                     <button
                       type="button"

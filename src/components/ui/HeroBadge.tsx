@@ -26,7 +26,6 @@ export function HeroBadge({ label = BADGE_TEXT, className }: HeroBadgeProps) {
   const r = 44;          // text radius
   const cx = 56;         // viewBox center
   const pathId = "badge-text-path";
-  const circumference = 2 * Math.PI * r;
 
   // Repeat text enough times to fill path
   const repeatedLabel = `${label} ${label} `;
@@ -42,19 +41,25 @@ export function HeroBadge({ label = BADGE_TEXT, className }: HeroBadgeProps) {
       role="img"
     >
       {/* Subtle glow backdrop */}
-      <div
+      <motion.div
         className="absolute inset-0 rounded-full bg-accent/8 blur-xl"
+        animate={prefersReducedMotion ? undefined : { opacity: [0.55, 0.8, 0.55] }}
+        transition={prefersReducedMotion ? undefined : { duration: 4.8, repeat: Infinity, ease: "easeInOut" }}
         aria-hidden="true"
       />
 
       {/* Outer concentric ring */}
-      <div
+      <motion.div
         className="absolute inset-0 rounded-full border border-accent/20"
+        animate={prefersReducedMotion ? undefined : { rotate: -360 }}
+        transition={prefersReducedMotion ? undefined : { duration: 34, ease: "linear", repeat: Infinity }}
         aria-hidden="true"
       />
       {/* Inner ring */}
-      <div
+      <motion.div
         className="absolute inset-[12px] rounded-full border border-accent/15"
+        animate={prefersReducedMotion ? undefined : { scale: [1, 1.025, 1] }}
+        transition={prefersReducedMotion ? undefined : { duration: 5.4, ease: "easeInOut", repeat: Infinity }}
         aria-hidden="true"
       />
 
@@ -90,8 +95,10 @@ export function HeroBadge({ label = BADGE_TEXT, className }: HeroBadgeProps) {
       </motion.svg>
 
       {/* Center emblem — stable, non-rotating */}
-      <div
+      <motion.div
         className="relative z-10 flex h-[42px] w-[42px] items-center justify-center rounded-full border border-accent/35 bg-background shadow-[0_0_18px_-4px_rgba(245,158,11,0.35)]"
+        animate={prefersReducedMotion ? undefined : { scale: [1, 1.04, 1], boxShadow: ["0 0 18px -4px rgba(245,158,11,0.3)", "0 0 22px -3px rgba(245,158,11,0.42)", "0 0 18px -4px rgba(245,158,11,0.3)"] }}
+        transition={prefersReducedMotion ? undefined : { duration: 4, ease: "easeInOut", repeat: Infinity }}
         aria-hidden="true"
       >
         {/* Code-bracket / AI glyph */}
@@ -124,7 +131,7 @@ export function HeroBadge({ label = BADGE_TEXT, className }: HeroBadgeProps) {
             fill="rgba(245,158,11,0.9)"
           />
         </svg>
-      </div>
+      </motion.div>
     </div>
   );
 }
