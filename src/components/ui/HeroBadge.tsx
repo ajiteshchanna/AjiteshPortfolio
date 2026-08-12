@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { cn } from "@/lib/utils";
 
@@ -41,29 +40,20 @@ export function HeroBadge({ label = BADGE_TEXT, className }: HeroBadgeProps) {
       role="img"
     >
       {/* Subtle glow backdrop */}
-      <motion.div
-        className="absolute inset-0 rounded-full bg-accent/8 blur-xl"
-        animate={prefersReducedMotion ? undefined : { opacity: [0.55, 0.8, 0.55] }}
-        transition={prefersReducedMotion ? undefined : { duration: 4.8, repeat: Infinity, ease: "easeInOut" }}
-        aria-hidden="true"
-      />
+      <div className="absolute inset-0 rounded-full bg-accent/8 blur-xl" aria-hidden="true" />
 
-      <motion.div
-        className="absolute inset-0 origin-center"
-        animate={prefersReducedMotion ? undefined : { rotate: 360 }}
-        transition={prefersReducedMotion ? undefined : { duration: 34, ease: "linear", repeat: Infinity }}
+      <div
+        className={cn(
+          "absolute inset-0 origin-center",
+          prefersReducedMotion ? "" : "hero-badge-outer-ring",
+        )}
         aria-hidden="true"
       >
         {/* Outer concentric ring */}
         <div className="absolute inset-0 rounded-full border border-accent/20" aria-hidden="true" />
 
         {/* Inner ring */}
-        <motion.div
-          className="absolute inset-[12px] rounded-full border border-accent/15"
-          animate={prefersReducedMotion ? undefined : { scale: [1, 1.025, 1] }}
-          transition={prefersReducedMotion ? undefined : { duration: 5.4, ease: "easeInOut", repeat: Infinity }}
-          aria-hidden="true"
-        />
+        <div className="absolute inset-[12px] rounded-full border border-accent/15" aria-hidden="true" />
 
         {/* Rotating SVG text ring */}
         <svg
@@ -89,13 +79,11 @@ export function HeroBadge({ label = BADGE_TEXT, className }: HeroBadgeProps) {
             </textPath>
           </text>
         </svg>
-      </motion.div>
+        </div>
 
       {/* Center emblem — stable, non-rotating */}
-      <motion.div
+        <div
         className="relative z-10 flex h-[42px] w-[42px] items-center justify-center rounded-full border border-accent/35 bg-background shadow-[0_0_18px_-4px_rgba(245,158,11,0.35)]"
-        animate={prefersReducedMotion ? undefined : { scale: [1, 1.04, 1], boxShadow: ["0 0 18px -4px rgba(245,158,11,0.3)", "0 0 22px -3px rgba(245,158,11,0.42)", "0 0 18px -4px rgba(245,158,11,0.3)"] }}
-        transition={prefersReducedMotion ? undefined : { duration: 4, ease: "easeInOut", repeat: Infinity }}
         aria-hidden="true"
       >
         {/* Code-bracket / AI glyph */}
@@ -128,7 +116,7 @@ export function HeroBadge({ label = BADGE_TEXT, className }: HeroBadgeProps) {
             fill="rgba(245,158,11,0.9)"
           />
         </svg>
-      </motion.div>
+      </div>
     </div>
   );
 }

@@ -257,6 +257,21 @@
     to { --glow-angle: 360deg; }
   }
 
+  @keyframes badge-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .hero-badge-outer-ring {
+    transform-origin: center center;
+    animation: badge-spin 22s linear infinite;
+    will-change: transform;
+  }
+
   /* Respect reduced motion: keep static border glow, no trace animation */
   @media (prefers-reduced-motion: reduce) {
     .glow-border::after {
@@ -275,6 +290,9 @@
     }
     .marquee-track {
       animation-duration: 70s;
+    }
+    .hero-badge-outer-ring {
+      animation: none;
     }
   }
 }
