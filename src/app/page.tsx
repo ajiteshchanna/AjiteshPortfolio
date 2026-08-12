@@ -27,10 +27,6 @@ const ContactCTA = dynamic(
   () => import("@/components/sections/ContactCTA").then((module) => module.ContactCTA),
 );
 
-const WritingPreview = dynamic(
-  () => import("@/components/sections/WritingPreview").then((module) => module.WritingPreview),
-);
-
 const SystemMonitor = dynamic(
   () => import("@/components/sections/SystemMonitor").then((module) => module.SystemMonitor),
 );
@@ -97,7 +93,6 @@ export default function HomePage() {
       <AboutPreview />
       <ExperiencePreview />
       <ResearchPreview />
-      <WritingPreview />
       <SystemMonitor />
       <ContactCTA />
     </main>
