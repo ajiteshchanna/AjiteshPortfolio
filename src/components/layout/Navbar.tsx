@@ -17,6 +17,7 @@ export function Navbar() {
   const [scrolled, setScrolled]   = useState(false);
   const [menuOpen, setMenuOpen]   = useState(false);
   const [hoveredHref, setHoveredHref] = useState<string | null>(null);
+  const [isLogoHovered, setIsLogoHovered] = useState(false);
   const scrollDirection           = useScrollDirection();
   const prefersReducedMotion      = useReducedMotion();
   const pathname                  = usePathname();
@@ -50,10 +51,43 @@ export function Navbar() {
           {/* ── Logo ─────────────────────────────────────────── */}
           <Link
             href="/"
+            onMouseEnter={() => setIsLogoHovered(true)}
+            onMouseLeave={() => setIsLogoHovered(false)}
+            onFocus={() => setIsLogoHovered(true)}
+            onBlur={() => setIsLogoHovered(false)}
             className="font-mono text-sm font-semibold tracking-[0.2em] text-fg uppercase hover:text-accent transition-colors duration-200"
             aria-label="Ajitesh Channa — home"
           >
-            AC
+            <motion.span
+              className="inline-block"
+              initial={false}
+              animate={
+                !prefersReducedMotion && isLogoHovered
+                  ? {
+                      scale: [1, 1.08, 1, 1.08, 1],
+                      y: [0, -1.5, 0, -1, 0],
+                    }
+                  : {
+                      scale: 1,
+                      y: 0,
+                    }
+              }
+              transition={
+                !prefersReducedMotion && isLogoHovered
+                  ? {
+                      duration: 1.1,
+                      ease: [0.22, 1, 0.36, 1],
+                      repeat: Number.POSITIVE_INFINITY,
+                    }
+                  : {
+                      type: "spring",
+                      stiffness: 260,
+                      damping: 20,
+                    }
+              }
+            >
+              AC
+            </motion.span>
           </Link>
 
           {/* ── Desktop navigation ───────────────────────────── */}
