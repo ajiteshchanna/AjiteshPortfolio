@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import type { ReactNode } from "react";
+import { MoonScrollIndicator } from "@/components/layout/MoonScrollIndicator";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { RouteTransition } from "@/components/layout/RouteTransition";
@@ -85,6 +86,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <a href="#content-start" className="skip-link">
           Skip to main content
         </a>
+        <MoonScrollIndicator />
         <Navbar />
         {/* pt-[5.5rem] offsets fixed navbar + marquee stack */}
         <div className="flex flex-1 flex-col pt-[5.5rem]">
