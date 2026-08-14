@@ -9,7 +9,7 @@ const WhatIDoAccordion = dynamic(
 
 const FeaturedProjects = dynamic(
   () => import("@/components/sections/FeaturedProjects").then((module) => module.FeaturedProjects),
-);
+);;
 
 const AboutPreview = dynamic(
   () => import("@/components/sections/AboutPreview").then((module) => module.AboutPreview),

@@ -29,13 +29,13 @@ const SOCIAL_LINKS: SocialLinkItem[] = [
   {
     id: "email",
     label: "Email",
-    href: "mailto:ajitesh@example.com",
+    href: "mailto:ac.ajiteshchanna@gmail.com",
     icon: Mail,
   },
   {
     id: "resume",
     label: "Resume",
-    href: "/resume.pdf",
+    href: "https://drive.google.com/file/d/1cKN_s90PlMr_heHmrWbN2j4H1-I6oUKA/view?usp=drive_link",
     icon: FileDown,
     download: true,
   },
