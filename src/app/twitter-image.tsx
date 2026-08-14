@@ -12,7 +12,7 @@ export default function TwitterImage() {
     (
       <div
         style={{
-          background: "linear-gradient(135deg, #0e0e0e 0%, #1f1f1f 48%, #2a1d12 100%)",
+          background: "linear-gradient(135deg, #000521 0%, #020C47 48%, #011F65 100%)",
           width: "100%",
           height: "100%",
           display: "flex",
@@ -37,8 +37,8 @@ export default function TwitterImage() {
             width: 96,
             height: 96,
             borderRadius: 9999,
-            border: "2px solid rgba(255, 179, 71, 0.7)",
-            background: "rgba(255, 179, 71, 0.18)",
+            border: "2px solid rgba(32, 120, 207, 0.78)",
+            background: "rgba(14, 78, 178, 0.24)",
           }}
         />
       </div>

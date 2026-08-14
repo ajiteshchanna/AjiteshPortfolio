@@ -118,7 +118,7 @@ export function Hero() {
           style={prefersReducedMotion ? undefined : { scale: glowScale }}
           className="absolute -top-32 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-accent/10 blur-3xl md:h-96 md:w-96"
         />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.05),transparent_40%),radial-gradient(circle_at_75%_8%,rgba(245,158,11,0.1),transparent_28%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.05),transparent_40%),radial-gradient(circle_at_75%_8%,rgba(32,120,207,0.14),transparent_30%),radial-gradient(circle_at_85%_26%,rgba(14,78,178,0.15),transparent_36%)]" />
       </div>
 
       <div className="container-page">
@@ -127,10 +127,10 @@ export function Hero() {
           variants={parentVariants}
           initial={prefersReducedMotion ? undefined : "hidden"}
           animate={prefersReducedMotion ? undefined : "visible"}
-          className="grid items-center gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12"
+          className="grid items-start gap-7 md:items-center md:gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12"
         >
           {/* Left — text column */}
-          <div className="order-2 lg:order-1">
+          <div className="order-1 lg:order-1">
             <motion.p variants={childVariants} className="type-label mb-4 text-accent">
               AI Engineer • Creative Technologist
             </motion.p>
@@ -146,16 +146,16 @@ export function Hero() {
               />
             </motion.div>
 
-            <motion.div variants={childVariants} className="mt-7 flex flex-wrap gap-3">
-              <Button href="/projects" size="lg" rightIcon={<ArrowRight size={15} />}>
+            <motion.div variants={childVariants} className="mt-6 flex flex-col gap-3 sm:mt-7 sm:flex-row sm:flex-wrap">
+              <Button href="/projects" size="lg" className="w-full sm:w-auto" rightIcon={<ArrowRight size={15} />}>
                 View Projects
               </Button>
-              <Button href="/contact" size="lg" variant="secondary">
+              <Button href="/contact" size="lg" variant="secondary" className="w-full sm:w-auto">
                 Let&apos;s Build Together
               </Button>
             </motion.div>
 
-            <motion.div variants={childVariants} className="mt-7">
+            <motion.div variants={childVariants} className="mt-6 sm:mt-7">
               <SocialLinks orientation="horizontal" display="icon-label" />
             </motion.div>
           </div>
@@ -164,7 +164,7 @@ export function Hero() {
           <motion.div
             variants={frameVariants}
             style={prefersReducedMotion ? undefined : { y: depthY }}
-            className="order-1 relative mx-auto flex w-full max-w-[290px] justify-center sm:max-w-[350px] lg:order-2 lg:max-w-[440px]"
+            className="order-2 relative mx-auto flex w-full max-w-[280px] flex-col items-center justify-center sm:max-w-[350px] lg:order-2 lg:max-w-[440px]"
           >
             <motion.div
               ref={portraitRef}
@@ -207,7 +207,7 @@ export function Hero() {
                   width={440}
                   height={620}
                   priority
-                  sizes="(max-width: 640px) 82vw, (max-width: 1024px) 44vw, 440px"
+                  sizes="(max-width: 480px) 84vw, (max-width: 768px) 70vw, (max-width: 1024px) 44vw, 440px"
                   style={{ width: "100%", height: "auto" }}
                   className="object-contain object-top drop-shadow-[0_26px_40px_rgba(0,0,0,0.72)]"
                 />
@@ -215,17 +215,17 @@ export function Hero() {
 
               <div className="pointer-events-none absolute bottom-[20%] left-1/2 z-20 h-10 w-[72%] -translate-x-1/2 rounded-full border border-accent/26 bg-accent/8 blur-[1px]" aria-hidden="true" />
 
-              <div className="absolute bottom-2 left-1/2 z-20 -translate-x-1/2 rounded-full border border-accent/20 bg-background/65 px-4 py-2 backdrop-blur-sm">
+              <div className="absolute bottom-1 left-1/2 z-20 -translate-x-1/2 rounded-full border border-accent/20 bg-background/65 px-3 py-1.5 backdrop-blur-sm sm:bottom-2 sm:px-4 sm:py-2">
                 <p className="type-label text-accent">Builder • Problem Solver • Storyteller</p>
               </div>
             </motion.div>
 
             {/* Badge — bottom-right corner */}
-            <div className="absolute -bottom-2 -right-3 z-30 sm:-right-1 lg:-right-5">
+            <div className="relative z-30 mt-4 flex justify-center lg:absolute lg:-bottom-2 lg:-right-5 lg:mt-0">
               <HeroBadge />
             </div>
 
-            <SystemDetailsPanel className="z-40 mt-4 max-w-none sm:max-w-[22rem] lg:absolute lg:right-0 lg:top-4 lg:mt-0 lg:max-w-[18.5rem]" />
+            <SystemDetailsPanel className="z-40 mt-4 w-full max-w-[22rem] lg:absolute lg:right-0 lg:top-4 lg:mt-0 lg:max-w-[18.5rem]" />
           </motion.div>
         </motion.div>
 

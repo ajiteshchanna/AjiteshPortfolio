@@ -22,7 +22,7 @@ const variantClasses: Record<BadgeVariant, string> = {
 
 const statusClasses: Record<BadgeStatus, string> = {
   completed:  "border-emerald-500/30 bg-emerald-500/8 text-emerald-400",
-  "in-progress": "border-amber-500/30 bg-amber-500/8 text-amber-400",
+  "in-progress": "border-accent-hover/35 bg-accent-hover/12 text-accent",
   draft:      "border-zinc-600/40 bg-zinc-700/20 text-zinc-400",
 };
 

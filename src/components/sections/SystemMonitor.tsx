@@ -91,11 +91,11 @@ export function SystemMonitor() {
         <Reveal amount={0.12}>
           <GlowBorder
             rounded="rounded-2xl"
-            className="relative mx-auto w-full max-w-2xl overflow-hidden bg-[#090909] px-4 py-4 shadow-[0_14px_40px_-28px_rgba(245,158,11,0.45)] sm:px-5"
+            className="relative mx-auto w-full max-w-2xl overflow-hidden bg-background px-4 py-4 shadow-[0_14px_40px_-28px_rgba(32,120,207,0.48)] sm:px-5"
           >
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-0 bg-[radial-gradient(95%_110%_at_100%_0%,rgba(245,158,11,0.13)_0%,rgba(245,158,11,0.05)_38%,rgba(0,0,0,0)_78%)]"
+              className="pointer-events-none absolute inset-0 bg-[radial-gradient(95%_110%_at_100%_0%,rgba(32,120,207,0.2)_0%,rgba(14,78,178,0.09)_38%,rgba(0,0,0,0)_78%)]"
             />
             <div className="relative">
               <div className="mb-3 flex items-start justify-between gap-3">
@@ -110,7 +110,7 @@ export function SystemMonitor() {
                   type="button"
                   onClick={copyMonitor}
                   aria-label="Copy monitor snapshot"
-                  className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-accent/20 bg-black/45 text-accent/80 transition-colors duration-200 hover:border-accent/40 hover:text-accent"
+                  className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-accent/20 bg-midnight/75 text-accent/80 transition-colors duration-200 hover:border-accent/40 hover:text-accent"
                 >
                   <svg
                     aria-hidden="true"
@@ -128,7 +128,7 @@ export function SystemMonitor() {
                 </button>
               </div>
 
-              <div className="space-y-3 font-mono text-[11px] leading-5 tracking-[0.06em] text-fg-secondary sm:text-[11.5px]">
+              <div className="space-y-3 font-mono text-[10.5px] leading-5 tracking-[0.05em] text-fg-secondary sm:text-[11.5px] sm:tracking-[0.06em]">
                 <div className="inline-flex items-center gap-2">
                   <span
                     className={`inline-block h-2 w-2 rounded-full bg-accent ${prefersReducedMotion ? "" : "animate-[pulse_2.8s_ease-in-out_infinite]"}`}
@@ -139,7 +139,7 @@ export function SystemMonitor() {
 
                 <div className="space-y-2.5">
                   {SYSTEM_MONITOR.metrics.map((metric) => (
-                    <div key={metric.label} className="grid grid-cols-[6.5rem_1fr_auto] items-center gap-2.5">
+                    <div key={metric.label} className="grid grid-cols-[5.4rem_minmax(0,1fr)_auto] items-center gap-2 sm:grid-cols-[6.5rem_1fr_auto] sm:gap-2.5">
                       <span className="text-fg-muted">{metric.label}</span>
                       <div className="relative h-1.5 overflow-hidden rounded-full bg-white/10">
                         <motion.span
@@ -151,7 +151,10 @@ export function SystemMonitor() {
                           style={prefersReducedMotion ? { width: `${metric.value}%` } : undefined}
                         />
                       </div>
-                      <span className="text-accent/95">{toBlockBar(metric.value)} {metric.value}%</span>
+                      <span className="text-accent/95">
+                        <span className="hidden sm:inline">{toBlockBar(metric.value)} </span>
+                        {metric.value}%
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -220,7 +223,7 @@ export function SystemMonitor() {
                         }
                       />
                     </div>
-                    <p className="mt-1 text-accent">{"█".repeat(16)} {SYSTEM_MONITOR.statusText}</p>
+                    <p className="mt-1 break-words text-accent">{"█".repeat(16)} {SYSTEM_MONITOR.statusText}</p>
                   </div>
                 </div>
 

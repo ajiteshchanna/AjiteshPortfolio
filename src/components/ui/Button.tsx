@@ -29,8 +29,8 @@ export type ButtonProps = {
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary: [
-    "bg-accent text-black font-semibold",
-    "hover:bg-accent-hover hover:shadow-[0_0_28px_rgba(245,158,11,0.28)]",
+    "bg-accent text-white font-semibold",
+    "hover:bg-accent-hover hover:shadow-[0_0_28px_rgba(32,120,207,0.34)]",
     "active:bg-accent-press active:scale-[0.98]",
     "disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none",
   ].join(" "),
@@ -63,7 +63,7 @@ const sizeClasses: Record<ButtonSize, string> = {
 };
 
 const base =
-  "inline-flex items-center justify-center font-medium tracking-wide transition-all duration-200 select-none whitespace-nowrap cursor-pointer";
+  "inline-flex items-center justify-center font-medium tracking-wide transition-all duration-200 select-none text-center cursor-pointer";
 
 function Spinner() {
   return (

@@ -24,7 +24,7 @@ export function ExperienceTimeline({ items }: ExperienceTimelineProps) {
           className="mb-7"
         />
 
-        <ol className="relative space-y-8 border-l border-border pl-6 sm:pl-8">
+        <ol className="relative space-y-7 border-l border-border pl-4 sm:space-y-8 sm:pl-8">
           {items.map((item) => (
             <li key={item.id} className="relative">
               <motion.span
@@ -32,7 +32,7 @@ export function ExperienceTimeline({ items }: ExperienceTimelineProps) {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.4 }}
-                className="absolute -left-[1.95rem] top-3 h-3 w-3 rounded-full border border-accent/80 bg-background sm:-left-[2.45rem]"
+                className="absolute -left-[1.3rem] top-3 h-3 w-3 rounded-full border border-accent/80 bg-background sm:-left-[2.45rem]"
                 aria-hidden="true"
               />
 

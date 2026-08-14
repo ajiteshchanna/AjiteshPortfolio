@@ -33,7 +33,7 @@ export function HeroBadge({ label = BADGE_TEXT, className }: HeroBadgeProps) {
     <div
       className={cn(
         "relative flex items-center justify-center select-none",
-        "h-[112px] w-[112px] sm:h-[128px] sm:w-[128px]",
+        "h-[96px] w-[96px] sm:h-[112px] sm:w-[112px] md:h-[128px] md:w-[128px]",
         className,
       )}
       aria-label={label}
@@ -71,7 +71,7 @@ export function HeroBadge({ label = BADGE_TEXT, className }: HeroBadgeProps) {
             fontSize="7.2"
             letterSpacing="1.8"
             fontWeight="500"
-            fill="rgba(245,158,11,0.72)"
+            fill="rgba(32,120,207,0.78)"
             fontFamily="var(--font-mono), monospace"
           >
             <textPath href={`#${pathId}`} startOffset="0%">
@@ -83,7 +83,7 @@ export function HeroBadge({ label = BADGE_TEXT, className }: HeroBadgeProps) {
 
       {/* Center emblem — stable, non-rotating */}
         <div
-        className="relative z-10 flex h-[42px] w-[42px] items-center justify-center rounded-full border border-accent/35 bg-background shadow-[0_0_18px_-4px_rgba(245,158,11,0.35)]"
+        className="relative z-10 flex h-[42px] w-[42px] items-center justify-center rounded-full border border-accent/35 bg-background shadow-[0_0_18px_-4px_rgba(32,120,207,0.4)]"
         aria-hidden="true"
       >
         {/* Code-bracket / AI glyph */}
@@ -97,14 +97,14 @@ export function HeroBadge({ label = BADGE_TEXT, className }: HeroBadgeProps) {
           {/* Stylised </ > code-AI emblem */}
           <path
             d="M6.5 5.5 L3 9 L6.5 12.5"
-            stroke="rgba(245,158,11,0.85)"
+            stroke="rgba(32,120,207,0.9)"
             strokeWidth="1.5"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
           <path
             d="M11.5 5.5 L15 9 L11.5 12.5"
-            stroke="rgba(245,158,11,0.85)"
+            stroke="rgba(32,120,207,0.9)"
             strokeWidth="1.5"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -113,7 +113,7 @@ export function HeroBadge({ label = BADGE_TEXT, className }: HeroBadgeProps) {
             cx="9"
             cy="9"
             r="1.25"
-            fill="rgba(245,158,11,0.9)"
+            fill="rgba(32,120,207,0.95)"
           />
         </svg>
       </div>

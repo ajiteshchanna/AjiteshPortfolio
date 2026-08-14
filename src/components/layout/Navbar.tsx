@@ -33,14 +33,14 @@ export function Navbar() {
     <>
       <motion.header
         className={cn(
-          "fixed inset-x-0 top-0 z-50 h-[5.5rem]",
+          "fixed inset-x-0 top-0 z-50 h-[5rem] sm:h-[5.5rem]",
           "transition-[background-color,border-color,backdrop-filter] duration-300",
           scrolled
             ? "bg-background/88 backdrop-blur-none sm:backdrop-blur-sm md:backdrop-blur-md border-b border-border/60"
             : "bg-background/35 border-b border-border/20",
         )}
       >
-        <div className="container-page flex h-16 items-center justify-between">
+        <div className="container-page flex h-14 items-center justify-between sm:h-16">
 
           {/* ── Logo ─────────────────────────────────────────── */}
           <Link
@@ -103,7 +103,7 @@ export function Navbar() {
 
           {/* ── Desktop navigation ───────────────────────────── */}
           <nav
-            className="hidden md:flex items-center gap-6"
+            className="hidden md:flex items-center gap-4 lg:gap-6"
             aria-label="Main navigation"
           >
             {NAV_LINKS.map((link) => {

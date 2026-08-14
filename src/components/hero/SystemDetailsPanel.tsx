@@ -23,13 +23,13 @@ export function SystemDetailsPanel({ className }: SystemDetailsPanelProps) {
           ? undefined
           : {
               y: -2,
-              borderColor: "rgba(245, 158, 11, 0.35)",
+              borderColor: "rgba(32, 120, 207, 0.4)",
               boxShadow:
-                "0 10px 26px -18px rgba(245, 158, 11, 0.45), inset 0 0 0 1px rgba(245, 158, 11, 0.15)",
+                "0 10px 26px -18px rgba(32, 120, 207, 0.5), inset 0 0 0 1px rgba(14, 78, 178, 0.2)",
             }
       }
       transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-      className={`group w-full max-w-[22rem] overflow-hidden rounded-xl border border-white/14 bg-black/50 px-3.5 py-3 backdrop-blur-[6px] ${className ?? ""}`}
+      className={`group w-full max-w-[22rem] overflow-hidden rounded-xl border border-white/14 bg-background/68 px-3.5 py-3 backdrop-blur-[6px] ${className ?? ""}`}
     >
       <div className="mb-2 h-px w-10 bg-accent/55" aria-hidden="true" />
 

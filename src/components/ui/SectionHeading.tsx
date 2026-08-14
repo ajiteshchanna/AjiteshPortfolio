@@ -44,7 +44,7 @@ export function SectionHeading({
 
       <h2
         className={cn(
-          "text-3xl font-bold uppercase tracking-tight text-fg sm:text-4xl md:text-5xl",
+          "text-2xl font-bold uppercase tracking-tight text-fg sm:text-4xl md:text-5xl",
         )}
       >
         {title}
@@ -53,7 +53,7 @@ export function SectionHeading({
       {subtitle && (
         <p
           className={cn(
-            "mt-3 max-w-xl text-base text-fg-muted sm:text-lg",
+            "mt-3 max-w-xl text-sm text-fg-muted sm:text-base md:text-lg",
             isCenter && "mx-auto",
           )}
         >

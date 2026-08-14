@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Clock3, Mail, MapPin, MessageSquareMore } from "lucide-react";
+import { Mail, MapPin, MessageSquareMore } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { ContactForm } from "@/components/contact";
 import { SectionHeading, SocialLinks } from "@/components/ui";
@@ -37,8 +37,8 @@ const CONTACT_METHODS: ContactMethod[] = [
   {
     id: "email",
     title: "Email",
-    value: "ajitesh@example.com",
-    href: "mailto:ajitesh@example.com",
+    value: "ac.ajiteshchanna@gmail.com",
+    href: "mailto:ac.ajiteshchanna@gmail.com",
     description: "Best for project context, scope, and technical requirements.",
     icon: Mail,
   },
@@ -48,13 +48,6 @@ const CONTACT_METHODS: ContactMethod[] = [
     value: "India",
     description: "Remote collaboration across time zones with async-first workflows.",
     icon: MapPin,
-  },
-  {
-    id: "response",
-    title: "Response Window",
-    value: "24-48 hours",
-    description: "Most inquiries receive an initial response within two business days.",
-    icon: Clock3,
   },
 ];
 

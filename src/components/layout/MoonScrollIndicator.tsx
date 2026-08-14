@@ -137,7 +137,7 @@ export function MoonScrollIndicator() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none fixed right-3 top-[104px] bottom-6 z-[58] sm:right-4"
+      className="pointer-events-none fixed right-3 top-[104px] bottom-6 z-[58] hidden lg:block lg:right-4"
     >
       <div className="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-gradient-to-b from-white/0 via-white/8 to-white/0" />
 

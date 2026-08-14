@@ -88,8 +88,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         </a>
         <MoonScrollIndicator />
         <Navbar />
-        {/* pt-[5.5rem] offsets fixed navbar + marquee stack */}
-        <div className="flex flex-1 flex-col pt-[5.5rem]">
+        {/* Top padding matches responsive fixed navbar + marquee stack */}
+        <div className="flex flex-1 flex-col pt-[5rem] sm:pt-[5.5rem]">
           <div id="content-start" tabIndex={-1} className="outline-none">
             <RouteTransition>{children}</RouteTransition>
           </div>

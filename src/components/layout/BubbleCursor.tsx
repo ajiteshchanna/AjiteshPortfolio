@@ -51,23 +51,23 @@ export function BubbleCursor() {
     if (kind === "interactive") {
       return {
         moon: "bg-accent-hover/95 border border-accent/70",
-        cutout: "bg-[#0a0a0a]/95",
-        glow: "drop-shadow-[0_0_8px_rgba(251,191,36,0.4)] drop-shadow-[0_0_18px_rgba(245,158,11,0.22)]",
+        cutout: "bg-background/95",
+        glow: "drop-shadow-[0_0_8px_rgba(32,120,207,0.42)] drop-shadow-[0_0_18px_rgba(14,78,178,0.24)]",
       };
     }
 
     if (kind === "media") {
       return {
         moon: "bg-accent/88 border border-accent/65",
-        cutout: "bg-[#0a0a0a]/95",
-        glow: "drop-shadow-[0_0_7px_rgba(251,191,36,0.32)] drop-shadow-[0_0_14px_rgba(245,158,11,0.18)]",
+        cutout: "bg-background/95",
+        glow: "drop-shadow-[0_0_7px_rgba(32,120,207,0.34)] drop-shadow-[0_0_14px_rgba(14,78,178,0.2)]",
       };
     }
 
     return {
       moon: "bg-white/90 border border-white/70",
-      cutout: "bg-[#0a0a0a]/94",
-      glow: "drop-shadow-[0_0_7px_rgba(255,255,255,0.28)]",
+      cutout: "bg-background/94",
+      glow: "drop-shadow-[0_0_7px_rgba(32,120,207,0.26)]",
     };
   }, [kind]);
 
