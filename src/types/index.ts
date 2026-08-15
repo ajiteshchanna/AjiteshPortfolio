@@ -58,6 +58,7 @@ export interface Project {
   github?: string;
   demo?: string;
   featured: boolean;
+  featuredOrder?: number;
   caseStudy?: ProjectCaseStudy;
 }
 

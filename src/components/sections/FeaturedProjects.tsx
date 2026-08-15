@@ -2,7 +2,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { ProjectCard } from "@/components/projects/ProjectCard";
 import { Reveal } from "@/components/ui/Reveal";
-import { FEATURED_PROJECTS } from "@/data/projects";
+import { ORDERED_FEATURED_PROJECTS } from "@/data/projects";
 
 export function FeaturedProjects() {
   return (
@@ -17,7 +17,7 @@ export function FeaturedProjects() {
           />
 
           <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {FEATURED_PROJECTS.slice(0, 3).map((project) => (
+            {ORDERED_FEATURED_PROJECTS.slice(0, 3).map((project) => (
               <ProjectCard key={project.id} project={project} />
             ))}
           </div>

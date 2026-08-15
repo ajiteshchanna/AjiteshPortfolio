@@ -10,11 +10,12 @@ export const PROJECTS: Project[] = [
     category: "LLM/RAG",
     year: "2026",
     status: "In Progress",
-    technologies: ["Python", "FAISS", "Transformers", "FastAPI", "Docker"],
+    technologies: ["Python", "FAISS", "Transformers", "RAG","FastAPI", "Docker"],
     image: "/images/projects/securedocai.jpg",
     github: "https://github.com/ajiteshchanna/SecureDocExperiments",
     demo: "",
     featured: true,
+    featuredOrder: 1,
     caseStudy: {
       overview:
         "SecureDocAI explores how privacy-sensitive documents can be queried locally using retrieval workflows and compact language models without cloud dependency.",
@@ -120,7 +121,8 @@ export const PROJECTS: Project[] = [
     image: "",
     github: "https://github.com/ajiteshchanna/Spidey-Store",
     demo: "",
-    featured: false,
+    featured: true,
+    featuredOrder: 3,
     caseStudy: {
       overview:
         "Spidey Store demonstrates conversational shopping by mapping free-form user queries to structured MongoDB filters and dynamic recommendations.",
@@ -221,7 +223,8 @@ export const PROJECTS: Project[] = [
     image: "",
     github: "https://github.com/ajiteshchanna/smart-attendance-system",
     demo: "",
-    featured: false,
+    featured: true,
+    featuredOrder: 2,
     caseStudy: {
       overview:
         "AttendanceIQ streamlines classroom and lab attendance with class/session controls, OTP email verification, and reporting workflows.",
@@ -342,3 +345,10 @@ export const PROJECTS: Project[] = [
 ];
 
 export const FEATURED_PROJECTS = PROJECTS.filter((project) => project.featured);
+
+export const ORDERED_FEATURED_PROJECTS = FEATURED_PROJECTS
+  .sort(
+    (a, b) =>
+      (a.featuredOrder ?? Number.MAX_SAFE_INTEGER)
+      - (b.featuredOrder ?? Number.MAX_SAFE_INTEGER),
+  );
