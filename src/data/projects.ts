@@ -2,20 +2,6 @@ import type { Project } from "@/types";
 
 export const PROJECTS: Project[] = [
   {
-    id: "predictive-maintenance-lab",
-    slug: "predictive-maintenance-lab",
-    title: "Predictive Maintenance Lab",
-    description:
-      "A machine-learning experimentation setup for identifying equipment risk patterns using operational sensor traces.",
-    category: "AI/ML",
-    year: "2024",
-    status: "Completed",
-    technologies: ["Python", "scikit-learn", "Pandas", "Jupyter"],
-    image: "/images/projects/predictive-maintenance-lab.jpg",
-    github: "",
-    featured: false,
-  },
-  {
     id: "securedocai",
     slug: "securedocai",
     title: "SecureDocAI",
@@ -26,7 +12,7 @@ export const PROJECTS: Project[] = [
     status: "In Progress",
     technologies: ["Python", "FAISS", "Transformers", "FastAPI", "Docker"],
     image: "/images/projects/securedocai.jpg",
-    github: "",
+    github: "https://github.com/ajiteshchanna/SecureDocExperiments",
     demo: "",
     featured: true,
     caseStudy: {
