@@ -12,6 +12,7 @@ export const PROJECTS: Project[] = [
     status: "Completed",
     technologies: ["Python", "scikit-learn", "Pandas", "Jupyter"],
     image: "/images/projects/predictive-maintenance-lab.jpg",
+    github: "",
     featured: false,
   },
   {
@@ -120,6 +121,7 @@ export const PROJECTS: Project[] = [
     status: "In Progress",
     technologies: ["SQL", "Power BI", "Python", "ETL"],
     image: "/images/projects/operations-data-observatory.jpg",
+    github: "",
     featured: false,
   },
   {
@@ -133,6 +135,7 @@ export const PROJECTS: Project[] = [
     status: "Completed",
     technologies: ["Python", "Pandas", "Power BI", "SQL"],
     image: "/images/projects/metro-ops-automation.jpg",
+    github: "",
     featured: true,
     caseStudy: {
       overview:
@@ -269,6 +272,7 @@ export const PROJECTS: Project[] = [
     status: "Draft",
     technologies: ["Python", "Plotly", "React"],
     image: "/images/projects/cinema-insights.jpg",
+    github: "",
     featured: false,
   },
 ];

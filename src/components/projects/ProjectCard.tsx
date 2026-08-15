@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, GitBranch } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import type { Project } from "@/types";
 import { cardHover } from "@/lib/animations";
@@ -63,8 +63,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="type-caption text-fg-subtle hover:text-fg transition-colors duration-200"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-accent/25 bg-transparent px-3 py-1.5 text-[11px] font-medium tracking-wide uppercase text-accent/80 transition-colors duration-200 hover:border-accent/55 hover:bg-accent/10 hover:text-accent"
+            aria-label={`${project.title} on GitHub`}
           >
+            <GitBranch size={12} aria-hidden="true" strokeWidth={1.75} />
             GitHub
           </a>
         )}

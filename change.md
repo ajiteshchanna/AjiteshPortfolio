@@ -400,6 +400,34 @@ How to add/remove items
 
 ---
 
+## 19. Project GitHub URLs
+
+File location
+- `src/data/projects.ts`
+
+Data/object/array to edit
+- `github` field on each project object in the `PROJECTS` array
+
+What can be changed
+- Each project has a `github: ""` field. Set it to the full repository URL to show the GitHub button on that card. Leave it as an empty string `""` or omit it entirely to hide the button for that project.
+
+Project GitHub field map (as of 2026-08-15):
+| Project | `id` | `github` field |
+|---|---|---|
+| Predictive Maintenance Lab | `predictive-maintenance-lab` | `""` → set to repo URL |
+| SecureDocAI | `securedocai` | `""` → set to repo URL |
+| Operations Data Observatory | `operations-data-observatory` | `""` → set to repo URL |
+| Metro Operations Automation | `metro-ops-automation` | `""` → set to repo URL |
+| Portfolio Platform | `portfolio-platform` | `"https://github.com/ajiteshchanna"` → update to specific repo |
+| Cinema Insights Engine | `cinema-insights` | `""` → set to repo URL |
+
+How to add/remove items
+- Set `github: "https://github.com/your-username/repo-name"` to enable the button.
+- Set `github: ""` or remove the field to hide the button gracefully.
+- The button is rendered by `src/components/projects/ProjectCard.tsx`.
+
+---
+
 ## 18. Colors, Typography, Spacing
 
 File location
