@@ -332,8 +332,8 @@
 html {
   color-scheme: dark;
   scroll-behavior: smooth;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  scrollbar-width: thin;
+  scrollbar-color: #DF2531 transparent;
 }
 
 body {
@@ -396,8 +396,8 @@ body {
    ============================================================ */
 
 ::-webkit-scrollbar {
-  width: 0;
-  height: 0;
+  width: 5px;
+  height: 5px;
   background: transparent;
 }
 
@@ -406,10 +406,10 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: transparent;
-  border-radius: 0;
+  background: #DF2531;
+  border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: transparent;
+  background: #B91F2A;
 }
