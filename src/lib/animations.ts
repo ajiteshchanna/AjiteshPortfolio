@@ -161,11 +161,11 @@ export const subtleHoverLift: Variants = {
 };
 
 export const cardHover: Variants = {
-  rest: { y: 0, scale: 1, boxShadow: "0 0 0 0 rgba(32,120,207,0)" },
+  rest: { y: 0, scale: 1, boxShadow: "0 0 0 0 rgba(223,37,49,0)" },
   hover: {
     y: -6,
     scale: 1.01,
-    boxShadow: "0 20px 40px -8px rgba(0,0,0,0.5), 0 0 0 1px rgba(32,120,207,0.16)",
+    boxShadow: "0 20px 40px -8px rgba(0,0,0,0.5), 0 0 0 1px rgba(223,37,49,0.16)",
     transition: { duration: 0.3, ease: EASE_STANDARD },
   },
 };

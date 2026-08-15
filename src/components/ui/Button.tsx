@@ -30,7 +30,7 @@ export type ButtonProps = {
 const variantClasses: Record<ButtonVariant, string> = {
   primary: [
     "bg-accent text-white font-semibold",
-    "hover:bg-accent-hover hover:shadow-[0_0_28px_rgba(32,120,207,0.34)]",
+    "hover:bg-accent-hover hover:shadow-[0_0_24px_rgba(223,37,49,0.20)]",
     "active:bg-accent-press active:scale-[0.98]",
     "disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none",
   ].join(" "),

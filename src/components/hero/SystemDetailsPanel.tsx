@@ -23,9 +23,9 @@ export function SystemDetailsPanel({ className }: SystemDetailsPanelProps) {
           ? undefined
           : {
               y: -2,
-              borderColor: "rgba(32, 120, 207, 0.4)",
+              borderColor: "rgba(223, 37, 49, 0.4)",
               boxShadow:
-                "0 10px 26px -18px rgba(32, 120, 207, 0.5), inset 0 0 0 1px rgba(14, 78, 178, 0.2)",
+                "0 10px 26px -18px rgba(223, 37, 49, 0.5), inset 0 0 0 1px rgba(90, 11, 18, 0.2)",
             }
       }
       transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}

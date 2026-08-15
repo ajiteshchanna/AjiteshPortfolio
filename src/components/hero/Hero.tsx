@@ -118,7 +118,7 @@ export function Hero() {
           style={prefersReducedMotion ? undefined : { scale: glowScale }}
           className="absolute -top-32 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-accent/10 blur-3xl md:h-96 md:w-96"
         />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.05),transparent_40%),radial-gradient(circle_at_75%_8%,rgba(32,120,207,0.14),transparent_30%),radial-gradient(circle_at_85%_26%,rgba(14,78,178,0.15),transparent_36%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.03),transparent_40%),radial-gradient(circle_at_75%_8%,rgba(223,37,49,0.10),transparent_30%),radial-gradient(circle_at_85%_26%,rgba(58,8,13,0.12),transparent_36%)]" />
       </div>
 
       <div className="container-page">

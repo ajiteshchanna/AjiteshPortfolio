@@ -13,7 +13,7 @@ export default function OpenGraphImage() {
     (
       <div
         style={{
-          background: "radial-gradient(circle at top left, #2078CF 0%, #011F65 48%, #000521 100%)",
+          background: "radial-gradient(circle at top left, #DF2531 0%, #3A080D 48%, #000000 100%)",
           width: "100%",
           height: "100%",
           display: "flex",

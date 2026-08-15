@@ -7,36 +7,43 @@
    ============================================================ */
 
 @theme inline {
-  /* Core blue palette */
-  --color-primary:         #2078CF;
-  --color-secondary:       #0E4EB2;
-  --color-deep:            #011F65;
-  --color-midnight:        #020C47;
+  /* ── Core crimson palette ── */
+  --color-primary:         #DF2531;
+  --color-primary-dark:    #5A0B12;
+  --color-primary-deep:    #3A080D;
+  --color-secondary:       #B91F2A;
+  --color-deep:            #5A0B12;
+  --color-midnight:        #080808;
 
-  /* Backgrounds */
-  --color-background:      #000521;
-  --color-surface:         #020C47;
-  --color-surface-raised:  #011F65;
-  --color-surface-high:    #011F65;
+  /* ── Red transparency tokens ── */
+  --red-100: rgba(223,37,49,1);
+  --red-65:  rgba(223,37,49,0.65);
+  --red-45:  rgba(223,37,49,0.45);
+  --red-25:  rgba(223,37,49,0.25);
+  --red-15:  rgba(223,37,49,0.15);
+  --red-08:  rgba(223,37,49,0.08);
 
-  /* Supporting semantic tokens */
-  --color-primary-glow:    #2078CF;
-  --color-muted-blue:      #0E4EB2;
+  /* ── Backgrounds ── */
+  --color-background:      #000000;
+  --color-surface:         #080808;
+  --color-surface-raised:  #0d0d0d;
+  --color-surface-high:    #111111;
+  --color-burgundy:        #240609;
 
-  /* Accent system */
-  --color-accent:          #2078CF;
-  --color-accent-hover:    #0E4EB2;
-  --color-accent-press:    #011F65;
+  /* ── Accent system ── */
+  --color-accent:          #DF2531;
+  --color-accent-hover:    #B91F2A;
+  --color-accent-press:    #5A0B12;
 
-  /* Foreground text */
-  --color-fg:              #fafafa;
-  --color-fg-secondary:    #d4d4d8;
-  --color-fg-muted:        #a1a1aa;
-  --color-fg-subtle:       #71717a;
+  /* ── Foreground text ── */
+  --color-fg:              #ffffff;
+  --color-fg-secondary:    rgba(255,255,255,0.75);
+  --color-fg-muted:        rgba(255,255,255,0.50);
+  --color-fg-subtle:       rgba(255,255,255,0.45);
 
-  /* Borders */
-  --color-border:          #14306E;
-  --color-border-subtle:   #0E2354;
+  /* ── Borders ── */
+  --color-border:          rgba(223,37,49,0.20);
+  --color-border-subtle:   rgba(255,255,255,0.10);
 
   /* Fonts — runtime vars from next/font; no opacity needed */
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
@@ -160,12 +167,12 @@
 
   /* ── Animated glow border ─────────────────────────────────────
      Apply .glow-border to any container that should receive the
-     electric-blue traveling-highlight border effect.
+     crimson traveling-highlight border effect.
      ─────────────────────────────────────────────────────────── */
   .glow-border {
     position: relative;
-    border: 1px solid rgba(32, 120, 207, 0.25);
-    box-shadow: inset 0 0 0 1px rgba(32, 120, 207, 0.08);
+    border: 1px solid rgba(223, 37, 49, 0.25);
+    box-shadow: inset 0 0 0 1px rgba(223, 37, 49, 0.08);
   }
 
   .glow-border::before {
@@ -178,9 +185,9 @@
       from calc(var(--glow-angle, 0deg) + 120deg),
       transparent 0deg,
       transparent 62deg,
-      rgba(14, 78, 178, 0.3) 82deg,
-      rgba(32, 120, 207, 0.42) 92deg,
-      rgba(1, 31, 101, 0.28) 104deg,
+      rgba(90, 11, 18, 0.3) 82deg,
+      rgba(223, 37, 49, 0.42) 92deg,
+      rgba(58, 8, 13, 0.28) 104deg,
       transparent 128deg,
       transparent 360deg
     );
@@ -204,9 +211,9 @@
       from var(--glow-angle, 0deg),
       transparent 0deg,
       transparent 60deg,
-      rgba(14, 78, 178, 0.72) 80deg,
-      rgba(32, 120, 207, 0.9) 90deg,
-      rgba(14, 78, 178, 0.72) 100deg,
+      rgba(90, 11, 18, 0.72) 80deg,
+      rgba(223, 37, 49, 0.9) 90deg,
+      rgba(90, 11, 18, 0.72) 100deg,
       transparent 120deg,
       transparent 360deg
     );
@@ -241,7 +248,7 @@
   }
 
   .marquee-star {
-    color: rgba(32, 120, 207, 0.9);
+    color: rgba(223, 37, 49, 0.9);
   }
 
   .marquee-shell:hover .marquee-track {
@@ -305,9 +312,9 @@
       opacity: 0;
     }
     .glow-border {
-      border-color: rgba(32, 120, 207, 0.35);
-      box-shadow: 0 0 0 1px rgba(32, 120, 207, 0.1),
-                  0 0 12px -4px rgba(32, 120, 207, 0.24);
+      border-color: rgba(223, 37, 49, 0.35);
+      box-shadow: 0 0 0 1px rgba(223, 37, 49, 0.1),
+                  0 0 12px -4px rgba(223, 37, 49, 0.24);
     }
     .marquee-track {
       animation-duration: 70s;
@@ -330,8 +337,8 @@ html {
 }
 
 body {
-  background-color: #000521;
-  color: #fafafa;
+  background-color: #000000;
+  color: #ffffff;
   font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   line-height: 1.65;
   overflow-x: clip;
@@ -347,8 +354,8 @@ body {
   z-index: 100;
   padding: 0.6rem 0.9rem;
   border-radius: 0.5rem;
-  border: 1px solid #2078CF;
-  background: #000521;
+  border: 1px solid #DF2531;
+  background: #000000;
   color: #fafafa;
   font-size: 0.75rem;
   letter-spacing: 0.06em;
@@ -370,7 +377,7 @@ body {
 }
 
 *:focus-visible {
-  outline: 2px solid #2078CF;
+  outline: 2px solid #DF2531;
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -380,8 +387,8 @@ body {
    ============================================================ */
 
 ::selection {
-  background-color: rgba(32, 120, 207, 0.25);
-  color: #fafafa;
+  background-color: rgba(223, 37, 49, 0.25);
+  color: #ffffff;
 }
 
 /* ============================================================

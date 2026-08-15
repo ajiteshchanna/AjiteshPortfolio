@@ -8,11 +8,11 @@ const TRACK_TOP = 104;
 const TRACK_BOTTOM = 24;
 const DEFAULT_MOON_SIZE = 16;
 const BASE_SHADOW =
-  "0 0 0 1px rgba(255,255,255,0.92), 0 0 10px -2px rgba(125,211,252,0.32), 0 0 18px -6px rgba(191,219,254,0.28)";
+  "0 0 0 1px rgba(255,255,255,0.92), 0 0 10px -2px rgba(223,37,49,0.30), 0 0 18px -6px rgba(223,37,49,0.18)";
 const HOVER_SHADOW =
-  "0 0 0 1px rgba(255,255,255,0.98), 0 0 14px -1px rgba(96,165,250,0.5), 0 0 24px -4px rgba(191,219,254,0.42)";
+  "0 0 0 1px rgba(255,255,255,0.98), 0 0 14px -1px rgba(223,37,49,0.45), 0 0 24px -4px rgba(223,37,49,0.28)";
 const DRAG_SHADOW =
-  "0 0 0 1px rgba(255,255,255,1), 0 0 18px -1px rgba(59,130,246,0.62), 0 0 28px -5px rgba(147,197,253,0.5)";
+  "0 0 0 1px rgba(255,255,255,1), 0 0 18px -1px rgba(223,37,49,0.55), 0 0 28px -5px rgba(223,37,49,0.35)";
 
 function clamp(value: number, min: number, max: number) {
   return Math.min(Math.max(value, min), max);

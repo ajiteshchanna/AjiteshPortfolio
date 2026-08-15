@@ -52,7 +52,7 @@ export function BubbleCursor() {
       return {
         moon: "bg-accent-hover/95 border border-accent/70",
         cutout: "bg-background/95",
-        glow: "drop-shadow-[0_0_8px_rgba(32,120,207,0.42)] drop-shadow-[0_0_18px_rgba(14,78,178,0.24)]",
+        glow: "drop-shadow-[0_0_8px_rgba(223,37,49,0.42)] drop-shadow-[0_0_18px_rgba(90,11,18,0.24)]",
       };
     }
 
@@ -60,14 +60,14 @@ export function BubbleCursor() {
       return {
         moon: "bg-accent/88 border border-accent/65",
         cutout: "bg-background/95",
-        glow: "drop-shadow-[0_0_7px_rgba(32,120,207,0.34)] drop-shadow-[0_0_14px_rgba(14,78,178,0.2)]",
+        glow: "drop-shadow-[0_0_7px_rgba(223,37,49,0.34)] drop-shadow-[0_0_14px_rgba(90,11,18,0.2)]",
       };
     }
 
     return {
       moon: "bg-white/90 border border-white/70",
       cutout: "bg-background/94",
-      glow: "drop-shadow-[0_0_7px_rgba(32,120,207,0.26)]",
+      glow: "drop-shadow-[0_0_7px_rgba(223,37,49,0.26)]",
     };
   }, [kind]);
 

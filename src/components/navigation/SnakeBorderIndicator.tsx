@@ -24,8 +24,8 @@ export function SnakeBorderIndicator({
   const glowId = useId();
   const isActive = mode === "active";
 
-  const snakeStroke = isActive ? "rgba(32,120,207,0.98)" : "rgba(255,255,255,0.95)";
-  const snakeGlow = isActive ? "rgba(32,120,207,0.62)" : "rgba(255,255,255,0.34)";
+  const snakeStroke = isActive ? "rgba(223,37,49,0.98)" : "rgba(255,255,255,0.95)";
+  const snakeGlow = isActive ? "rgba(223,37,49,0.62)" : "rgba(255,255,255,0.34)";
   const snakeDashArray = isActive ? "11 89" : "2.2 1.8 2.2 1.8 2.2 89.8";
 
   const shouldAnimate = visible && !reducedMotion;

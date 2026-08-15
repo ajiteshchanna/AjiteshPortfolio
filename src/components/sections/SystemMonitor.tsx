@@ -91,11 +91,11 @@ export function SystemMonitor() {
         <Reveal amount={0.12}>
           <GlowBorder
             rounded="rounded-2xl"
-            className="relative mx-auto w-full max-w-2xl overflow-hidden bg-background px-4 py-4 shadow-[0_14px_40px_-28px_rgba(32,120,207,0.48)] sm:px-5"
+            className="relative mx-auto w-full max-w-2xl overflow-hidden bg-background px-4 py-4 shadow-[0_14px_40px_-28px_rgba(223,37,49,0.30)] sm:px-5"
           >
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-0 bg-[radial-gradient(95%_110%_at_100%_0%,rgba(32,120,207,0.2)_0%,rgba(14,78,178,0.09)_38%,rgba(0,0,0,0)_78%)]"
+              className="pointer-events-none absolute inset-0 bg-[radial-gradient(95%_110%_at_100%_0%,rgba(223,37,49,0.12)_0%,rgba(90,11,18,0.06)_38%,rgba(0,0,0,0)_78%)]"
             />
             <div className="relative">
               <div className="mb-3 flex items-start justify-between gap-3">
