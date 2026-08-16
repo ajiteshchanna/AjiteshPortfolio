@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { SectionHeading } from "@/components/ui";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { reducedFadeInUp, timelineCard, timelineNode } from "@/lib/animations";
 import type { ExperienceItem } from "@/types";
@@ -17,12 +16,9 @@ export function ExperienceTimeline({ items }: ExperienceTimelineProps) {
   return (
     <section className="section-gap" aria-labelledby="experience-timeline-heading">
       <div className="container-page">
-        <SectionHeading
-          number="Experience"
-          title="Impact Timeline"
-          subtitle="A concise view of hands-on engineering contexts, responsibilities, and outcomes."
-          className="mb-7"
-        />
+        <p id="experience-timeline-heading" className="type-label text-fg-subtle mb-7">
+          Experience Timeline
+        </p>
 
         <ol className="relative space-y-7 border-l border-border pl-4 sm:space-y-8 sm:pl-8">
           {items.map((item) => (

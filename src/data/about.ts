@@ -9,9 +9,9 @@ export const ABOUT_INTRO = {
   eyebrow: "About",
   title: "Engineering Depth, Creative Intent",
   lead:
-    "I am an AI engineer and creative technologist focused on building systems that are robust in production and meaningful in human terms.",
+    "I'm an AI engineer and creative technologist interested in building intelligent systems that are technically rigorous, useful in practice, and thoughtfully designed.",
   summary:
-    "My work combines applied AI, product engineering, and narrative thinking to turn difficult problems into usable, scalable solutions.",
+    "My work sits at the intersection of artificial intelligence, software engineering, data, and storytelling. I enjoy going deep into a problem — understanding how a system should work, building it, testing it, and finding ways to make the experience around it feel simple.",
 };
 
 export const ABOUT_PERSPECTIVES = [
@@ -19,67 +19,89 @@ export const ABOUT_PERSPECTIVES = [
     id: "philosophy",
     title: "Engineering Philosophy",
     body:
-      "I prefer clear architecture over clever shortcuts. I build with iteration in mind: small validated steps, measurable outcomes, and systems that can be maintained by teams over time.",
+      "I prefer understanding the system before optimizing the solution. I build with clear architecture, small validated iterations, and measurable outcomes — because good engineering should remain understandable, testable, and maintainable.",
   },
   {
     id: "motivation",
     title: "What Drives Me",
     body:
-      "I am motivated by problems where technology can reduce friction in real lives. The goal is not novelty for its own sake, but clarity, reliability, and impact.",
+      "I'm drawn to problems where technology can turn complexity into clarity. I care less about building something simply because it is technically impressive, and more about whether it solves a real problem and creates something people can actually use.",
   },
 ] as const;
 
 export const ABOUT_TECHNICAL_INTERESTS = [
+  "AI Engineering & Generative AI",
   "LLM and RAG system design",
-  "Offline and privacy-conscious AI workflows",
-  "Evaluation-driven model integration",
-  "Frontend architecture for complex products",
+  "Document intelligence and retrieval",
+  "AI agents and intelligent workflows",
+  "Data-driven product engineering",
+  "Full-stack AI applications",
 ] as const;
 
 export const ABOUT_EDUCATION = [
-  "B.Tech in Computer Science and Engineering",
-  "Continuous self-study in AI systems, data engineering, and product architecture",
+  "B.Tech in Artificial Intelligence & Data Science",
+  "Gati Shakti Vishwavidyalaya, Vadodara",
+  "Specialization in Transportation & Logistics",
+  "Building a foundation across AI, data, software engineering, and real-world transportation systems.",
 ] as const;
 
 export const ABOUT_CREATIVE_INTERESTS = [
-  "Cinema as a systems language of emotion and structure",
-  "Visual storytelling through digital interfaces",
-  "Designing interactions that feel calm under complexity",
+  "Storytelling through cinema and writing",
+  "Screenwriting and narrative design",
+  "AI × Film & Media",
+  "Visual storytelling and digital experiences",
+  "Exploring the intersection of technology and human emotion",
 ] as const;
 
 export const ABOUT_CURRENT_FOCUS = [
-  "Building SecureDocAI with retrieval-first architecture",
-  "Strengthening portfolio case studies with implementation depth",
-  "Developing production-ready AI and automation workflows",
+  "Building deeper expertise in AI engineering",
+  "Developing retrieval-first and agentic AI systems",
+  "Turning research experiments into usable products",
+  "Strengthening production-grade software engineering",
+  "Exploring AI applications across creative and media industries",
 ] as const;
 
 export const ABOUT_TIMELINE: AboutTimelineItem[] = [
   {
     id: "foundation",
-    period: "Early Foundation",
-    title: "From Curiosity to Structured Problem Solving",
+    period: "The Foundation",
+    title: "From Curiosity to Engineering",
     description:
-      "Started with a curiosity for how digital systems work and gradually moved into formal engineering methods and disciplined implementation habits.",
+      "Started by exploring how software and digital systems work, gradually developing a stronger foundation in programming, data, and problem solving through academic projects and experimentation.",
   },
   {
-    id: "industry-exposure",
-    period: "Industry Exposure",
-    title: "Learning in Real Operational Contexts",
+    id: "real-world-exposure",
+    period: "Real-World Exposure",
+    title: "Learning Beyond the Classroom",
     description:
-      "Contributed in internship and deployment environments where reliability, communication, and execution quality mattered as much as raw technical ability.",
+      "Internships and real-world projects introduced me to the difference between building something that works and building something that can actually be used, maintained, communicated, and improved.",
   },
   {
     id: "ai-shift",
-    period: "AI Focus",
-    title: "Shifting Toward Intelligent Systems",
+    period: "The AI Shift",
+    title: "From Building Software to Building Intelligence",
     description:
-      "Moved deeper into AI engineering, especially retrieval systems, document intelligence, and practical model integration for real use cases.",
+      "Moved deeper into artificial intelligence, exploring machine learning, NLP, retrieval systems, generative AI, and intelligent workflows — with a growing focus on understanding systems rather than simply using models.",
   },
   {
-    id: "present",
-    period: "Present",
-    title: "Builder Mode",
+    id: "builder",
+    period: "The Builder",
+    title: "Turning Experiments Into Systems",
     description:
-      "Currently focused on shipping thoughtful AI products that balance technical rigor with clear user experience and long-term maintainability.",
+      "Began building more ambitious systems across document intelligence, AI agents, recommendation engines, automation, and full-stack applications — focusing increasingly on architecture, evaluation, and real-world usability.",
+  },
+  {
+    id: "creative-thread",
+    period: "The Creative Thread",
+    title: "Where Technology Meets Storytelling",
+    description:
+      "Alongside engineering, I kept returning to writing, cinema, and storytelling. That creative practice changed how I think about technology — not only as something to engineer, but as something that can communicate, create emotion, and shape experiences.",
+  },
+  {
+    id: "now",
+    period: "Now",
+    title: "Building at the Intersection",
+    description:
+      "Today, I'm focused on becoming a stronger AI engineer while exploring the intersection of intelligent systems, product engineering, and creative technology — building things that are technically deep, practically useful, and distinctly human.",
   },
 ];

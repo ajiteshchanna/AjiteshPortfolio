@@ -19,8 +19,8 @@ export function AboutVisualStatement() {
             </div>
 
             <p className="mt-8 max-w-3xl type-body-lg text-fg-secondary">
-              The strongest products sit at the overlap of technical rigor and human resonance.
-              I aim to build in that overlap every time.
+              The strongest work happens at the intersection of technical rigor and human understanding.
+              I want to build systems that are not only capable, but meaningful, intuitive, and worth using.
             </p>
           </div>
         </Reveal>

@@ -5,20 +5,20 @@ import { EXPERIENCE } from "@/data/experience";
 export const metadata: Metadata = {
   title: "Experience",
   description:
-    "A timeline of professional engineering contributions focused on reliability, reporting automation, and measurable operations outcomes.",
+    "A timeline of the environments, internships, and independent engineering work that have shaped how I build — from transportation to enterprise analytics to AI systems.",
   alternates: {
     canonical: "/experience",
   },
   openGraph: {
     title: "Experience | Ajitesh Channa",
     description:
-      "Professional journey covering internship and deployment-impact engineering work.",
+      "Professional and independent engineering journey across data visualization, AI systems, and creative technology.",
     url: "/experience",
   },
   twitter: {
     title: "Experience | Ajitesh Channa",
     description:
-      "Professional journey covering internship and deployment-impact engineering work.",
+      "Professional and independent engineering journey across data visualization, AI systems, and creative technology.",
   },
 };
 
@@ -29,11 +29,11 @@ export default function ExperiencePage() {
         <div className="container-page">
           <p className="type-label text-accent">Experience</p>
           <h1 id="experience-page-heading" className="mt-4 type-h1 text-fg max-w-4xl">
-            Professional Journey and Outcomes
+            Engineering in the Real World
           </h1>
           <p className="mt-5 type-body-lg text-fg-secondary max-w-3xl">
-            A focused timeline of engineering contributions across internship and deployment contexts,
-            with emphasis on execution quality, reliability, and measurable workflow improvements.
+            From early exposure to transportation engineering to working with enterprise data and analytics,
+            each experience has shaped how I approach problems, build systems, and work with technology.
           </p>
         </div>
       </section>

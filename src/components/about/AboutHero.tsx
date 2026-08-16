@@ -19,7 +19,7 @@ export function AboutHero() {
 
           <div className="mt-8 flex flex-wrap gap-3">
             <Button href="/projects" size="lg">Explore My Work</Button>
-            <Button href="/contact" variant="secondary" size="lg">Start a Conversation</Button>
+            <Button href="/contact" variant="secondary" size="lg">Let&#39;s Build Something</Button>
           </div>
 
           <div className="mt-8">

@@ -29,7 +29,7 @@ export function AboutInterests() {
           <SectionHeading
             number="02"
             title="Interests, Education, and Current Focus"
-            subtitle="The domains I keep returning to, and the direction I am growing toward right now."
+            subtitle="The ideas, technologies, and creative disciplines shaping what I build next."
             className="mb-10"
           />
 
