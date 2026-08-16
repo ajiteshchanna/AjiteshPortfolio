@@ -61,18 +61,18 @@ export function SocialLinks({
     <nav
       aria-label="Social links"
       className={cn(
-        "flex",
-        orientation === "horizontal" ? "flex-row gap-3" : "flex-col gap-2",
+        "flex min-w-0",
+        orientation === "horizontal" ? "flex-row flex-wrap gap-3" : "flex-col gap-2",
         className,
       )}
     >
       {SOCIAL_LINKS.map(({ id, label, href, icon: Icon, external, download }) => {
         const linkClasses = cn(
-          "group inline-flex items-center gap-2 rounded-lg",
+          "group inline-flex min-w-0 items-center gap-2 rounded-lg whitespace-nowrap",
           "text-fg-muted transition-colors duration-200 hover:text-fg",
           display === "icon-only"
             ? "h-9 w-9 justify-center border border-border hover:border-accent/40 hover:bg-surface"
-            : "h-9 px-3 border border-border hover:border-accent/40 hover:bg-surface text-sm",
+            : "h-9 max-w-full px-3 border border-border hover:border-accent/40 hover:bg-surface text-sm",
           itemClassName,
         );
 

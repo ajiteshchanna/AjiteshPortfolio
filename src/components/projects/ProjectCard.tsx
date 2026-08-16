@@ -29,7 +29,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
       initial={prefersReducedMotion ? undefined : "rest"}
       whileHover={prefersReducedMotion ? undefined : "hover"}
       data-cursor="media"
-      className="group glow-border rounded-2xl bg-surface p-6"
+      className="group glow-border w-full min-w-0 rounded-2xl bg-surface p-6"
     >
       <div className="mb-4 flex items-start justify-between gap-4">
         <Badge variant="category">{project.category}</Badge>

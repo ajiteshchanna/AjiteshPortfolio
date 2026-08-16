@@ -132,7 +132,7 @@ export function MobileMenu({ id, isOpen, onClose, links }: MobileMenuProps) {
               <button
                 ref={closeButtonRef}
                 onClick={onClose}
-                className="flex h-9 w-9 items-center justify-center rounded-lg border border-border text-fg-muted hover:text-fg hover:border-accent/40 transition-colors duration-200"
+                className="flex h-11 w-11 items-center justify-center rounded-xl border border-border text-fg-muted hover:text-fg hover:border-accent/40 transition-colors duration-200 sm:h-9 sm:w-9 sm:rounded-lg"
                 aria-label="Close navigation menu"
               >
                 <X size={18} strokeWidth={1.75} aria-hidden="true" />

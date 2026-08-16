@@ -147,14 +147,16 @@
   /* Centered, max-width page container */
   .container-page {
     width: 100%;
+    min-width: 0;
     max-width: 72rem;        /* 1152px */
     margin-inline: auto;
-    padding-inline: clamp(0.9rem, 4.4vw, 4rem);
+    padding-inline: clamp(1rem, 4.4vw, 4rem);
   }
 
   /* Narrower container for long-form text */
   .container-prose {
     width: 100%;
+    min-width: 0;
     max-width: 48rem;        /* 768px */
     margin-inline: auto;
     padding-inline: clamp(1rem, 4vw, 2rem);
@@ -227,14 +229,17 @@
 
   .marquee-shell {
     position: relative;
-    overflow: hidden;
+    overflow-x: clip;
+    overflow-y: hidden;
     display: flex;
     align-items: center;
+    contain: layout paint;
   }
 
   .marquee-track {
     display: flex;
     width: max-content;
+    min-width: 0;
     will-change: transform;
     animation: marquee-scroll 27s linear infinite;
   }
@@ -334,6 +339,7 @@ html {
   scroll-behavior: smooth;
   scrollbar-width: thin;
   scrollbar-color: #DF2531 transparent;
+  overflow-x: clip;
 }
 
 body {
@@ -342,9 +348,14 @@ body {
   font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   line-height: 1.65;
   overflow-x: clip;
+  min-width: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+}
+
+main {
+  min-width: 0;
 }
 
 .skip-link {

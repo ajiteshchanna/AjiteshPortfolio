@@ -29,7 +29,7 @@ export function ExperiencePreview() {
           </div>
 
           <div className="mt-6">
-            <Button href="/experience" variant="outline">View full timeline</Button>
+            <Button href="/experience" variant="outline" className="w-full sm:w-auto">View full timeline</Button>
           </div>
         </Reveal>
       </div>

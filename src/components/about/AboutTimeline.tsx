@@ -17,7 +17,7 @@ export function AboutTimeline() {
             {ABOUT_TIMELINE.map((item) => (
               <li key={item.id} className="relative">
                 <span
-                  className="absolute -left-[1.3rem] top-1.5 h-3 w-3 rounded-full border border-accent/70 bg-background sm:-left-[2.45rem]"
+                  className="absolute -left-[1.1rem] top-1.5 h-3 w-3 rounded-full border border-accent/70 bg-background sm:-left-[2.45rem]"
                   aria-hidden="true"
                 />
 

@@ -40,7 +40,7 @@ export function Navbar() {
             : "bg-background/35 border-b border-border/20",
         )}
       >
-        <div className="container-page flex h-14 items-center justify-between sm:h-16">
+        <div className="container-page flex h-14 min-w-0 items-center justify-between gap-3 sm:h-16">
 
           {/* ── Logo ─────────────────────────────────────────── */}
           <Link
@@ -50,7 +50,7 @@ export function Navbar() {
             onFocus={() => setIsLogoHovered(true)}
             onBlur={() => setIsLogoHovered(false)}
             className={cn(
-              "relative inline-flex h-9 items-center rounded-lg px-3.5",
+              "relative inline-flex h-9 shrink-0 items-center rounded-lg px-3.5",
               "bg-transparent font-mono text-sm font-semibold tracking-[0.2em] text-fg uppercase",
               "transition-[color,background-color] duration-200 hover:text-accent",
               "focus-visible:outline-none focus-visible:text-fg",
@@ -165,7 +165,7 @@ export function Navbar() {
             type="button"
             onClick={() => setMenuOpen((prev) => !prev)}
             className={cn(
-              "md:hidden flex h-9 w-9 items-center justify-center rounded-lg",
+              "md:hidden flex h-11 w-11 shrink-0 items-center justify-center rounded-xl sm:h-9 sm:w-9 sm:rounded-lg",
               "border border-border text-fg-muted",
               "hover:text-fg hover:border-accent/40",
               "transition-colors duration-200",

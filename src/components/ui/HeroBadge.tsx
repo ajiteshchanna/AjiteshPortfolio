@@ -33,7 +33,7 @@ export function HeroBadge({ label = BADGE_TEXT, className }: HeroBadgeProps) {
     <div
       className={cn(
         "relative flex items-center justify-center select-none",
-        "h-[96px] w-[96px] sm:h-[112px] sm:w-[112px] md:h-[128px] md:w-[128px]",
+        "h-[88px] w-[88px] sm:h-[108px] sm:w-[108px] md:h-[128px] md:w-[128px]",
         className,
       )}
       aria-label={label}

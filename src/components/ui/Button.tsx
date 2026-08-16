@@ -63,7 +63,7 @@ const sizeClasses: Record<ButtonSize, string> = {
 };
 
 const base =
-  "inline-flex items-center justify-center font-medium tracking-wide transition-all duration-200 select-none text-center cursor-pointer";
+  "inline-flex min-w-0 max-w-full items-center justify-center font-medium tracking-wide transition-all duration-200 select-none text-center cursor-pointer";
 
 function Spinner() {
   return (

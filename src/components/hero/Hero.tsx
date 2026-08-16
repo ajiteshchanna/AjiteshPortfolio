@@ -127,19 +127,19 @@ export function Hero() {
           variants={parentVariants}
           initial={prefersReducedMotion ? undefined : "hidden"}
           animate={prefersReducedMotion ? undefined : "visible"}
-          className="grid items-start gap-7 md:items-center md:gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12"
+          className="flex flex-col gap-7 lg:grid lg:grid-cols-[1.1fr_0.9fr] lg:items-start lg:gap-12"
         >
           {/* Left — text column */}
-          <div className="order-1 lg:order-1">
+          <div className="order-1 min-w-0 lg:order-1">
             <motion.p variants={childVariants} className="type-label mb-4 text-accent">
               AI Engineer • Creative Technologist
             </motion.p>
 
-            <motion.h1 variants={childVariants} className="type-display text-fg">
+            <motion.h1 variants={childVariants} className="type-display max-w-[11ch] text-fg sm:max-w-none">
               Ajitesh Channa
             </motion.h1>
 
-            <motion.div variants={childVariants} className="mt-5 max-w-xl">
+            <motion.div variants={childVariants} className="mt-5 max-w-full sm:max-w-xl">
               <AnimatedText
                 text="I build intelligent systems, engineer thoughtful products, and turn complex ideas into experiences people can actually understand."
                 className="type-body-lg text-fg-secondary"
@@ -156,7 +156,7 @@ export function Hero() {
             </motion.div>
 
             <motion.div variants={childVariants} className="mt-6 sm:mt-7">
-              <SocialLinks orientation="horizontal" display="icon-label" />
+              <SocialLinks orientation="horizontal" display="icon-label" className="w-full justify-start" />
             </motion.div>
           </div>
 
@@ -164,7 +164,7 @@ export function Hero() {
           <motion.div
             variants={frameVariants}
             style={prefersReducedMotion ? undefined : { y: depthY }}
-            className="order-2 relative mx-auto flex w-full max-w-[280px] flex-col items-center justify-center sm:max-w-[350px] lg:order-2 lg:max-w-[440px]"
+            className="order-2 relative mx-auto flex w-full max-w-[320px] flex-col items-center justify-center gap-4 sm:max-w-[350px] lg:order-2 lg:max-w-[440px]"
           >
             <motion.div
               ref={portraitRef}

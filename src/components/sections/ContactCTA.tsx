@@ -13,9 +13,9 @@ export function ContactCTA() {
               If your team is working on AI-heavy products, automation strategy, or narrative-driven digital experiences,
               I&apos;d love to hear what you&apos;re solving.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button href="/contact" size="lg">Start a conversation</Button>
-              <Button href="/projects" size="lg" variant="secondary">See project work</Button>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Button href="/contact" size="lg" className="w-full sm:w-auto">Start a conversation</Button>
+              <Button href="/projects" size="lg" variant="secondary" className="w-full sm:w-auto">See project work</Button>
             </div>
           </div>
         </Reveal>

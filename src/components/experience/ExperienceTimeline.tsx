@@ -28,7 +28,7 @@ export function ExperienceTimeline({ items }: ExperienceTimelineProps) {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.4 }}
-                className="absolute -left-[1.3rem] top-3 h-3 w-3 rounded-full border border-accent/80 bg-background sm:-left-[2.45rem]"
+                className="absolute -left-[1.1rem] top-3 h-3 w-3 rounded-full border border-accent/80 bg-background sm:-left-[2.45rem]"
                 aria-hidden="true"
               />
 

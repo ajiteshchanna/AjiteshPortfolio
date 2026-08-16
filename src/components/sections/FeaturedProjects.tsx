@@ -23,7 +23,7 @@ export function FeaturedProjects() {
           </div>
 
           <div className="mt-6">
-            <Button href="/projects" variant="outline">
+            <Button href="/projects" variant="outline" className="w-full sm:w-auto">
               Browse all projects
             </Button>
           </div>

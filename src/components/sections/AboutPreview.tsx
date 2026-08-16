@@ -24,7 +24,7 @@ export function AboutPreview() {
                 that reduce complexity instead of hiding it.
               </p>
               <div className="mt-7">
-                <Button href="/about" variant="secondary">Read my story</Button>
+                <Button href="/about" variant="secondary" className="w-full sm:w-auto">Read my story</Button>
               </div>
             </div>
           </div>

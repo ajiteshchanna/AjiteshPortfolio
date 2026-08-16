@@ -29,7 +29,7 @@ export function SystemDetailsPanel({ className }: SystemDetailsPanelProps) {
             }
       }
       transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-      className={`group w-full max-w-[22rem] overflow-hidden rounded-xl border border-white/14 bg-background/68 px-3.5 py-3 backdrop-blur-[6px] ${className ?? ""}`}
+      className={`group w-full max-w-full overflow-hidden rounded-xl border border-white/14 bg-background/68 px-3.5 py-3 backdrop-blur-[6px] ${className ?? ""}`}
     >
       <div className="mb-2 h-px w-10 bg-accent/55" aria-hidden="true" />
 
@@ -38,19 +38,19 @@ export function SystemDetailsPanel({ className }: SystemDetailsPanelProps) {
           const isStatus = item.key === "status";
 
           return (
-            <div key={item.key} className="flex items-center justify-between gap-3">
+            <div key={item.key} className="flex flex-col gap-0.5 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
               <span className="type-label text-[10px] tracking-[0.09em] text-fg-subtle">
                 {item.label}
               </span>
 
-              <span className="inline-flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-[0.08em]">
+              <span className="inline-flex max-w-full items-center gap-1.5 text-[11px] font-medium uppercase tracking-[0.08em] sm:justify-end">
                 {isStatus && (
                   <span
                     className={`h-1.5 w-1.5 rounded-full bg-accent ${prefersReducedMotion ? "" : "animate-[pulse_3.6s_ease-in-out_infinite]"}`}
                     aria-hidden="true"
                   />
                 )}
-                <span className={isStatus ? "text-accent-hover transition-colors duration-200 group-hover:text-accent" : baseValueClass}>
+                <span className={isStatus ? "break-words text-accent-hover transition-colors duration-200 group-hover:text-accent" : `${baseValueClass} break-words`}>
                   {item.value}
                 </span>
               </span>

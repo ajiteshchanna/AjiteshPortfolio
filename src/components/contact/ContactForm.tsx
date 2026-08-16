@@ -247,7 +247,7 @@ export function ContactForm() {
         )}
 
         <div className="pt-2">
-          <Button type="submit" size="lg" loading={submitState === "submitting"}>
+          <Button type="submit" size="lg" loading={submitState === "submitting"} className="w-full sm:w-auto">
             {submitState === "submitting" ? "Validating message" : "Send inquiry"}
           </Button>
         </div>
