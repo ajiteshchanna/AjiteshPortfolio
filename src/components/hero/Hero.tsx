@@ -141,7 +141,7 @@ export function Hero() {
 
             <motion.div variants={childVariants} className="mt-5 max-w-xl">
               <AnimatedText
-                text="I build intelligent systems that solve real problems, and craft digital experiences that make complex ideas feel clear and human."
+                text="I build intelligent systems, engineer thoughtful products, and turn complex ideas into experiences people can actually understand."
                 className="type-body-lg text-fg-secondary"
               />
             </motion.div>
