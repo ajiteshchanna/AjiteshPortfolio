@@ -227,6 +227,54 @@
     pointer-events: none;
   }
 
+  .cursor-glow-surface {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    --cursor-glow-x: 50%;
+    --cursor-glow-y: 50%;
+    --cursor-glow-opacity: 0;
+    --cursor-glow-core: rgba(223, 37, 49, 0.12);
+    --cursor-glow-mid: rgba(223, 37, 49, 0.05);
+  }
+
+  .cursor-glow-surface[data-cursor-glow-active="true"] {
+    --cursor-glow-opacity: 1;
+  }
+
+  .cursor-glow-surface > .cursor-glow-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: var(--cursor-glow-opacity);
+    transition:
+      opacity 200ms var(--ease-standard),
+      --cursor-glow-x 115ms var(--ease-out),
+      --cursor-glow-y 115ms var(--ease-out);
+    background: radial-gradient(
+      170px circle at var(--cursor-glow-x) var(--cursor-glow-y),
+      var(--cursor-glow-core) 0%,
+      var(--cursor-glow-mid) 26%,
+      transparent 62%
+    );
+  }
+
+  .cursor-glow-surface > :not(.cursor-glow-layer) {
+    position: relative;
+    z-index: 1;
+  }
+
+  .cursor-glow-strong {
+    --cursor-glow-core: rgba(223, 37, 49, 0.13);
+    --cursor-glow-mid: rgba(223, 37, 49, 0.055);
+  }
+
+  .cursor-glow-soft {
+    --cursor-glow-core: rgba(223, 37, 49, 0.09);
+    --cursor-glow-mid: rgba(223, 37, 49, 0.04);
+  }
+
   .marquee-shell {
     position: relative;
     overflow-x: clip;
@@ -286,8 +334,27 @@
     inherits: false;
   }
 
+  @property --cursor-glow-x {
+    syntax: "<length-percentage>";
+    initial-value: 50%;
+    inherits: false;
+  }
+
+  @property --cursor-glow-y {
+    syntax: "<length-percentage>";
+    initial-value: 50%;
+    inherits: false;
+  }
+
   @keyframes glow-trace {
     to { --glow-angle: 360deg; }
+  }
+
+  @media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+    .cursor-glow-surface > .cursor-glow-layer {
+      opacity: 0 !important;
+      transition: none;
+    }
   }
 
   @keyframes badge-spin {
@@ -531,6 +598,21 @@ html {
 
 body {
   background-color: #000000;
+  background-image:
+    radial-gradient(
+      ellipse 130% 100% at 50% 50%,
+      rgba(0, 0, 0, 0) 52%,
+      rgba(0, 0, 0, 0.035) 72%,
+      rgba(0, 0, 0, 0.11) 100%
+    ),
+    radial-gradient(
+      ellipse 128% 96% at 50% 54%,
+      rgba(223, 37, 49, 0) 72%,
+      rgba(223, 37, 49, 0.015) 100%
+    );
+  background-repeat: no-repeat;
+  background-size: 100% 100%, 100% 100%;
+  background-attachment: fixed, fixed;
   color: #ffffff;
   font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   line-height: 1.65;
@@ -568,7 +650,8 @@ main {
 
 /* ============================================================
    FOCUS
-   ============================================================ */
+   ============================================================ 
+*/
 
 *:focus {
   outline: none;

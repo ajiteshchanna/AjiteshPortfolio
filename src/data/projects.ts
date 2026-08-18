@@ -16,6 +16,17 @@ export const PROJECTS: Project[] = [
     demo: "",
     featured: true,
     featuredOrder: 1,
+    architectureFlow: [
+      "Document",
+      "Parsing",
+      "OCR",
+      "Chunking",
+      "Embeddings",
+      "FAISS",
+      "Retrieval",
+      "Offline LLM",
+      "Answer",
+    ],
     caseStudy: {
       overview:
         "SecureDocAI explores how privacy-sensitive documents can be queried locally using retrieval workflows and compact language models without cloud dependency.",
@@ -123,6 +134,16 @@ export const PROJECTS: Project[] = [
     demo: "",
     featured: true,
     featuredOrder: 3,
+    architectureFlow: [
+      "Query",
+      "Pydantic AI Agent",
+      "Filter Extraction",
+      "Normalization",
+      "Mongo Query",
+      "Product Search",
+      "Recommendations",
+      "Results",
+    ],
     caseStudy: {
       overview:
         "Spidey Store demonstrates conversational shopping by mapping free-form user queries to structured MongoDB filters and dynamic recommendations.",
@@ -225,6 +246,15 @@ export const PROJECTS: Project[] = [
     demo: "",
     featured: true,
     featuredOrder: 2,
+    architectureFlow: [
+      "Student",
+      "Class Session",
+      "OTP Request",
+      "OTP Verify",
+      "Attendance Mark",
+      "Analytics",
+      "CSV Export",
+    ],
     caseStudy: {
       overview:
         "AttendanceIQ streamlines classroom and lab attendance with class/session controls, OTP email verification, and reporting workflows.",
@@ -298,6 +328,14 @@ export const PROJECTS: Project[] = [
     github: "https://github.com/ajiteshchanna/project-scaffold-agent",
     demo: "",
     featured: false,
+    architectureFlow: [
+      "Config Input",
+      "Parser",
+      "Validator",
+      "Dry Run",
+      "Executor",
+      "Project Tree",
+    ],
     caseStudy: {
       overview:
         "Project Scaffold Agent automates project bootstrapping by converting declarative structure files into real folder and file trees.",

@@ -59,6 +59,7 @@ export interface Project {
   demo?: string;
   featured: boolean;
   featuredOrder?: number;
+  architectureFlow?: string[];
   caseStudy?: ProjectCaseStudy;
 }
 

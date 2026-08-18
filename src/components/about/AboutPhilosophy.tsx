@@ -15,7 +15,12 @@ export function AboutPhilosophy() {
 
           <div className="grid gap-5 md:grid-cols-2">
             {ABOUT_PERSPECTIVES.map((item) => (
-              <article key={item.id} className="rounded-2xl border border-border bg-surface p-6">
+              <article
+                key={item.id}
+                data-cursor-glow="true"
+                className="cursor-glow-surface cursor-glow-soft rounded-2xl border border-border bg-surface p-6"
+              >
+                <span aria-hidden="true" className="cursor-glow-layer" />
                 <h3 className="type-h3 text-fg">{item.title}</h3>
                 <p className="mt-4 type-body text-fg-muted">{item.body}</p>
               </article>

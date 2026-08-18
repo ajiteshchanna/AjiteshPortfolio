@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import {
   AboutHero,
+  AboutHowIBuild,
   AboutInterests,
   AboutPhilosophy,
   AboutTimeline,
@@ -32,6 +33,7 @@ export default function AboutPage() {
     <main>
       <AboutHero />
       <AboutPhilosophy />
+      <AboutHowIBuild />
       <AboutInterests />
       <AboutVisualStatement />
       <AboutTimeline />

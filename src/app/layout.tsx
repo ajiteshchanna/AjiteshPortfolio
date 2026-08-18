@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { CursorGlowManager } from "@/components/layout/CursorGlowManager";
 import { RouteTransition } from "@/components/layout/RouteTransition";
 import { SITE_METADATA, SITE_URL } from "@/lib/site";
 import "./globals.css";
@@ -82,6 +83,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-background text-fg">
+        <CursorGlowManager />
         <a href="#content-start" className="skip-link">
           Skip to main content
         </a>

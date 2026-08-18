@@ -8,7 +8,11 @@ import {
 
 function InterestBlock({ title, items }: { title: string; items: readonly string[] }) {
   return (
-    <article className="rounded-2xl border border-border bg-surface p-6">
+    <article
+      data-cursor-glow="true"
+      className="cursor-glow-surface cursor-glow-soft rounded-2xl border border-border bg-surface p-6"
+    >
+      <span aria-hidden="true" className="cursor-glow-layer" />
       <h3 className="type-h3 text-fg">{title}</h3>
       <ul className="mt-4 space-y-3">
         {items.map((item) => (

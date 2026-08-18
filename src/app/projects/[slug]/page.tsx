@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui";
 import { MetricBadge } from "@/components/research/MetricBadge";
+import { EngineeringPipeline } from "@/components/projects";
 import {
   CaseStudyDiagram,
   CaseStudyList,
@@ -117,6 +118,11 @@ export default async function ProjectCaseStudyPage({ params }: ProjectCaseStudyP
 
           <CaseStudySection title="Architecture">
             <p>{resolveContent(caseStudy?.architecture)}</p>
+            <EngineeringPipeline
+              flow={project.architectureFlow ?? caseStudy?.diagram?.nodes}
+              active
+              className="mt-4"
+            />
           </CaseStudySection>
 
           {caseStudy?.diagram && <CaseStudyDiagram diagram={caseStudy.diagram} />}

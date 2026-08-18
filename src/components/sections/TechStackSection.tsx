@@ -222,12 +222,14 @@ function CarouselScene({ activeIndex, mode, onSelect }: CarouselSceneProps) {
           <button
             key={`${mode}-${sceneItem.item.name}`}
             type="button"
-            className={`${styles.techItem} ${isActive ? styles.techItemActive : ""}`}
+            className={`${styles.techItem} cursor-glow-surface cursor-glow-soft ${isActive ? styles.techItemActive : ""}`}
             style={style}
             onClick={() => onSelect(sceneItem.index)}
+            data-cursor-glow="true"
             aria-label={`Select ${sceneItem.item.name}`}
             aria-pressed={isActive}
           >
+            <span aria-hidden="true" className="cursor-glow-layer" />
             <span className={styles.techItemSurface}>
               <span className={styles.techItemName}>{sceneItem.item.name}</span>
             </span>

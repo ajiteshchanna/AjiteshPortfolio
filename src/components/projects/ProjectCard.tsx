@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, GitBranch } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
+import { EngineeringPipeline } from "@/components/projects/EngineeringPipeline";
 import type { Project } from "@/types";
 import { cardHover } from "@/lib/animations";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
@@ -46,6 +47,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
   const statusBadge = getStatusBadge(project.status);
   const [progress, setProgress] = useState(0);
   const [phase, setPhase] = useState<TransitionPhase>("idle");
+  const [isPipelineActive, setIsPipelineActive] = useState(false);
   const timeoutIds = useRef<number[]>([]);
 
   const isTransitioning = phase !== "idle";
@@ -111,9 +113,16 @@ export function ProjectCard({ project }: ProjectCardProps) {
         variants={prefersReducedMotion ? undefined : cardHover}
         initial={prefersReducedMotion ? undefined : "rest"}
         whileHover={prefersReducedMotion ? undefined : "hover"}
+        onHoverStart={() => setIsPipelineActive(true)}
+        onHoverEnd={() => setIsPipelineActive(false)}
+        onFocusCapture={() => setIsPipelineActive(true)}
+        onBlurCapture={() => setIsPipelineActive(false)}
+        data-cursor-glow="true"
         data-cursor="media"
-        className="group glow-border w-full min-w-0 rounded-2xl bg-surface p-6"
+        className="group glow-border cursor-glow-surface cursor-glow-strong w-full min-w-0 rounded-2xl bg-surface p-6"
       >
+        <span aria-hidden="true" className="cursor-glow-layer" />
+
         <div className="mb-4 flex items-start justify-between gap-4">
           <Badge variant="category">{project.category}</Badge>
           <span className="type-caption text-fg-subtle">{project.year}</span>
@@ -131,6 +140,13 @@ export function ProjectCard({ project }: ProjectCardProps) {
             <Badge key={tech} variant="tech">{tech}</Badge>
           ))}
         </div>
+
+        <EngineeringPipeline
+          flow={project.architectureFlow ?? project.caseStudy?.diagram?.nodes}
+          active={isPipelineActive}
+          compact
+          className="mt-5"
+        />
 
         <div className="mt-6 flex flex-wrap items-center gap-4">
           <Link

@@ -3,11 +3,26 @@ import type { ExperienceItem } from "@/types";
 
 interface ExperienceCardProps {
   item: ExperienceItem;
+  isActive?: boolean;
+  isPast?: boolean;
 }
 
-export function ExperienceCard({ item }: ExperienceCardProps) {
+export function ExperienceCard({ item, isActive = false, isPast = false }: ExperienceCardProps) {
   return (
-    <article className="glow-border rounded-2xl bg-surface p-5 sm:p-6">
+    <article
+      data-cursor-glow="true"
+      className={[
+        "glow-border cursor-glow-surface cursor-glow-soft rounded-2xl bg-surface p-5 sm:p-6",
+        "transition-[opacity,transform,border-color,box-shadow] duration-300",
+        isActive
+          ? "opacity-100 border-accent/35 shadow-[0_14px_34px_rgba(0,0,0,0.34)]"
+          : isPast
+            ? "opacity-80"
+            : "opacity-62",
+      ].join(" ")}
+    >
+      <span aria-hidden="true" className="cursor-glow-layer" />
+
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <h3 className="type-h3 text-fg">{item.role}</h3>

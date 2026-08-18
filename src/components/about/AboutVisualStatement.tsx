@@ -5,7 +5,11 @@ export function AboutVisualStatement() {
     <section className="section-gap" aria-label="Visual statement">
       <div className="container-page">
         <Reveal>
-          <div className="rounded-3xl border border-accent/35 bg-surface-high p-8 sm:p-10">
+          <div
+            data-cursor-glow="true"
+            className="cursor-glow-surface cursor-glow-soft rounded-3xl border border-accent/35 bg-surface-high p-8 sm:p-10"
+          >
+            <span aria-hidden="true" className="cursor-glow-layer" />
             <div className="grid gap-6 md:grid-cols-2 md:gap-10">
               <div>
                 <p className="type-label text-accent">Core Belief</p>
