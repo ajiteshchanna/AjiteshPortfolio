@@ -16,19 +16,23 @@ interface ProjectCardProps {
 
 type TransitionPhase = "idle" | "initializing" | "ready" | "exiting";
 
+const INITIALIZING_MS = 120;
+const PROGRESS_MS = 270;
+const READY_VISIBLE_MS = 60;
+
+const READY_AT_MS = INITIALIZING_MS + PROGRESS_MS;
+const EXIT_AT_MS = READY_AT_MS + READY_VISIBLE_MS;
+const NAVIGATE_AT_MS = EXIT_AT_MS;
+
 const PROGRESS_CHECKPOINTS = [
   { at: 0, value: 0 },
-  { at: 120, value: 18 },
-  { at: 240, value: 39 },
-  { at: 360, value: 61 },
-  { at: 500, value: 79 },
-  { at: 620, value: 92 },
-  { at: 700, value: 100 },
+  { at: INITIALIZING_MS, value: 9 },
+  { at: INITIALIZING_MS + 55, value: 29 },
+  { at: INITIALIZING_MS + 110, value: 51 },
+  { at: INITIALIZING_MS + 165, value: 73 },
+  { at: INITIALIZING_MS + 220, value: 90 },
+  { at: READY_AT_MS, value: 100 },
 ] as const;
-
-const READY_AT_MS = 700;
-const READY_VISIBLE_MS = 120;
-const NAVIGATE_AT_MS = READY_AT_MS + READY_VISIBLE_MS;
 
 function getStatusBadge(status: Project["status"]): "completed" | "in-progress" | "draft" {
   if (status === "Completed") return "completed";
@@ -53,6 +57,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
     };
   }, []);
 
+  useEffect(() => {
+    router.prefetch(`/projects/${project.slug}`);
+  }, [project.slug, router]);
+
   function scheduleTransition() {
     setPhase("initializing");
     setProgress(0);
@@ -76,7 +84,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
     timeoutIds.current.push(
       window.setTimeout(() => {
         setPhase("exiting");
-      }, READY_AT_MS + READY_VISIBLE_MS),
+      }, EXIT_AT_MS),
     );
 
     timeoutIds.current.push(
@@ -170,14 +178,14 @@ export function ProjectCard({ project }: ProjectCardProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: prefersReducedMotion ? 0.18 : 0.22, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: prefersReducedMotion ? 0.12 : 0.14, ease: [0.22, 1, 0.36, 1] }}
             className="fixed inset-0 z-[150] flex items-center justify-center bg-black px-4"
           >
             <motion.div
               initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.965, y: 8 }}
               animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, scale: 1, y: 0 }}
               exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, scale: 1.01, y: -6 }}
-              transition={{ duration: prefersReducedMotion ? 0.2 : 0.34, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: prefersReducedMotion ? 0.14 : 0.18, ease: [0.22, 1, 0.36, 1] }}
               className="w-full max-w-[38rem] rounded-2xl border border-accent/25 bg-[#060606]/90 px-5 py-6 shadow-[0_24px_68px_rgba(0,0,0,0.55)] sm:px-8 sm:py-7"
             >
               <p className="type-label text-fg-subtle">PROJECT ROUTE</p>
@@ -209,7 +217,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
                   <motion.span
                     className="block h-full rounded-full bg-gradient-to-r from-accent/70 to-accent"
                     animate={{ width: `${progress}%` }}
-                    transition={{ duration: prefersReducedMotion ? 0.14 : 0.22, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{ duration: prefersReducedMotion ? 0.08 : 0.12, ease: [0.22, 1, 0.36, 1] }}
                   />
                 </div>
 
