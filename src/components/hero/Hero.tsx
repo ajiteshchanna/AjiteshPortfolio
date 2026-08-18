@@ -40,6 +40,9 @@ const HERO_STATS = [
   },
 ] as const;
 
+const HERO_EYEBROW_TEXT = "AI Engineer • Creative Technologist";
+const EYEBROW_WRITE_DURATION_MS = 1450;
+
 export function Hero() {
   const prefersReducedMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
@@ -65,6 +68,51 @@ export function Hero() {
   const offsetY = useSpring(shiftY, { stiffness: 190, damping: 24, mass: 0.8 });
   const ringX = useSpring(ringShiftX, { stiffness: 140, damping: 26, mass: 0.85 });
   const ringY = useSpring(ringShiftY, { stiffness: 140, damping: 26, mass: 0.85 });
+  const [eyebrowVisibleChars, setEyebrowVisibleChars] = useState(0);
+  const [eyebrowComplete, setEyebrowComplete] = useState(false);
+
+  useEffect(() => {
+    const fullLength = HERO_EYEBROW_TEXT.length;
+
+    if (prefersReducedMotion) {
+      return;
+    }
+
+    let cancelled = false;
+    const timerIds: number[] = [];
+    const easeOut = (value: number) => 1 - Math.pow(1 - value, 2.1);
+
+    const resetId = window.setTimeout(() => {
+      if (!cancelled) {
+        setEyebrowVisibleChars(0);
+        setEyebrowComplete(false);
+      }
+    }, 0);
+    timerIds.push(resetId);
+
+    for (let index = 1; index <= fullLength; index += 1) {
+      const progress = index / fullLength;
+      const at = Math.round(EYEBROW_WRITE_DURATION_MS * easeOut(progress));
+      const timerId = window.setTimeout(() => {
+        if (!cancelled) {
+          setEyebrowVisibleChars(index);
+        }
+      }, at);
+      timerIds.push(timerId);
+    }
+
+    const completeId = window.setTimeout(() => {
+      if (!cancelled) {
+        setEyebrowComplete(true);
+      }
+    }, EYEBROW_WRITE_DURATION_MS);
+    timerIds.push(completeId);
+
+    return () => {
+      cancelled = true;
+      timerIds.forEach((timerId) => window.clearTimeout(timerId));
+    };
+  }, [prefersReducedMotion]);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(pointer: fine)");
@@ -106,6 +154,8 @@ export function Hero() {
   const childVariants  = prefersReducedMotion ? reducedFadeInUp : heroChild;
   const frameVariants  = prefersReducedMotion ? reducedHeroVisual : heroVisualFrame;
   const imageVariants  = prefersReducedMotion ? reducedHeroVisual : heroPortraitReveal;
+  const displayedEyebrowChars = prefersReducedMotion ? HERO_EYEBROW_TEXT.length : eyebrowVisibleChars;
+  const showWritingCursor = !prefersReducedMotion && !eyebrowComplete;
 
   return (
     <section
@@ -135,7 +185,16 @@ export function Hero() {
           {/* Left — text column */}
           <div className="order-1 min-w-0 lg:order-1">
             <motion.p variants={childVariants} className="type-label mb-4 text-accent">
-              AI Engineer • Creative Technologist
+              <span className="sr-only">{HERO_EYEBROW_TEXT}</span>
+              <span aria-hidden="true" className="inline-flex min-w-0 items-center">
+                <span>{HERO_EYEBROW_TEXT.slice(0, displayedEyebrowChars)}</span>
+                {showWritingCursor && (
+                  <span
+                    aria-hidden="true"
+                    className="ml-0.5 inline-block h-[0.9em] w-px bg-accent/75 align-[-0.1em]"
+                  />
+                )}
+              </span>
             </motion.p>
 
             <motion.h1 variants={childVariants} className="type-display max-w-[11ch] text-fg sm:max-w-none">
