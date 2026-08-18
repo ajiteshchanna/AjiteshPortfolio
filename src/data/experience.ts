@@ -8,22 +8,23 @@ export const EXPERIENCE: ExperienceItem[] = [
     duration: "May 2026 — August 2026",
     location: "Pune, India",
     responsibilities: [
-      "Worked within the Data Visualization & Analytics team on Power BI report and dashboard design.",
-      "Explored AI capabilities and intelligent features within Power BI for practical workflow integration.",
-      "Implemented navigation sidebar and dynamic title features for improved report usability.",
-      "Worked on JSON-based Power BI theme customization and dark-mode dashboard design.",
-      "Improved filter-panel behavior and report interaction design for clearer data exploration.",
-      "Contributed to documentation and structured analysis of Power BI capabilities and implementation approaches.",
+    "Worked with the Enterprise Analytics / Data Visualization & Analytics team to develop and enhance Power BI solutions supporting business reporting and operational analytics for cross-functional teams.",
+    "Migrated legacy Spotfire dashboards to Power BI, translating existing reporting workflows into reusable and maintainable Power BI components.",
+    "Engineered interactive Power BI experiences using custom JSON themes, dynamic navigation, synchronized and cascading slicers, bookmark-driven interactions, and reusable reporting components.",
+    "Explored and integrated AI capabilities and Agentic AI workflows to identify opportunities for automating repetitive analytics and data engineering tasks.",
+    "Designed automation utilities and testing frameworks for validation and repetitive reporting tasks, improving consistency and reducing manual effort.",
+    "Documented implementation approaches, technical findings, and workflow improvements for internal reference and knowledge sharing."
     ],
-    technologies: ["Power BI", "Python", "PostgreSQL", "JSON", "Data Visualization"],
+    technologies: ["Power BI", "Python", "PostgreSQL", "JSON", "Data Visualization","Power Automate","Automation","SemanticOps","DAX Studio","Power BI Report Builder"],
     achievements: [
-      "Explored practical ways to integrate AI capabilities into Power BI analytics workflows.",
-      "Improved report usability through navigation, filtering, and interface enhancements.",
-      "Investigated JSON theme customization for more consistent dashboard experiences.",
-      "Documented findings, implementation approaches, and learnings for internal reference.",
-    ],
+    "Contributed to the migration of legacy Spotfire dashboards to Power BI with improved navigation, filtering, theming, and interaction patterns.",
+    "Implemented synchronized and cascading slicer behavior to support more intuitive and context-aware data exploration.",
+    "Developed reusable dashboard components and JSON-based themes to improve consistency across Power BI reporting experiences.",
+    "Created automation frameworks for validation and testing tasks, reducing repetitive manual workflows.",
+    "Explored Agentic AI workflows for AI-assisted analytics and data engineering processes."
+  ],
     impact:
-      "Developed practical experience in enterprise data visualization, dashboard engineering, analytics workflows, and communicating technical findings in a professional environment.",
+      "Built practical enterprise experience across dashboard engineering, data visualization, automation, and AI-assisted workflows, contributing to more reusable, interactive, and efficient analytics solutions.",
   },
   {
     id: "dmrc-internship",
@@ -32,16 +33,23 @@ export const EXPERIENCE: ExperienceItem[] = [
     duration: "2025",
     location: "India",
     responsibilities: [
-      "Gained exposure to engineering and operational processes within the metro rail ecosystem.",
-      "Observed how technical activities are coordinated within a large transportation organization.",
-      "Developed an understanding of professional engineering workflows, documentation, and operational discipline.",
+    "Explored multiple domains within the IT Department of Delhi Metro Rail Corporation, working on automation and digital solutions for transportation operations.",
+    "Developed a Python-based pilot for automating metro trip charting, applying object-oriented programming and algorithmic logic to reduce the manual preparation effort.",
+    "Worked on an Indoor Navigation System for Blocks A and B of the DMRC Academy, translating navigation requirements into a deployable digital solution."
     ],
-    technologies: ["Engineering", "Transportation", "Operations"],
+    technologies: [
+    "Python",
+    "OOP",
+    "Algorithms",
+    "Automation",
+    "Web Development"
+   ],
     achievements: [
-      "Gained first-hand exposure to real-world transportation engineering.",
-      "Developed an understanding of how technical systems interact with large-scale operational environments.",
-      "Strengthened professional communication and structured problem-solving skills.",
-    ],
+    "Reduced the estimated trip-charting workflow from approximately 5 hours of manual effort to around 2 hours through the automation pilot.",
+    "Developed and validated the trip-charting automation for a pilot covering 3 stations and 2 metro trains.",
+    "Contributed to an Indoor Navigation System that was subsequently deployed at the DMRC Academy.",
+    "The Indoor Navigation System was featured in the DMRC Academy's publication/magazine."
+  ],
     impact:
       "Provided valuable early exposure to real-world engineering and transportation operations, helping connect my academic foundation with practical industry environments.",
   },
