@@ -1,4 +1,5 @@
 export { WhatIDoAccordion } from "./WhatIDoAccordion";
+export { TechStackSection } from "./TechStackSection";
 export { FeaturedProjects } from "./FeaturedProjects";
 export { AboutPreview } from "./AboutPreview";
 export { ExperiencePreview } from "./ExperiencePreview";

@@ -7,6 +7,10 @@ const WhatIDoAccordion = dynamic(
   () => import("@/components/sections/WhatIDoAccordion").then((module) => module.WhatIDoAccordion),
 );
 
+const TechStackSection = dynamic(
+  () => import("@/components/sections").then((module) => module.TechStackSection),
+);
+
 const FeaturedProjects = dynamic(
   () => import("@/components/sections/FeaturedProjects").then((module) => module.FeaturedProjects),
 );;
@@ -88,6 +92,7 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
       />
       <Hero />
+      <TechStackSection />
       <WhatIDoAccordion />
       <FeaturedProjects />
       <AboutPreview />
