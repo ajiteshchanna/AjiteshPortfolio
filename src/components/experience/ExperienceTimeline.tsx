@@ -1,7 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { motion } from "framer-motion";
+import { useRef, useState } from "react";
+import { motion, useMotionValueEvent, useScroll, useSpring } from "framer-motion";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { reducedFadeInUp } from "@/lib/animations";
 import { cn } from "@/lib/utils";
@@ -15,15 +15,29 @@ interface ExperienceTimelineProps {
 export function ExperienceTimeline({ items }: ExperienceTimelineProps) {
   const prefersReducedMotion = useReducedMotion();
   const [activeIndex, setActiveIndex] = useState(0);
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start end", "end start"],
+  });
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 170,
+    damping: 28,
+    mass: 0.75,
+  });
 
-  const progressRatio = useMemo(() => {
-    if (items.length <= 1) {
-      return 1;
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (prefersReducedMotion || items.length <= 1) {
+      return;
     }
 
-    const normalizedIndex = prefersReducedMotion ? items.length - 1 : activeIndex;
-    return normalizedIndex / (items.length - 1);
-  }, [activeIndex, items.length, prefersReducedMotion]);
+    const clamped = Math.max(0, Math.min(1, latest));
+    const nextIndex = Math.round(clamped * (items.length - 1));
+    setActiveIndex((previous) => (previous === nextIndex ? previous : nextIndex));
+  });
+
+  const effectiveActiveIndex =
+    items.length <= 1 ? 0 : prefersReducedMotion ? items.length - 1 : activeIndex;
 
   const yearLabel = (duration: string, index: number) => {
     const yearMatch = duration.match(/\b\d{4}\b/);
@@ -45,20 +59,21 @@ export function ExperienceTimeline({ items }: ExperienceTimelineProps) {
           Experience Timeline
         </p>
 
-        <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-surface/80 px-4 py-6 sm:px-6 sm:py-7">
+        <div ref={timelineRef} className="relative overflow-hidden rounded-2xl border border-white/10 bg-surface/80 px-4 py-6 sm:px-6 sm:py-7">
           <span aria-hidden="true" className="absolute bottom-8 left-16 top-8 w-px bg-white/14 sm:left-[6.25rem]" />
           <motion.span
             aria-hidden="true"
-            className="absolute left-16 top-8 w-px bg-accent sm:left-[6.25rem]"
-            initial={prefersReducedMotion ? false : { height: 0 }}
-            animate={{ height: `${Math.max(progressRatio * 100, 2)}%` }}
-            transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.34, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute bottom-8 left-16 top-8 w-px origin-top bg-accent sm:left-[6.25rem]"
+            style={prefersReducedMotion ? undefined : { scaleY: smoothProgress }}
+            initial={prefersReducedMotion ? false : { scaleY: 0 }}
+            animate={prefersReducedMotion ? { scaleY: 1 } : undefined}
+            transition={prefersReducedMotion ? { duration: 0 } : undefined}
           />
 
           <ol className="space-y-6 sm:space-y-7">
             {items.map((item, index) => {
-              const isActive = prefersReducedMotion ? index === items.length - 1 : index === activeIndex;
-              const isPast = prefersReducedMotion ? true : index < activeIndex;
+              const isActive = index === effectiveActiveIndex;
+              const isPast = prefersReducedMotion ? true : index < effectiveActiveIndex;
 
               return (
                 <motion.li
@@ -68,11 +83,6 @@ export function ExperienceTimeline({ items }: ExperienceTimelineProps) {
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: false, amount: 0.58 }}
-                  onViewportEnter={() => {
-                    if (!prefersReducedMotion) {
-                      setActiveIndex(index);
-                    }
-                  }}
                 >
                   <p
                     className={cn(
