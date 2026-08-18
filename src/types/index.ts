@@ -54,7 +54,8 @@ export interface Project {
   year: string;
   status: "Draft" | "In Progress" | "Completed";
   technologies: string[];
-  image: string;
+  image_true: boolean;
+  images: string[];
   github?: string;
   demo?: string;
   featured: boolean;

@@ -11,6 +11,7 @@ import {
   CaseStudySection,
 } from "@/components/projects/case-study";
 import { PROJECTS } from "@/data/projects";
+import { getProjectScreenshots } from "@/lib/projectImages";
 
 interface ProjectCaseStudyPageProps {
   params: Promise<{ slug: string }>;
@@ -73,6 +74,7 @@ export default async function ProjectCaseStudyPage({ params }: ProjectCaseStudyP
   }
 
   const caseStudy = project.caseStudy;
+  const screenshots = getProjectScreenshots(project);
 
   return (
     <main>
@@ -178,8 +180,8 @@ export default async function ProjectCaseStudyPage({ params }: ProjectCaseStudyP
             </div>
           </CaseStudySection>
 
-          {caseStudy?.screenshots && caseStudy.screenshots.length > 0 && (
-            <CaseStudyScreenshots screenshots={caseStudy.screenshots} />
+          {screenshots.length > 0 && (
+            <CaseStudyScreenshots screenshots={screenshots} />
           )}
 
           <CaseStudySection title="Lessons">

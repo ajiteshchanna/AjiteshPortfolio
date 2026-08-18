@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -9,6 +10,7 @@ import { Badge } from "@/components/ui/Badge";
 import { EngineeringPipeline } from "@/components/projects/EngineeringPipeline";
 import type { Project } from "@/types";
 import { cardHover } from "@/lib/animations";
+import { getProjectImages } from "@/lib/projectImages";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 interface ProjectCardProps {
@@ -45,12 +47,15 @@ export function ProjectCard({ project }: ProjectCardProps) {
   const router = useRouter();
   const prefersReducedMotion = useReducedMotion();
   const statusBadge = getStatusBadge(project.status);
+  const primaryImage = getProjectImages(project)[0];
   const [progress, setProgress] = useState(0);
   const [phase, setPhase] = useState<TransitionPhase>("idle");
   const [isPipelineActive, setIsPipelineActive] = useState(false);
+  const [failedPrimaryImage, setFailedPrimaryImage] = useState<string | null>(null);
   const timeoutIds = useRef<number[]>([]);
 
   const isTransitioning = phase !== "idle";
+  const showPrimaryImage = Boolean(primaryImage) && failedPrimaryImage !== primaryImage;
 
   useEffect(() => {
     return () => {
@@ -127,6 +132,21 @@ export function ProjectCard({ project }: ProjectCardProps) {
           <Badge variant="category">{project.category}</Badge>
           <span className="type-caption text-fg-subtle">{project.year}</span>
         </div>
+
+        {primaryImage && showPrimaryImage && (
+          <div className="mb-5 overflow-hidden rounded-xl border border-border-subtle bg-surface-high">
+            <div className="relative aspect-[16/10] w-full">
+              <Image
+                src={primaryImage}
+                alt={`${project.title} screenshot`}
+                fill
+                className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                onError={() => setFailedPrimaryImage(primaryImage)}
+              />
+            </div>
+          </div>
+        )}
 
         <h3 className="type-h3 text-fg">{project.title}</h3>
         <p className="mt-3 type-body text-fg-muted">{project.description}</p>
