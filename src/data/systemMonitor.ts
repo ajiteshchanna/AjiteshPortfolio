@@ -22,7 +22,7 @@ export const SYSTEM_MONITOR: SystemMonitorData = {
   headerLine: "┌─ AJITESH SYSTEM MONITOR ───────────────┐",
   onlineLabel: "SYSTEM ONLINE",
   metrics: [
-    { label: "CPU", value: 72 },
+    { label: "AGE", value: 21 },
     { label: "AI CORE", value: 91 },
     { label: "CREATIVITY", value: 100 },
   ],

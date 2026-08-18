@@ -9,7 +9,10 @@ import {
   type TouchEvent as ReactTouchEvent,
   type WheelEvent as ReactWheelEvent,
 } from "react";
+import Link from "next/link";
+import { AnimatePresence, motion } from "framer-motion";
 import { TECH_STACK_ITEMS, type TechStackItem } from "@/data/techStack";
+import { PROJECTS } from "@/data/projects";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import styles from "./TechStackSection.module.css";
 
@@ -133,6 +136,56 @@ type CarouselSceneProps = {
   onSelect: (index: number) => void;
 };
 
+type SystemInContextProps = {
+  item: TechStackItem;
+  reducedMotion: boolean;
+};
+
+function SystemInContext({ item, reducedMotion }: SystemInContextProps) {
+  return (
+    <div key={item.name} className={styles.systemContext} aria-label="System in context">
+      <div className={styles.systemHeaderRow}>
+        <p className={styles.systemTitle}>SYSTEM IN CONTEXT</p>
+        <p className={styles.systemSubtitle}>How {item.name} operates in my production workflow</p>
+      </div>
+
+      <div className={styles.pipeline} role="list" aria-label={`${item.name} engineering pipeline`}>
+        {item.pipeline.map((step, index) => {
+          const isLast = index === item.pipeline.length - 1;
+          const signalDelay = round(index * 1.15);
+
+          return (
+            <div key={`${item.name}-${step}-${index}`} className={styles.pipelineSegment} role="listitem">
+              <motion.div
+                className={styles.pipelineNode}
+                initial={{ opacity: 0, y: reducedMotion ? 0 : 8, scale: reducedMotion ? 1 : 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{
+                  duration: reducedMotion ? 0.2 : 0.52,
+                  delay: reducedMotion ? 0 : index * 0.06,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+              >
+                <span className={styles.pipelineNodeLabel}>STAGE {String(index + 1).padStart(2, "0")}</span>
+                <span className={styles.pipelineNodeName}>{step}</span>
+              </motion.div>
+
+              {!isLast ? (
+                <div className={styles.pipelineConnector} aria-hidden="true">
+                  <span className={styles.pipelineTrack} />
+                  {!reducedMotion ? (
+                    <span className={styles.pipelineSignal} style={{ ["--signal-delay" as string]: `${signalDelay}s` }} />
+                  ) : null}
+                </div>
+              ) : null}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 function CarouselScene({ activeIndex, mode, onSelect }: CarouselSceneProps) {
   const sceneItems = useMemo(() => buildSceneItems(activeIndex, mode), [activeIndex, mode]);
 
@@ -194,6 +247,14 @@ export function TechStackSection() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const activeItem = TECH_STACK_ITEMS[activeIndex];
+  const linkedProject = useMemo(() => {
+    if (!activeItem.projectSlug) {
+      return null;
+    }
+
+    return PROJECTS.find((project) => project.slug === activeItem.projectSlug) ?? null;
+  }, [activeItem.projectSlug]);
+
   const canGoPrevious = activeIndex > 0;
   const canGoNext = activeIndex < TECH_STACK_ITEMS.length - 1;
 
@@ -339,16 +400,58 @@ export function TechStackSection() {
               </button>
             </div>
 
-            <div className={styles.activePanel} aria-live="polite">
-              <span className={styles.activeCategory}>{activeItem.category}</span>
-              <h3 className={styles.activeName}>{activeItem.name}</h3>
-              <p className={styles.activeDescription}>{activeItem.description}</p>
-              <p className={styles.activeCounter}>
-                <span>{String(activeIndex + 1).padStart(2, "0")}</span>
-                <span className={styles.counterDivider} />
-                <span>{String(TECH_STACK_ITEMS.length).padStart(2, "0")}</span>
-              </p>
-            </div>
+          </div>
+
+          <div className={styles.activePanel} aria-live="polite">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`${activeItem.name}-${activeIndex}`}
+                initial={{ opacity: 0, y: reducedMotion ? 0 : 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: reducedMotion ? 0 : -10 }}
+                transition={{ duration: reducedMotion ? 0.2 : 0.5, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <span className={styles.activeCategory}>{activeItem.category}</span>
+                <h3 className={styles.activeName}>{activeItem.name}</h3>
+                <p className={styles.activeDescription}>{activeItem.description}</p>
+                <p className={styles.activeCounter}>
+                  <span>{String(activeIndex + 1).padStart(2, "0")}</span>
+                  <span className={styles.counterDivider} />
+                  <span>{String(TECH_STACK_ITEMS.length).padStart(2, "0")}</span>
+                </p>
+              </motion.div>
+            </AnimatePresence>
+
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`system-${activeItem.name}-${activeIndex}`}
+                initial={{ opacity: 0, y: reducedMotion ? 0 : 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: reducedMotion ? 0 : -8 }}
+                transition={{ duration: reducedMotion ? 0.2 : 0.5, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <SystemInContext item={activeItem} reducedMotion={reducedMotion} />
+              </motion.div>
+            </AnimatePresence>
+
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`context-${activeItem.name}-${activeIndex}`}
+                className={styles.usagePanel}
+                initial={{ opacity: 0, y: reducedMotion ? 0 : 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: reducedMotion ? 0 : -8 }}
+                transition={{ duration: reducedMotion ? 0.2 : 0.44, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <p className={styles.usageLabel}>USED IN</p>
+                <p className={styles.usageName}>{linkedProject?.title ?? activeItem.usedIn}</p>
+                {linkedProject ? (
+                  <Link href={`/projects/${linkedProject.slug}`} className={styles.usageLink}>
+                    VIEW PROJECT <span aria-hidden="true">&#8594;</span>
+                  </Link>
+                ) : null}
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </div>
