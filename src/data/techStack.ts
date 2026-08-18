@@ -190,4 +190,19 @@ export const TECH_STACK_ITEMS: TechStackItem[] = [
     usedIn: "AttendanceIQ",
     projectSlug: "attendanceiq",
   },
+  {
+  name: "Semantic Ops",
+  category: "DATA / ANALYTICS",
+  description:
+    "A DAX-focused workflow for generating, validating, and refining Power BI expressions to improve the accuracy and reliability of analytical models.",
+  pipeline: [
+    "Business Logic",
+    "DAX Generation",
+    "Syntax Validation",
+    "Semantic Validation",
+    "Query Testing",
+    "Power BI"
+  ],
+    usedIn: "Siemens Internship",
+  },
 ];

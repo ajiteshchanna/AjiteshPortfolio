@@ -1,7 +1,13 @@
 export const MARQUEE_ITEMS = [
-  "I build intelligent systems that solve real-world problems",
-  "I turn complex ideas into simple, meaningful digital experiences",
-  "I explore Artificial Intelligence, GenAI, Data and emerging technologies",
-  "I believe good engineering is about solving the right problem, not just writing more code",
-  "I combine technology, creativity and storytelling to build things that matter",
+  "BUILDING MACHINES THAT UNDERSTAND",
+  "TURNING DATA INTO DECISIONS",
+  "TEACHING SYSTEMS TO FIND THE SIGNAL",
+  "AI × DATA × CREATIVITY",
+  "FROM PROBLEM → SYSTEM → SOLUTION",
+  "CODE IS THE TOOL. THINKING IS THE ENGINE.",
+  "ENGINEERING INTELLIGENCE, NOT JUST SOFTWARE",
+  "WHERE LOGIC MEETS STORYTELLING",
+  "BUILD. BREAK. ITERATE. REPEAT.",
+  "CURIOUS BY DEFAULT.",
+  "ALWAYS BUILDING SOMETHING.",
 ] as const;
