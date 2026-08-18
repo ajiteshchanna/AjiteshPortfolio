@@ -301,10 +301,31 @@ export function Hero() {
           {HERO_STATS.map((stat) => (
             <div
               key={stat.label}
-              className="glow-border rounded-2xl bg-surface px-5 py-4"
+              tabIndex={0}
+              className="group glow-border rounded-2xl bg-surface px-5 py-4 focus-visible:outline-none focus-visible:border-accent/40"
             >
               <p className="type-label text-fg-subtle">{stat.label}</p>
-              <p className="mt-2 type-h2 text-fg">{stat.value}</p>
+              <p className="mt-2 type-h2 text-fg">
+                <span className="relative inline-block">
+                  <span
+                    className={[
+                      "transition-colors ease-out group-hover:text-accent group-focus-visible:text-accent",
+                      prefersReducedMotion ? "duration-0" : "duration-250",
+                    ].join(" ")}
+                  >
+                    {stat.value}
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    className={[
+                      "pointer-events-none absolute -bottom-0.5 left-0 h-px w-full origin-left bg-accent",
+                      prefersReducedMotion
+                        ? "opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100"
+                        : "scale-x-0 opacity-0 transition-[transform,opacity] duration-250 ease-[cubic-bezier(0,0,0.2,1)] group-hover:scale-x-100 group-hover:opacity-100 group-focus-visible:scale-x-100 group-focus-visible:opacity-100",
+                    ].join(" ")}
+                  />
+                </span>
+              </p>
               <p className="mt-1 type-caption text-fg-muted">{stat.detail}</p>
             </div>
           ))}
