@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import {
+  AboutBeyondSystem,
   AboutHero,
   AboutHowIBuild,
   AboutInterests,
@@ -32,11 +33,12 @@ export default function AboutPage() {
   return (
     <main>
       <AboutHero />
-      <AboutPhilosophy />
       <AboutHowIBuild />
+      <AboutPhilosophy />
       <AboutInterests />
-      <AboutVisualStatement />
       <AboutTimeline />
+      <AboutBeyondSystem />
+      <AboutVisualStatement />
     </main>
   );
 }

@@ -5,6 +5,25 @@ export interface AboutTimelineItem {
   description: string;
 }
 
+export interface AboutBeyondSystemEntry {
+  title: string;
+  subtitle?: string;
+  label?: string;
+  description?: string;
+}
+
+export interface AboutBeyondSystemItem {
+  number: string;
+  category: string;
+  entries: AboutBeyondSystemEntry[];
+}
+
+export interface AboutBeyondSystemSection {
+  eyebrow: string;
+  title: string;
+  items: AboutBeyondSystemItem[];
+}
+
 export const ABOUT_INTRO = {
   eyebrow: "About",
   title: "Engineering Depth, Creative Intent",
@@ -105,3 +124,70 @@ export const ABOUT_TIMELINE: AboutTimelineItem[] = [
       "Today, I'm focused on becoming a stronger AI engineer while exploring the intersection of intelligent systems, product engineering, and creative technology — building things that are technically deep, practically useful, and distinctly human.",
   },
 ];
+
+export const ABOUT_BEYOND_SYSTEM: AboutBeyondSystemSection = {
+  eyebrow: "BEYOND THE SYSTEM",
+  title: "The work, people, and experiences that shaped how I build.",
+  items: [
+    {
+      number: "01",
+      category: "LEADERSHIP",
+      entries: [
+        {
+          title: "Co-Coordinator - Drama Club, GSV",
+          description:
+            "Coordinated and directed stage plays and reel-film activities, working across creative teams to bring performances from concept to execution.",
+        },
+        {
+          title: "Co-Coordinator Public Relations- Literary Club, GSV",
+          description:
+            "Managed public relations activities for the Literary Club, coordinating with media and promoting events, ensuring effective communication and engagement on social media handle of Literary Club GSV.",
+        },
+        {
+          title: "Organizing Team - Hult Prize GSV",
+          description:
+            "Contributed to the organizing team for the campus edition of the Hult Prize, supporting event coordination, logistics, and participant engagement.",
+        },
+      ],
+    },
+    {
+      number: "02",
+      category: "RECOGNITION",
+      entries: [
+        {
+          title: "ET GenAI Hackathon",
+          label: "SEMI-FINALIST",
+          description: "Advanced to the semi-final round of the Economic Times GenAI Hackathon.",
+        },
+        {
+          title: "Indian Air Force Workshop",
+          label: "40+ PARTICIPANTS",
+          description:
+            "Conducted a Power BI training workshop for 40+ Indian Air Force officers, focusing on data visualization and analytical dashboard development for strategic decision-making.",
+        },
+      ],
+    },
+    {
+      number: "03",
+      category: "LEARNING",
+      entries: [
+        {
+          title: "NVIDIA",
+          subtitle: "Fundamentals of Deep Learning",
+        },
+        {
+          title: "NVIDIA",
+          subtitle: "Computer Vision for Industrial Inspection - 2025",
+        },
+        {
+          title: "IBM",
+          subtitle: "AI Fundamentals",
+        },
+        {
+          title: "IBM",
+          subtitle: "Prompt Engineering for Everyone",
+        },
+      ],
+    },
+  ],
+};
