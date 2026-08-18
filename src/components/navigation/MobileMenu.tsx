@@ -25,6 +25,14 @@ export function MobileMenu({ id, isOpen, onClose, links }: MobileMenuProps) {
   const prefersReducedMotion = useReducedMotion();
   const pathname = usePathname();
 
+  const isLinkActive = (href: string) => {
+    if (href === "/") {
+      return pathname === "/";
+    }
+
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
+
   // Escape key to close and trap focus inside the dialog
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -152,7 +160,7 @@ export function MobileMenu({ id, isOpen, onClose, links }: MobileMenuProps) {
                 role="list"
               >
                 {links.map((link) => {
-                  const isActive = pathname === link.href;
+                  const isActive = isLinkActive(link.href);
 
                   return (
                   <motion.li
