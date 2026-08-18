@@ -1,26 +1,15 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { z } from "zod";
 import { AlertCircle, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui";
+import {
+  contactSchema,
+  type ContactField,
+  type ContactFormValues,
+  type FieldErrors,
+} from "@/lib/contactSchema";
 import { cn } from "@/lib/utils";
-
-const contactSchema = z.object({
-  name: z.string().trim().min(2, "Please enter at least 2 characters."),
-  email: z.email("Please enter a valid email address."),
-  subject: z.string().trim().min(4, "Subject should be at least 4 characters."),
-  message: z
-    .string()
-    .trim()
-    .min(20, "Message should be at least 20 characters.")
-    .max(2000, "Message should be at most 2000 characters."),
-  website: z.string().optional(),
-});
-
-type ContactFormValues = z.infer<typeof contactSchema>;
-type ContactField = keyof ContactFormValues;
-type FieldErrors = Partial<Record<ContactField, string>>;
 type SubmitState = "idle" | "submitting" | "success" | "error";
 
 const initialValues: ContactFormValues = {
@@ -94,18 +83,35 @@ export function ContactForm() {
       setSubmitState("submitting");
       setSubmitMessage("");
 
-      // Backend integration is intentionally deferred for this phase.
-      await new Promise((resolve) => setTimeout(resolve, 900));
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(parsed.data),
+      });
+
+      const result = await response.json().catch(() => ({ message: "" }));
+
+      if (!response.ok) {
+        throw new Error(
+          typeof result.message === "string" && result.message
+            ? result.message
+            : "Something went wrong while sending your message. Please try again or contact me directly by email.",
+        );
+      }
 
       setSubmitState("success");
-      setSubmitMessage(
-        "Your message passed validation and is queued for backend wiring. You can also reach me directly by email below.",
-      );
+      setSubmitMessage("Message sent successfully. I'll get back to you soon.");
       setValues(initialValues);
       setErrors({});
-    } catch {
+    } catch (error) {
       setSubmitState("error");
-      setSubmitMessage("Something unexpected happened. Please try again in a moment.");
+      setSubmitMessage(
+        error instanceof Error && error.message
+          ? error.message
+          : "Something went wrong while sending your message. Please try again or contact me directly by email.",
+      );
     }
   }
 
@@ -248,7 +254,7 @@ export function ContactForm() {
 
         <div className="pt-2">
           <Button type="submit" size="lg" loading={submitState === "submitting"} className="w-full sm:w-auto">
-            {submitState === "submitting" ? "Validating message" : "Send inquiry"}
+            {submitState === "submitting" ? "Sending message" : "Send inquiry"}
           </Button>
         </div>
       </form>
