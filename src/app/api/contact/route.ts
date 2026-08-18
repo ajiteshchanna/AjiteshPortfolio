@@ -83,6 +83,8 @@ export async function POST(request: Request) {
     const safeEmail = escapeHtml(data.email);
     const safeSubject = escapeHtml(data.subject);
     const safeMessage = escapeHtml(data.message).replaceAll("\n", "<br />");
+    const trimmedName = data.name.trim();
+    const outboundSubject = trimmedName.length > 0 ? `${trimmedName} contacted through portfolio` : "[Portfolio Contact]";
 
     const response = await fetch(RESEND_ENDPOINT, {
       method: "POST",
@@ -94,7 +96,7 @@ export async function POST(request: Request) {
         from: fromAddress,
         to: [contactEmail],
         reply_to: data.email,
-        subject: `[Portfolio Contact] ${data.subject}`,
+        subject: outboundSubject,
         text: [
           "NEW PORTFOLIO CONTACT",
           "",
