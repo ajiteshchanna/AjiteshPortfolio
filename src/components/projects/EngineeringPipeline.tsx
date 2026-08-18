@@ -15,6 +15,7 @@ interface EngineeringPipelineProps {
 const STEP_MS = 170;
 const SETTLE_MS = 220;
 const RESET_MS = 420;
+const LOOP_DELAY_MS = 180;
 
 export function EngineeringPipeline({
   flow,
@@ -41,38 +42,47 @@ export function EngineeringPipeline({
 
     let cancelled = false;
     const timers: number[] = [];
+    const cycleDuration = steps.length * STEP_MS + SETTLE_MS + RESET_MS;
 
-    const initializeId = window.setTimeout(() => {
-      if (!cancelled) {
-        setActiveStep(-1);
-        setSettled(false);
+    const runCycle = () => {
+      if (cancelled) {
+        return;
       }
-    }, 0);
-    timers.push(initializeId);
 
-    steps.forEach((_, index) => {
-      const timerId = window.setTimeout(() => {
+      setActiveStep(-1);
+      setSettled(false);
+
+      steps.forEach((_, index) => {
+        const timerId = window.setTimeout(() => {
+          if (!cancelled) {
+            setActiveStep(index);
+          }
+        }, index * STEP_MS);
+        timers.push(timerId);
+      });
+
+      const settleId = window.setTimeout(() => {
         if (!cancelled) {
-          setActiveStep(index);
+          setSettled(true);
         }
-      }, index * STEP_MS);
-      timers.push(timerId);
-    });
+      }, steps.length * STEP_MS + SETTLE_MS);
+      timers.push(settleId);
 
-    const settleId = window.setTimeout(() => {
-      if (!cancelled) {
-        setSettled(true);
-      }
-    }, steps.length * STEP_MS + SETTLE_MS);
-    timers.push(settleId);
+      const resetId = window.setTimeout(() => {
+        if (!cancelled) {
+          setActiveStep(-1);
+          setSettled(false);
+        }
+      }, cycleDuration);
+      timers.push(resetId);
 
-    const resetId = window.setTimeout(() => {
-      if (!cancelled) {
-        setActiveStep(-1);
-        setSettled(false);
-      }
-    }, steps.length * STEP_MS + SETTLE_MS + RESET_MS);
-    timers.push(resetId);
+      const nextCycleId = window.setTimeout(() => {
+        runCycle();
+      }, cycleDuration + LOOP_DELAY_MS);
+      timers.push(nextCycleId);
+    };
+
+    runCycle();
 
     return () => {
       cancelled = true;
