@@ -9,6 +9,7 @@ import { SocialLinks } from "@/components/ui/SocialLinks";
 import { AnimatedText } from "@/components/ui/AnimatedText";
 import { HeroBadge } from "@/components/ui/HeroBadge";
 import { SystemDetailsPanel } from "@/components/hero/SystemDetailsPanel";
+import { HeroCodeBackdrop } from "@/components/hero/HeroCodeBackdrop";
 import { PROFILE_IMAGE } from "@/data/profile";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import {
@@ -121,7 +122,9 @@ export function Hero() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.03),transparent_40%),radial-gradient(circle_at_75%_8%,rgba(223,37,49,0.10),transparent_30%),radial-gradient(circle_at_85%_26%,rgba(58,8,13,0.12),transparent_36%)]" />
       </div>
 
-      <div className="container-page">
+      <HeroCodeBackdrop />
+
+      <div className="container-page relative z-10">
         {/* ── Two-column grid ───────────────────────────────────── */}
         <motion.div
           variants={parentVariants}
