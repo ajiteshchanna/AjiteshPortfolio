@@ -78,7 +78,12 @@ export interface ExperienceItem {
 export interface SkillCategory {
   id: string;
   title: string;
-  items: string[];
+  description?: string;
+  tags?: string[];
+  mode?: string;
+  flow?: string[];
+  flowDirection?: "vertical" | "horizontal";
+  items?: string[];
 }
 
 export interface Article {
