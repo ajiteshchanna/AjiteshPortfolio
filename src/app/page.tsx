@@ -61,7 +61,7 @@ const websiteSchema = {
 };
 
 export const metadata: Metadata = {
-  title: "Home",
+  title: "Ajitesh Channa",
   description:
     "AI engineer and creative technologist portfolio focused on practical systems, case studies, and research-led engineering.",
   alternates: {
