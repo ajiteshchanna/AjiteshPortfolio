@@ -26,6 +26,11 @@ export const metadata: Metadata = {
   },
   description: SITE_METADATA.description,
   applicationName: SITE_METADATA.name,
+  icons: {
+    icon: "/images/logo.jpg",
+    shortcut: "/images/logo.jpg",
+    apple: "/images/logo.jpg",
+  },
   alternates: {
     canonical: "/",
   },
