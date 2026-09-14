@@ -217,6 +217,121 @@ export const PROJECTS: Project[] = [
       ],
     },
   },
+    {
+    id: "thyrolens-ai",
+    slug: "thyrolens-ai",
+    title: "ThyroLens AI",
+    description:
+      "A research-focused thyroid image classification system combining FibonacciNet, Grad-CAM explainability, image-quality assessment, input similarity screening, and calibrated technical reliability.",
+    category: "AI/ML",
+    year: "2026",
+    status: "Completed",
+    technologies: [
+      "Python",
+      "TensorFlow",
+      "FibonacciNet",
+      "FastAPI",
+      "Grad-CAM",
+      "Platt Calibration",
+      "Mahalanobis Distance",
+      "Computer Vision",
+    ],
+    image_true: false,
+    images: [],
+    github: "https://github.com/ajiteshchanna/ThyroLensAI",
+    demo: "https://thyrolensai.onrender.com/",
+    featured: true,
+    featuredOrder: 4,
+    architectureFlow: [
+      "Image Upload",
+      "Preprocessing",
+      "FibonacciNet",
+      "Calibration",
+      "Quality Assessment",
+      "Input Similarity",
+      "Grad-CAM",
+      "Reliability Report",
+    ],
+    caseStudy: {
+      overview:
+        "ThyroLens AI is a research and educational AI decision-support prototype for binary thyroid image classification. It combines classification, explainability, calibration, image-quality checks, and feature-space similarity into one analysis workflow.",
+      problem:
+        "Medical imaging AI outputs can be difficult to interpret and may not communicate whether an input is technically suitable or sufficiently similar to the data used during development.",
+      whyItMatters:
+        "Combining prediction with explainability and technical reliability signals encourages more cautious, transparent, and human-reviewed use of AI outputs.",
+      role:
+        "Designed and implemented the classification application, explainability workflow, image-quality checks, input-similarity screening, calibration integration, and technical reliability assessment.",
+      architecture:
+        "JPEG/PNG upload -> RGB preprocessing -> FibonacciNet prediction -> Platt calibration and feature-space similarity -> image-quality assessment -> technical reliability -> Grad-CAM visualization -> web response or DOCX report.",
+      stack:
+        "Python, TensorFlow, FibonacciNet, FastAPI, Grad-CAM, Platt scaling, Mahalanobis distance, Streamlit, DOCX reporting",
+      implementation:
+        "Built a modular analysis pipeline that separates raw model output, calibrated probability, image-quality signals, input similarity, and technical reliability. Added Grad-CAM visualization, report generation, and reusable evaluation utilities.",
+      engineeringDecisions: [
+        "Kept raw model score, calibrated probability, and technical reliability as separate quantities.",
+        "Used deterministic image-quality heuristics to identify technically weak inputs.",
+        "Added feature-space Mahalanobis distance for input-similarity and OOD screening.",
+        "Made reliability weights and thresholds configurable.",
+        "Preserved explicit safety boundaries instead of presenting the prototype as a clinical diagnostic system.",
+      ],
+      challenges: [
+        "Communicating model confidence without overstating medical certainty.",
+        "Combining heterogeneous technical signals into an interpretable reliability assessment.",
+        "Handling image-quality and out-of-distribution concerns alongside classification.",
+        "Documenting limitations caused by unavailable historical split and dataset provenance details.",
+      ],
+      solutions: [
+        "Separated raw score, calibrated probability, and AI technical reliability in the interface.",
+        "Added quality, similarity, and calibration components to the reliability pipeline.",
+        "Used Grad-CAM as an approximate attention visualization with clear limitations.",
+        "Included model-card documentation and human-in-the-loop recommendations.",
+      ],
+      results:
+        "Delivers an end-to-end research prototype that produces thyroid image classification results alongside explainability, image-quality signals, input-similarity screening, calibration information, and an engineering-level technical reliability assessment.",
+      evaluation:
+        "The repository includes reusable evaluation utilities for held-out predictions. No independently verified clinical performance metrics are claimed because the historical split manifest and independent validation are unavailable.",
+      metrics: [
+        {
+          label: "Calibration Brier score",
+          value: "0.0762",
+          note: "Recorded for the persisted calibration artifact.",
+        },
+        {
+          label: "Calibration ECE",
+          value: "0.0364",
+          note: "Recorded for the persisted calibration artifact.",
+        },
+      ],
+      diagram: {
+        title: "ThyroLens AI Architecture",
+        description:
+          "Classification, calibration, quality assessment, similarity screening, explainability, and reliability workflow.",
+        nodes: [
+          "Image Upload",
+          "Preprocessing",
+          "FibonacciNet",
+          "Calibration",
+          "Quality Assessment",
+          "Input Similarity",
+          "Technical Reliability",
+          "Grad-CAM",
+          "Report",
+        ],
+      },
+      lessonsLearned: [
+        "A strong classifier score alone is not sufficient to establish technical reliability.",
+        "Calibration and input-similarity signals add important context to model outputs.",
+        "Explainability visualizations should be communicated as approximate model-attention aids, not causal or clinical evidence.",
+        "Clear model limitations are essential when working with medical imaging prototypes.",
+      ],
+      futureImprovements: [
+        "Persist a versioned, deduplicated dataset and independent test split.",
+        "Perform external and prospective validation with appropriate governance.",
+        "Evaluate calibration and OOD behavior across acquisition devices and sites.",
+        "Add a research dashboard only when real evaluation artifacts are available.",
+      ],
+    },
+  },
   {
     id: "attendanceiq",
     slug: "attendanceiq",
