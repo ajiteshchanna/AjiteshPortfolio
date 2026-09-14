@@ -115,7 +115,7 @@ export const PROJECTS: Project[] = [
     title: "Spidey Store",
     description:
       "An AI-powered conversational commerce platform that translates natural-language shopping intent into structured product retrieval and recommendations.",
-    category: "AI/ML",
+    category: "LLM/RAG",
     year: "2026",
     status: "Completed",
     technologies: [
